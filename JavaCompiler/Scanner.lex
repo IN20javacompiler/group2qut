@@ -1,31 +1,41 @@
+/*
+* Flex uses .lex spec file to generate a scanner.
+* ( lex.yy.c )
+* Scanner reads an input file and chunks it into series of tokens which are passed to parser.
+*/
+
 /* Definitions Section */
+%{
+#include <stdio.h>
+#include <y.tab.h>
+%}
 %namespace javacompiler.Scanner
 
 letter			[a-zA-Z]
 digit			[0-9]
 stringliteral	\"([^\\\"]|\\.)*\"
-lparem			(
-rparem			)
-lbrace			{
-rbrace			}
-equal			=
-plus			+
-minus			-
-mul				*
-div				/
-mod				%
-public_tok		public
-static_tok		static
-void_tok		void
-class_tok		class
-if_tok			if
-else_tok		else
-while_tok		while
-for_tok			for
-int_tok			int
-float_tok		float
-return_tok		return			
-semicolon		;
+lparem			"("
+rparem			")"
+lbrace			"{"
+rbrace			"}"
+equal			"="
+plus			"+"
+minus			"-"
+mul				"*"
+div				"/"
+mod				"%"
+public_tok		"public"
+static_tok		"static"
+void_tok		"void"
+class_tok		"class"
+if_tok			"if"
+else_tok		"else"
+while_tok		"while"
+for_tok			"for"
+int_tok			"int"
+float_tok		"float"
+return_tok		"return"			
+semicolon		";"
 
 /* Rules Section */
 %%
@@ -56,3 +66,16 @@ semicolon		;
 {semicolon}						{ return (int)Tokens.SEMICOLON; }
 .|\n							{ /* Ignore all other characters. */ }
 %%
+
+/* C Code Section */
+int yywrap()
+{
+	return 1;
+}
+
+int main()
+{
+	yylex();
+	return 0;
+}
+
