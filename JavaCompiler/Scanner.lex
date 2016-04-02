@@ -13,7 +13,7 @@
 
 letter			[a-zA-Z]
 digit			[0-9]
-stringliteral			\"([^\\\"]|\\.)*\"
+stringliteral	\"([^\\\"]|\\.)*\"
 lparem			"("
 rparem			")"
 lbrace			"{"
@@ -21,9 +21,9 @@ rbrace			"}"
 equal			"="
 plus			"+"
 minus			"-"
-mul			"*"
-div			"/"
-mod			"%"
+mul				"*"
+div				"/"
+mod				"%"
 public_tok		"public"
 static_tok		"static"
 void_tok		"void"
@@ -46,9 +46,9 @@ greater_equal	">="
 
 /*** Rules Section ***/
 %%
-{letter}({letter}|{digit})*			{ yylval.text = yytext; return (int)Tokens.IDENTIFIER; }
+{letter}({letter}|{digit})*		{ yylval.text = yytext; return (int)Tokens.IDENTIFIER; }
 {digit}+						{ yylval.num = int.Parse(yytext); return (int)Tokens.NUMBER; }
-{stringliteral}						{ yylval.text = yytext; return (int)Tokens.STRINGLITERAL; }
+{stringliteral}					{ yylval.text = yytext; return (int)Tokens.STRINGLITERAL; }
 {lparem}						{ return (int)Tokens.LPAREM; }
 {rparem}						{ return (int)Tokens.RPAREM; }
 {lbrace}						{ return (int)Tokens.LBRACE; }
@@ -59,8 +59,8 @@ greater_equal	">="
 {mul}							{ return (int)Tokens.MUL; }
 {div}							{ return (int)Tokens.DIV; }
 {mod}							{ return (int)Tokens.MOD; }
-{public_tok}						{ return (int)Tokens.PUBLIC_KEYWORD; }
-{static_tok}						{ return (int)Tokens.STATIC_KEYWORD; }
+{public_tok}					{ return (int)Tokens.PUBLIC_KEYWORD; }
+{static_tok}					{ return (int)Tokens.STATIC_KEYWORD; }
 {void_tok}						{ return (int)Tokens.VOID_KEYWORD; }
 {class_tok}						{ return (int)Tokens.CLASS_KEYWORD; }
 {if_tok}						{ return (int)Tokens.IF_KEYWORD; }
@@ -69,7 +69,7 @@ greater_equal	">="
 {for_tok}						{ return (int)Tokens.FOR_KEYWORD; }
 {int_tok}						{ return (int)Tokens.INT_KEYWORD; }
 {float_tok}						{ return (int)Tokens.FLOAT_KEYWORD; }
-{return_tok}						{ return (int)Tokens.RETURN_KEYWORD; }
+{return_tok}					{ return (int)Tokens.RETURN_KEYWORD; }
 {semicolon}						{ return (int)Tokens.SEMICOLON; }
 {comma}							{ return (int)Tokens.COMMA; }
 {plus_equal}					{ return (int)Tokens.PLUS_EQUAL; }
