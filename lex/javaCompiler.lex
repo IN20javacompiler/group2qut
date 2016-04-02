@@ -8,11 +8,13 @@
 Eol             (\r\n?|\n)
 NotWh           [^ \t\r\n]
 Space           [ \t]
+
 Digit			[0-9]
 Letter 			[a-zA-Z]
 Identifier		\$([a-zA-Z]([a-zA-Z0-9_])*)
 IntegerLiteral	{Digit}+
 BooleanLiteral	(true|false)
+
 Public      	public
 Static      	static
 Void        	void
@@ -28,8 +30,6 @@ OpMinus			"-"
 OpMul			"*"
 OpDiv			"/"
 OpModul			"%"
-LeftPar			"("
-RigthPar		")"
 OpAnd			and
 OpOr			or
 OpNot			not
@@ -41,6 +41,8 @@ OpGtEq			">="
 OpLtEq			"<="
 OpSqLBr			"["
 OpSqRBr			"]"
+LeftPar			"("
+RigthPar		")"
 %%
 {letter}({letter}|{digit})*		{ yylval.text = yytext; return (int)Tokens.IDENTIFIER; }
 {IntegerLiteral}				{ yylval.num = int.Parse(yytext); return (int)Tokens.INTEGERLITERAL; }
@@ -60,8 +62,6 @@ OpSqRBr			"]"
 {OpMul}							{ return (int) Tokens.OP_MUL; }
 {OpDiv}							{ return (int) Tokens.OP_DIV; }
 {OpModul}						{ return (int) Tokens.OP_MODUL; }
-{LeftPar}						{ return (int) Tokens.OP_LEFT_PAR; }
-{RigthPar}						{ return (int) Tokens.OP_RIGHT_PAR; }
 {OpAnd}							{ return (int) Tokens.OP_AND; }
 {OpOr}							{ return (int) Tokens.OP_OR; }
 {OpNot}							{ return (int) Tokens.OP_NOT; }
@@ -71,6 +71,8 @@ OpSqRBr			"]"
 {OpGt}							{ return (int) Tokens.OP_GT; }
 {OpGtEq}						{ return (int) Tokens.OP_GT_EQ; }
 {OpLtEq}						{ return (int) Tokens.OP_LT_EQ; }
+{LeftPar}						{ return (int) Tokens.OP_LEFT_PAR; }
+{RigthPar}						{ return (int) Tokens.OP_RIGHT_PAR; }
 {OpSqLBr}						{ return (int) Tokens.OP_SQ_L_BR; }
 {OpSqRBr}						{ return (int) Tokens.OP_SQ_R_BR; }
 %%
