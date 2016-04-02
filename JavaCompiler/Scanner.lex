@@ -4,7 +4,7 @@
 * Scanner reads an input file and chunks it into series of tokens which are passed to parser.
 */
 
-/* Definitions Section */
+/*** Definitions Section ***/
 %{
 #include <stdio.h>
 #include <y.tab.h>
@@ -13,7 +13,7 @@
 
 letter			[a-zA-Z]
 digit			[0-9]
-stringliteral	\"([^\\\"]|\\.)*\"
+stringliteral			\"([^\\\"]|\\.)*\"
 lparem			"("
 rparem			")"
 lbrace			"{"
@@ -21,9 +21,9 @@ rbrace			"}"
 equal			"="
 plus			"+"
 minus			"-"
-mul				"*"
-div				"/"
-mod				"%"
+mul			"*"
+div			"/"
+mod			"%"
 public_tok		"public"
 static_tok		"static"
 void_tok		"void"
@@ -34,14 +34,21 @@ while_tok		"while"
 for_tok			"for"
 int_tok			"int"
 float_tok		"float"
-return_tok		"return"			
+return_tok		"return"		
+comma			","	
 semicolon		";"
+plus_equal		"+="
+minus_equal		"-="
+less			"<"
+less_equal		"<="
+greater			">"
+greater_equal	">="
 
-/* Rules Section */
+/*** Rules Section ***/
 %%
-{letter}({letter}|{digit})*		{ yylval.text = yytext; return (int)Tokens.IDENTIFIER; }
+{letter}({letter}|{digit})*			{ yylval.text = yytext; return (int)Tokens.IDENTIFIER; }
 {digit}+						{ yylval.num = int.Parse(yytext); return (int)Tokens.NUMBER; }
-{stringliteral}					{ yylval.text = yytext; return (int)Tokens.STRINGLITERAL; }
+{stringliteral}						{ yylval.text = yytext; return (int)Tokens.STRINGLITERAL; }
 {lparem}						{ return (int)Tokens.LPAREM; }
 {rparem}						{ return (int)Tokens.RPAREM; }
 {lbrace}						{ return (int)Tokens.LBRACE; }
@@ -52,8 +59,8 @@ semicolon		";"
 {mul}							{ return (int)Tokens.MUL; }
 {div}							{ return (int)Tokens.DIV; }
 {mod}							{ return (int)Tokens.MOD; }
-{public_tok}					{ return (int)Tokens.PUBLIC_KEYWORD; }
-{static_tok}					{ return (int)Tokens.STATIC_KEYWORD; }
+{public_tok}						{ return (int)Tokens.PUBLIC_KEYWORD; }
+{static_tok}						{ return (int)Tokens.STATIC_KEYWORD; }
 {void_tok}						{ return (int)Tokens.VOID_KEYWORD; }
 {class_tok}						{ return (int)Tokens.CLASS_KEYWORD; }
 {if_tok}						{ return (int)Tokens.IF_KEYWORD; }
@@ -62,12 +69,19 @@ semicolon		";"
 {for_tok}						{ return (int)Tokens.FOR_KEYWORD; }
 {int_tok}						{ return (int)Tokens.INT_KEYWORD; }
 {float_tok}						{ return (int)Tokens.FLOAT_KEYWORD; }
-{return_tok}					{ return (int)Tokens.RETURN_KEYWORD; }
+{return_tok}						{ return (int)Tokens.RETURN_KEYWORD; }
 {semicolon}						{ return (int)Tokens.SEMICOLON; }
+{comma}							{ return (int)Tokens.COMMA; }
+{plus_equal}					{ return (int)Tokens.PLUS_EQUAL; }
+{minus_equal}					{ return (int)Tokens.MINUS_EQUAL; }
+{less}							{ return (int)Tokens.LT; }
+{less_equal}					{ return (int)Tokens.LE; }
+{greater}						{ return (int)Tokens.GT; }
+{greater_equal}					{ return (int)Tokens.GE; }
 .|\n							{ /* Ignore all other characters. */ }
 %%
 
-/* C Code Section */
+/*** C Code Section ***/
 int yywrap()
 {
 	return 1;

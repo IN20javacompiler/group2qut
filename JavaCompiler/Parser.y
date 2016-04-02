@@ -4,7 +4,7 @@
 * Parser reads a series of tokens and tries to determine the gramatical structure with respect tp given grammer.
 */
 
-/* Definitions Section */
+/*** Definitions Section ***/
 %{
 
 %}
@@ -12,16 +12,6 @@
 %token IDENTIFIER
 %token NUMBER
 %token STRINGLITERAL
-%token LPAREM
-%token RPAREM
-%token LBRACE
-%token RBRACE
-%token EQUAL
-%token PLUS
-%token MINUS
-%token MUL
-%token DIV
-%token MOD
 %token PUBLIC_KEYWORD
 %token STATIC_KEYWORD
 %token VOID_KEYWORD
@@ -35,12 +25,24 @@
 %token RETURN_KEYWORD
 %token SEMICOLON
 
-/* Rules Section */
+/* Operator Precedence and Associativity */
+%left LBRACE RBRACE
+%left LPAREM RPAREM
+%left MINUS PLUS
+%left MUL DIV MOD
+%left COMMA
+%left LT LE
+%left GT GE
+%right EQUAL
+%right PLUS_EQUAL
+%right MINUS_EQUAL
+
+/*** Rules Section ***/
 %%
 
 
 %%
 
-/* C Code Section */
+/*** C Code Section ***/
 
 
