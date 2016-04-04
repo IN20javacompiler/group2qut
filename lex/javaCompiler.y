@@ -45,14 +45,96 @@ CompilationUnit
 	: ProgramFile
         ;
 
-ProgramFile
-	: PackageStatement ImportStatements TypeDeclarations
-	| PackageStatement ImportStatements
-	| PackageStatement                  TypeDeclarations
-	|                  ImportStatements TypeDeclarations
-	| PackageStatement
-	|                  ImportStatements
-	|                                   TypeDeclarations
-	;
+ProgramFile						: PackageStatement ImportStatements TypeDeclarations
+								| PackageStatement ImportStatements
+								| PackageStatement                  TypeDeclarations
+								|                  ImportStatements TypeDeclarations
+								| PackageStatement
+								|                  ImportStatements
+								|                                   TypeDeclarations
+								;
+ConditionalExpression			:ConditionalOrExpression
+								|ConditionalOrExpression ? Expression : ConditionalExpression 
+								|ConditionalOrExpression ? Expression : LambdaExpression 
+								;
+ConditionalOrExpression			:ConditionalAndExpression
+								|ConditionalOrExpression || ConditionalAndExpression
+								;
 
+ConditionalAndExpression		:InclusiveOrExpression
+								|ConditionalAndExpression && InclusiveOrExpression
+								;
+InclusiveOrExpression			:ExclusiveOrExpression 
+								|InclusiveOrExpression | ExclusiveOrExpression
+								;
+ExclusiveOrExpression			:AndExpression
+								|ExclusiveOrExpression ^ AndExpression
+								;
+AndExpression					:EqualityExpression
+								|AndExpression & EqualityExpression
+								;
+EqualityExpression				:RelationalExpression
+								|EqualityExpression == RelationalExpression
+								|EqualityExpression != RelationalExpression
+								;
+RelationalExpression			:ShiftExpression 
+								|RelationalExpression < ShiftExpression 
+								|RelationalExpression > ShiftExpression 
+								|RelationalExpression <= ShiftExpression 
+								|RelationalExpression >= ShiftExpression 
+								|RelationalExpression instanceof ReferenceType
+								;
+ShiftExpression					:AdditiveExpression 
+								|ShiftExpression << AdditiveExpression 
+								|ShiftExpression >> AdditiveExpression 
+								|ShiftExpression >>> AdditiveExpression
+								;
+AdditiveExpression				:MultiplicativeExpression 
+								|AdditiveExpression + MultiplicativeExpression 
+								|AdditiveExpression - MultiplicativeExpression
+								;
+MultiplicativeExpression		:UnaryExpression 
+								|MultiplicativeExpression * UnaryExpression 
+								|MultiplicativeExpression / UnaryExpression 
+								|MultiplicativeExpression % UnaryExpression
+								;
+UnaryExpression					:PreIncrementExpression 
+								|+ UnaryExpression 
+								|- UnaryExpression 
+								|UnaryExpressionNotPlusMinus
+								;
+UnaryExpressionNotPlusMinus     :PostfixExpression 
+								|~ UnaryExpression 
+								|! UnaryExpression 
+								|CastExpression
+								;
+PostfixExpression				:Primary 
+								|ExpressionName 
+								|PostIncrementExpression 
+								|PostDecrementExpression
+								;
+Primary							:PrimaryNoNewArray 
+								|ArrayCreationExpression
+								;
+
+PrimaryNoNewArray				:Literal 
+								|ClassLiteral 
+								|this 
+								|TypeName . this 
+								|( Expression ) 
+								|ClassInstanceCreationExpression 
+								|FieldAccess 
+								|ArrayAccess 
+								|MethodInvocation 
+								|MethodReference	
+								;
+
+Literal 						:IntegerLiteral 
+								|FloatingPointLiteral 
+								|BooleanLiteral 
+								|CharacterLiteral 
+								|StringLiteral 
+								|NullLiteral	
+								;
+						
 %%
