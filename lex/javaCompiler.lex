@@ -3,8 +3,6 @@
 
 %visibility internal
 
-%option stack, classes, minimize, parser, verbose, out:javaCompilerScanner.cs
-
 Eol             (\r\n?|\n)
 NotWh           [^ \t\r\n]
 Space           [ \t]
@@ -20,7 +18,6 @@ Static      	static
 Void        	void
 Main			main
 Class			class
-Dim				Dim
 Bool			bool
 Int				int
 String			string
@@ -43,8 +40,11 @@ OpSqLBr			"["
 OpSqRBr			"]"
 LeftPar			"("
 RigthPar		")"
+OpLtBrace		"{"
+OpRtBrace		"}"
+SemiColon		";"
 %%
-{letter}({letter}|{digit})*		{ yylval.text = yytext; return (int)Tokens.IDENTIFIER; }
+{Letter}({Letter}|{Digit})*		{ yylval.text = yytext; return (int)Tokens.IDENTIFIER; }
 {IntegerLiteral}				{ yylval.num = int.Parse(yytext); return (int)Tokens.INTEGERLITERAL; }
 {Bool}							{ yylval.Bool = yytext; return (int)Tokens.BOOL; }
 {Public}						{ return (int)Tokens.PUBLIC; }
@@ -52,7 +52,6 @@ RigthPar		")"
 {Void}							{ return (int)Tokens.VOID; }
 {Main}							{ return (int)Tokens.MAIN; }
 {Class}							{ return (int)Tokens.CLASS; }
-{Dim}							{ return (int) Tokens.DIM; }	
 {Bool}							{ return (int) Tokens.BOOL; }
 {Int}							{ return (int) Tokens.INT; }
 {String}						{ return (int) Tokens.STRING; }
@@ -75,4 +74,7 @@ RigthPar		")"
 {RigthPar}						{ return (int) Tokens.OP_RIGHT_PAR; }
 {OpSqLBr}						{ return (int) Tokens.OP_SQ_L_BR; }
 {OpSqRBr}						{ return (int) Tokens.OP_SQ_R_BR; }
+{OpLtBrace}						{ return (int) Tokens.OP_LT_BRACE; }
+{OpRtBrace}						{ return (int) Tokens.OP_RT_BRACE; }
+{SemiColon}						{ return (int) Tokens.SEMICOLON; }
 %%

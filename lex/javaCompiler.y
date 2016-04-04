@@ -15,14 +15,15 @@
 %token VOID
 %token MAIN
 %token CLASS
-%token DIM
 %token BOOL
 %token INT
 %token STRING
 %token OP_LEFT_PAR
+%token OP_RIGHT_PAR
 %token OP_SQ_L_BR
 %token OP_SQ_R_BR
-
+%token OP_LT_BRACE OP_RT_BRACE
+%token SEMICOLON
 //left associated operands
 %left OP_ASSIGN
 %left OP_ADD OP_MINUS
@@ -36,105 +37,121 @@
 %left OP_LT
 %left OP_GT
 %left OP_GT_EQ
-%left OP_LT_EQ
+%left OP_LT_EQ 
 
 %start CompilationUnit
 // YACC Rules
 %%
-CompilationUnit
-	: ProgramFile
-        ;
+CompilationUnit					:TypeDeclaration
+								;
+TypeDeclaration					:ClassDeclaration
+								;
+ClassDeclaration				:NormalClassDeclaration
+								;
+NormalClassDeclaration			: ClassModifier CLASS IDENTIFIER ClassBody
+								| CLASS IDENTIFIER ClassBody
+								;
+ClassModifier					:PUBLIC
+								;
+ClassBody						: OP_LT_BRACE ClassBodyDeclaration OP_RT_BRACE
+								;
+ClassBodyDeclaration			:ClassMemberDeclaration
+								;
+ClassMemberDeclaration			:MethodDeclaration 
+								;
+MethodDeclaration				: MethodModifier MethodHeader MethodBody
+								|MethodHeader MethodBody;
+MethodModifier					:PUBLIC STATIC
+								;
+MethodHeader					:Result MethodDeclarator
+								;
+Result							:VOID;
+MethodDeclarator				:IDENTIFIER OP_LEFT_PAR FormalParameterList OP_RIGHT_PAR
+								|IDENTIFIER OP_LEFT_PAR OP_RIGHT_PAR
+								;
+FormalParameterList				:LastFormalParameter
+								;
+LastFormalParameter				:FormalParameter
+								;
+FormalParameter					:UnannType VariableDeclaratorId
+								;
+UnannType						:UnannReferenceType
+								|UnannPrimitiveType
+								;
+UnannReferenceType				:UnannArrayType
+								;
+UnannArrayType					:UnannTypeVariable Dims
+								;
+UnannTypeVariable				:IDENTIFIER;
 
-ProgramFile						: PackageStatement ImportStatements TypeDeclarations
-								| PackageStatement ImportStatements
-								| PackageStatement                  TypeDeclarations
-								|                  ImportStatements TypeDeclarations
-								| PackageStatement
-								|                  ImportStatements
-								|                                   TypeDeclarations
+Dims							:OP_SQ_L_BR OP_SQ_R_BR
 								;
-ConditionalExpression			:ConditionalOrExpression
-								|ConditionalOrExpression ? Expression : ConditionalExpression 
-								|ConditionalOrExpression ? Expression : LambdaExpression 
+MethodBody						:Block
 								;
-ConditionalOrExpression			:ConditionalAndExpression
-								|ConditionalOrExpression || ConditionalAndExpression
+Block							: OP_LT_BRACE BlockStatements OP_RT_BRACE
 								;
+BlockStatements					:BlockStatement
+								;
+BlockStatement					:LocalVariableDeclarationStatement
+								;
+LocalVariableDeclarationStatement: LocalVariableDeclaration SEMICOLON
+								;
+LocalVariableDeclaration		:UnannType VariableDeclaratorList
+								;
+UnannPrimitiveType				:NumericType
+								;
+NumericType						:IntegralType
+								;
+IntegralType					:INT;
 
-ConditionalAndExpression		:InclusiveOrExpression
-								|ConditionalAndExpression && InclusiveOrExpression
+VariableDeclaratorList			:VariableDeclarator
 								;
-InclusiveOrExpression			:ExclusiveOrExpression 
-								|InclusiveOrExpression | ExclusiveOrExpression
+VariableDeclarator				:VariableDeclaratorId OP_EQU VariableInitializer
 								;
-ExclusiveOrExpression			:AndExpression
-								|ExclusiveOrExpression ^ AndExpression
+VariableDeclaratorId			:IDENTIFIER
 								;
-AndExpression					:EqualityExpression
-								|AndExpression & EqualityExpression
+VariableInitializer				:Expression
 								;
-EqualityExpression				:RelationalExpression
-								|EqualityExpression == RelationalExpression
-								|EqualityExpression != RelationalExpression
+Expression						:AssignmentExpression
 								;
-RelationalExpression			:ShiftExpression 
-								|RelationalExpression < ShiftExpression 
-								|RelationalExpression > ShiftExpression 
-								|RelationalExpression <= ShiftExpression 
-								|RelationalExpression >= ShiftExpression 
-								|RelationalExpression instanceof ReferenceType
+AssignmentExpression			:ConditionalExpression
 								;
-ShiftExpression					:AdditiveExpression 
-								|ShiftExpression << AdditiveExpression 
-								|ShiftExpression >> AdditiveExpression 
-								|ShiftExpression >>> AdditiveExpression
+ConditionalExpression			: ConditionalOrExpression
 								;
-AdditiveExpression				:MultiplicativeExpression 
-								|AdditiveExpression + MultiplicativeExpression 
-								|AdditiveExpression - MultiplicativeExpression
+ConditionalOrExpression			: ConditionalAndExpression
 								;
-MultiplicativeExpression		:UnaryExpression 
-								|MultiplicativeExpression * UnaryExpression 
-								|MultiplicativeExpression / UnaryExpression 
-								|MultiplicativeExpression % UnaryExpression
+ConditionalAndExpression		: InclusiveOrExpression
 								;
-UnaryExpression					:PreIncrementExpression 
-								|+ UnaryExpression 
-								|- UnaryExpression 
-								|UnaryExpressionNotPlusMinus
+InclusiveOrExpression			: ExclusiveOrExpression 
+								;
+ExclusiveOrExpression			: AndExpression
+								;
+AndExpression					: EqualityExpression
+								;
+EqualityExpression				: RelationalExpression
+								;
+RelationalExpression			:ShiftExpression
+								;
+ShiftExpression					:AdditiveExpression
+								;
+AdditiveExpression				:MultiplicativeExpression
+								;
+MultiplicativeExpression		:UnaryExpression
+								;
+UnaryExpression					:UnaryExpressionNotPlusMinus
 								;
 UnaryExpressionNotPlusMinus     :PostfixExpression 
-								|~ UnaryExpression 
-								|! UnaryExpression 
-								|CastExpression
 								;
 PostfixExpression				:Primary 
-								|ExpressionName 
-								|PostIncrementExpression 
-								|PostDecrementExpression
 								;
 Primary							:PrimaryNoNewArray 
-								|ArrayCreationExpression
 								;
 
 PrimaryNoNewArray				:Literal 
-								|ClassLiteral 
-								|this 
-								|TypeName . this 
-								|( Expression ) 
-								|ClassInstanceCreationExpression 
-								|FieldAccess 
-								|ArrayAccess 
-								|MethodInvocation 
-								|MethodReference	
 								;
 
-Literal 						:IntegerLiteral 
-								|FloatingPointLiteral 
-								|BooleanLiteral 
-								|CharacterLiteral 
-								|StringLiteral 
-								|NullLiteral	
+Literal 						:INTEGER_LITERAL 
 								;
 						
+
 %%
