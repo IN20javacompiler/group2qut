@@ -44,15 +44,14 @@ OpLtBrace		"{"
 OpRtBrace		"}"
 SemiColon		";"
 %%
-{Letter}({Letter}|{Digit})*		{ yylval.text = yytext; return (int)Tokens.IDENTIFIER; }
+{Identifier}					{ yylval.String = yytext.Substring(1); return (int) Tokens.IDENTIFIER; }
 {IntegerLiteral}				{ yylval.num = int.Parse(yytext); return (int)Tokens.INTEGERLITERAL; }
-{Bool}							{ yylval.Bool = yytext; return (int)Tokens.BOOL; }
+{Bool}							{ bool.TryParse(yytext, out yylval.Bool); return (int) Tokens.BOOL; }
 {Public}						{ return (int)Tokens.PUBLIC; }
 {Static}						{ return (int)Tokens.STATIC; }
 {Void}							{ return (int)Tokens.VOID; }
 {Main}							{ return (int)Tokens.MAIN; }
 {Class}							{ return (int)Tokens.CLASS; }
-{Bool}							{ return (int) Tokens.BOOL; }
 {Int}							{ return (int) Tokens.INT; }
 {String}						{ return (int) Tokens.STRING; }
 {OpAssign}						{ return (int) Tokens.OP_ASSIGN; }
