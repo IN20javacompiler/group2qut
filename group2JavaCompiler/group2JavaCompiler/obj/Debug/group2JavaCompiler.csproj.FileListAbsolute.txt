@@ -1,0 +1,2 @@
+c:\users\user\documents\visual studio 2015\Projects\group2JavaCompiler\group2JavaCompiler\bin\Debug\group2JavaCompiler.exe.config
+D:\Programming Language Theory\git\group2JavaCompiler\group2JavaCompiler\bin\Debug\group2JavaCompiler.exe.config
