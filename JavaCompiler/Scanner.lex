@@ -1,95 +1,79 @@
-/*
-* Flex uses .lex spec file to generate a scanner.
-* ( lex.yy.c )
-* Scanner reads an input file and chunks it into series of tokens which are passed to parser.
-*/
+%using javaCompiler.Parser;
+%namespace javaCompiler.Scanner
 
-/*** Definitions Section ***/
-%{
-#include <stdio.h>
-#include <y.tab.h>
-%}
-%namespace javacompiler.Scanner
+%visibility internal
 
-letter			[a-zA-Z]
-digit			[0-9]
-stringliteral	\"([^\\\"]|\\.)*\"
-lparem			"("
-rparem			")"
-lbrace			"{"
-rbrace			"}"
-equal			"="
-plus			"+"
-minus			"-"
-mul				"*"
-div				"/"
-mod				"%"
-public_tok		"public"
-static_tok		"static"
-void_tok		"void"
-class_tok		"class"
-if_tok			"if"
-else_tok		"else"
-while_tok		"while"
-for_tok			"for"
-int_tok			"int"
-float_tok		"float"
-return_tok		"return"		
-comma			","	
-semicolon		";"
-plus_equal		"+="
-minus_equal		"-="
-less			"<"
-less_equal		"<="
-greater			">"
-greater_equal	">="
+Eol             (\r\n?|\n)
+NotWh           [^ \t\r\n]
+Space           [ \t]
 
-/*** Rules Section ***/
+Digit			[0-9]
+Letter 			[a-zA-Z]
+Identifier		\$([a-zA-Z]([a-zA-Z0-9_])*)
+IntegerLiteral	{Digit}+
+BooleanLiteral	(true|false)
+
+Public      	public
+Static      	static
+Void        	void
+Main			main
+Class			class
+Bool			bool
+Int				int
+String			string
+OpAssign		=
+OpAdd			+
+OpMinus			"-"
+OpMul			"*"
+OpDiv			"/"
+OpModul			"%"
+OpAnd			and
+OpOr			or
+OpNot			not
+OpEqu			"=="
+OpNotEqu		"!="
+OpLt			"<"
+OpGt			">"
+OpGtEq			">="
+OpLtEq			"<="
+OpSqLBr			"["
+OpSqRBr			"]"
+LeftPar			"("
+RigthPar		")"
+OpLtBrace		"{"
+OpRtBrace		"}"
+SemiColon		";"
 %%
-{letter}({letter}|{digit})*		{ yylval.text = yytext; return (int)Tokens.IDENTIFIER; }
-{digit}+						{ yylval.num = int.Parse(yytext); return (int)Tokens.NUMBER; }
-{stringliteral}					{ yylval.text = yytext; return (int)Tokens.STRINGLITERAL; }
-{lparem}						{ return (int)Tokens.LPAREM; }
-{rparem}						{ return (int)Tokens.RPAREM; }
-{lbrace}						{ return (int)Tokens.LBRACE; }
-{rbrace}						{ return (int)Tokens.RBRACE; }
-{equal}							{ return (int)Tokens.EQUAL; }
-{plus}							{ return (int)Tokens.PLUS; }
-{minus}							{ return (int)Tokens.MINUS; }
-{mul}							{ return (int)Tokens.MUL; }
-{div}							{ return (int)Tokens.DIV; }
-{mod}							{ return (int)Tokens.MOD; }
-{public_tok}					{ return (int)Tokens.PUBLIC_KEYWORD; }
-{static_tok}					{ return (int)Tokens.STATIC_KEYWORD; }
-{void_tok}						{ return (int)Tokens.VOID_KEYWORD; }
-{class_tok}						{ return (int)Tokens.CLASS_KEYWORD; }
-{if_tok}						{ return (int)Tokens.IF_KEYWORD; }
-{else_tok}						{ return (int)Tokens.ELSE_KEYWORD; }
-{while_tok}						{ return (int)Tokens.WHILE_KEYWORD; }
-{for_tok}						{ return (int)Tokens.FOR_KEYWORD; }
-{int_tok}						{ return (int)Tokens.INT_KEYWORD; }
-{float_tok}						{ return (int)Tokens.FLOAT_KEYWORD; }
-{return_tok}					{ return (int)Tokens.RETURN_KEYWORD; }
-{semicolon}						{ return (int)Tokens.SEMICOLON; }
-{comma}							{ return (int)Tokens.COMMA; }
-{plus_equal}					{ return (int)Tokens.PLUS_EQUAL; }
-{minus_equal}					{ return (int)Tokens.MINUS_EQUAL; }
-{less}							{ return (int)Tokens.LT; }
-{less_equal}					{ return (int)Tokens.LE; }
-{greater}						{ return (int)Tokens.GT; }
-{greater_equal}					{ return (int)Tokens.GE; }
-.|\n							{ /* Ignore all other characters. */ }
+{Identifier}					{ yylval.String = yytext.Substring(1); return (int) Tokens.IDENTIFIER; }
+{IntegerLiteral}				{ yylval.num = int.Parse(yytext); return (int)Tokens.INTEGERLITERAL; }
+{Bool}							{ bool.TryParse(yytext, out yylval.Bool); return (int) Tokens.BOOL; }
+{Public}						{ return (int)Tokens.PUBLIC; }
+{Static}						{ return (int)Tokens.STATIC; }
+{Void}							{ return (int)Tokens.VOID; }
+{Main}							{ return (int)Tokens.MAIN; }
+{Class}							{ return (int)Tokens.CLASS; }
+{Int}							{ return (int) Tokens.INT; }
+{String}						{ return (int) Tokens.STRING; }
+{OpAssign}						{ return (int) Tokens.OP_ASSIGN; }
+{OpAdd}							{ return (int) Tokens.OP_ADD; }
+{OpMinus}						{ return (int) Tokens.OP_MINUS; }
+{OpMul}							{ return (int) Tokens.OP_MUL; }
+{OpDiv}							{ return (int) Tokens.OP_DIV; }
+{OpModul}						{ return (int) Tokens.OP_MODUL; }
+{OpAnd}							{ return (int) Tokens.OP_AND; }
+{OpOr}							{ return (int) Tokens.OP_OR; }
+{OpNot}							{ return (int) Tokens.OP_NOT; }
+{OpEqu}							{ return (int) Tokens.OP_EQU; }
+{OpNotEqu}						{ return (int) Tokens.OP_NOT_EQU; }
+{OpLt}							{ return (int) Tokens.OP_LT; }
+{OpGt}							{ return (int) Tokens.OP_GT; }
+{OpGtEq}						{ return (int) Tokens.OP_GT_EQ; }
+{OpLtEq}						{ return (int) Tokens.OP_LT_EQ; }
+{LeftPar}						{ return (int) Tokens.OP_LEFT_PAR; }
+{RigthPar}						{ return (int) Tokens.OP_RIGHT_PAR; }
+{OpSqLBr}						{ return (int) Tokens.OP_SQ_L_BR; }
+{OpSqRBr}						{ return (int) Tokens.OP_SQ_R_BR; }
+{OpLtBrace}						{ return (int) Tokens.OP_LT_BRACE; }
+{OpRtBrace}						{ return (int) Tokens.OP_RT_BRACE; }
+{SemiColon}						{ return (int) Tokens.SEMICOLON; }
 %%
-
-/*** C Code Section ***/
-int yywrap()
-{
-	return 1;
-}
-
-int main()
-{
-	yylex();
-	return 0;
-}
-

@@ -1,48 +1,158 @@
-/*
-* Bison uses .y spec file to generate a parser.
-* ( y.tab.c & y.tab.h )
-* Parser reads a series of tokens and tries to determine the gramatical structure with respect tp given grammer.
-*/
+%namespace javaCompiler.Parser
 
-/*** Definitions Section ***/
-%{
+%output=Parser.cs
 
-%}
+%union {
+    public long Integer;
+    public string String;
+  	public bool Bool;
+}
+%token <String>	 IDENTIFIER
+%token <Integer> INTEGER_LITERAL
+%token <Bool>	 BOOL_LITERAL
 
-%token IDENTIFIER
-%token NUMBER
-%token STRINGLITERAL
-%token PUBLIC_KEYWORD
-%token STATIC_KEYWORD
-%token VOID_KEYWORD
-%token CLASS_KEYWORD
-%token IF_KEYWORD
-%token ELSE_KEYWORD
-%token WHILE_KEYWORD
-%token FOR_KEYWORD
-%token INT_KEYWORD
-%token FLOAT_KEYWORD
-%token RETURN_KEYWORD
+%token PUBLIC
+%token STATIC
+%token VOID
+%token MAIN
+%token CLASS
+%token BOOL
+%token INT
+%token STRING
+%token OP_LEFT_PAR
+%token OP_RIGHT_PAR
+%token OP_SQ_L_BR
+%token OP_SQ_R_BR
+%token OP_LT_BRACE OP_RT_BRACE
 %token SEMICOLON
+//left associated operands
+%left OP_ASSIGN
+%left OP_ADD OP_MINUS
+%left OP_MUL OP_DIV 
+%left OP_MODUL
+%left OP_AND
+%left OP_OR
+%left OP_NOT
+%left OP_EQU
+%left OP_NOT_EQU
+%left OP_LT
+%left OP_GT
+%left OP_GT_EQ
+%left OP_LT_EQ 
 
-/* Operator Precedence and Associativity */
-%left LBRACE RBRACE
-%left LPAREM RPAREM
-%left MINUS PLUS
-%left MUL DIV MOD
-%left COMMA
-%left LT LE
-%left GT GE
-%right EQUAL
-%right PLUS_EQUAL
-%right MINUS_EQUAL
-
-/*** Rules Section ***/
+%start CompilationUnit
+// YACC Rules
 %%
+CompilationUnit					:TypeDeclaration
+								;
+TypeDeclaration					:ClassDeclaration
+								;
+ClassDeclaration				:NormalClassDeclaration
+								;
+NormalClassDeclaration			: ClassModifier CLASS IDENTIFIER ClassBody
+								| CLASS IDENTIFIER ClassBody
+								;
+ClassModifier					:PUBLIC
+								;
+ClassBody						: OP_LT_BRACE ClassBodyDeclaration OP_RT_BRACE
+								;
+ClassBodyDeclaration			:ClassMemberDeclaration
+								;
+ClassMemberDeclaration			:MethodDeclaration 
+								;
+MethodDeclaration				: MethodModifier MethodHeader MethodBody
+								|MethodHeader MethodBody;
+MethodModifier					:PUBLIC STATIC
+								;
+MethodHeader					:Result MethodDeclarator
+								;
+Result							:VOID;
+MethodDeclarator				:IDENTIFIER OP_LEFT_PAR FormalParameterList OP_RIGHT_PAR
+								|IDENTIFIER OP_LEFT_PAR OP_RIGHT_PAR
+								;
+FormalParameterList				:LastFormalParameter
+								;
+LastFormalParameter				:FormalParameter
+								;
+FormalParameter					:UnannType VariableDeclaratorId
+								;
+UnannType						:UnannReferenceType
+								|UnannPrimitiveType
+								;
+UnannReferenceType				:UnannArrayType
+								;
+UnannArrayType					:UnannTypeVariable Dims
+								;
+UnannTypeVariable				:IDENTIFIER;
 
+Dims							:OP_SQ_L_BR OP_SQ_R_BR
+								;
+MethodBody						:Block
+								;
+Block							: OP_LT_BRACE BlockStatements OP_RT_BRACE
+								;
+BlockStatements					:BlockStatement
+								;
+BlockStatement					:LocalVariableDeclarationStatement
+								;
+LocalVariableDeclarationStatement: LocalVariableDeclaration SEMICOLON
+								;
+LocalVariableDeclaration		:UnannType VariableDeclaratorList
+								;
+UnannPrimitiveType				:NumericType
+								;
+NumericType						:IntegralType
+								;
+IntegralType					:INT;
+
+VariableDeclaratorList			:VariableDeclarator
+								;
+VariableDeclarator				:VariableDeclaratorId OP_EQU VariableInitializer
+								;
+VariableDeclaratorId			:IDENTIFIER
+								;
+VariableInitializer				:Expression
+								;
+Expression						:AssignmentExpression
+								;
+AssignmentExpression			:ConditionalExpression
+								;
+ConditionalExpression			: ConditionalOrExpression
+								;
+ConditionalOrExpression			: ConditionalAndExpression
+								;
+ConditionalAndExpression		: InclusiveOrExpression
+								;
+InclusiveOrExpression			: ExclusiveOrExpression 
+								;
+ExclusiveOrExpression			: AndExpression
+								;
+AndExpression					: EqualityExpression
+								;
+EqualityExpression				: RelationalExpression
+								;
+RelationalExpression			:ShiftExpression
+								;
+ShiftExpression					:AdditiveExpression
+								;
+AdditiveExpression				:MultiplicativeExpression
+								;
+MultiplicativeExpression		:UnaryExpression
+								;
+UnaryExpression					:UnaryExpressionNotPlusMinus
+								;
+UnaryExpressionNotPlusMinus     :PostfixExpression 
+								;
+PostfixExpression				:Primary 
+								;
+Primary							:PrimaryNoNewArray 
+								;
+
+PrimaryNoNewArray				:Literal 
+								;
+
+Literal 						:INTEGER_LITERAL 
+								;
+						
 
 %%
-
-/*** C Code Section ***/
-
-
