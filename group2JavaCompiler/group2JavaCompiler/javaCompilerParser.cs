@@ -36,7 +36,27 @@ public struct ValueType
   	public bool Bool;
 }
 #line default
-[GeneratedCodeAttribute( "Gardens Point Parser Generator", "1.5.2")]
+    public abstract class ScanBase : AbstractScanner<ValueType, LexLocation>
+    {
+        private LexLocation __yylloc = new LexLocation();
+        public override LexLocation yylloc { get { return __yylloc; } set { __yylloc = value; } }
+        protected virtual bool yywrap() { return true; }
+    }
+
+    // Utility class for encapsulating token information
+    [GeneratedCodeAttribute("Gardens Point Parser Generator", "1.5.2")]
+    public class ScanObj
+    {
+        public int token;
+        public ValueType yylval;
+        public LexLocation yylloc;
+        public ScanObj(int t, ValueType val, LexLocation loc)
+        {
+            this.token = t; this.yylval = val; this.yylloc = loc;
+        }
+    }
+
+    [GeneratedCodeAttribute( "Gardens Point Parser Generator", "1.5.2")]
 public class Parser: ShiftReduceParser<ValueType, LexLocation>
 {
 #pragma warning disable 649
