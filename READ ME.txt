@@ -8,6 +8,6 @@
 3. Open visual Studio:
  a) Create new console application.
  b) Add -> Existing item -> javaCompilerScanner.cs
- c)	Add -> Existing item -> javaCompilerParser.cs
+ c) Add -> Existing item -> javaCompilerParser.cs
  d) Add -> Reference -> Browse -> QUT.ShiftReduceParser.dll
  e) Build Projectname
