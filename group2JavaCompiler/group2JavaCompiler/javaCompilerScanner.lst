@@ -1,3 +1,14 @@
+
+// ==========================================================================
+//  GPLEX error listing for lex source file <javaCompilerScanner.lex>
+// ==========================================================================
+//  Version:  1.2.2
+//  Machine:  DELL
+//  DateTime: 4/8/2016 11:11:49 PM
+//  UserName: user
+// ==========================================================================
+
+
 %using javaCompiler.Parser;
 %namespace javaCompiler.Lexer
 
@@ -55,9 +66,15 @@ SemiColon		";"
 {IntegerLiteral}				{ yylval.Integer = int.Parse(yytext); return (int)Tokens.INTEGER_LITERAL; }
 {Bool}							{ bool.TryParse(yytext, out yylval.Bool); return (int) Tokens.BOOL; }
 {Public}						{ return (int)Tokens.PUBLIC; }
+//^^^^^^
+// Warning: This pattern always overrides "{Public}" 
+// --------------------------------------------------
 {Protected}						{ return (int)Tokens.PROTECTED; }
-{Private}						{ return (int)Tokens.PRIVATE; }
-{Abstract}						{ return (int)Tokens.ABSTRACT; }
+{Abstract}						{ return (int)Tokens.PRIVATE; }
+{Public}						{ return (int)Tokens.ABSTRACT; }
+//^^^^^^
+// Warning: This pattern always overridden by "{Public}" 
+// ------------------------------------------------------
 {Final}							{ return (int)Tokens.FINAL; }
 {Synchronized}					{ return (int)Tokens.SYNCHRONIZED; }
 {Native}						{ return (int)Tokens.NATIVE; }
@@ -90,4 +107,5 @@ SemiColon		";"
 {OpLtBrace}						{ return (int) Tokens.OP_LT_BRACE; }
 {OpRtBrace}						{ return (int) Tokens.OP_RT_BRACE; }
 {SemiColon}						{ return (int) Tokens.SEMICOLON; }
-%%
+%%// ==========================================================================
+

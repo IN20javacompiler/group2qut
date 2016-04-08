@@ -10,8 +10,7 @@
 %token <Integer> INTEGER_LITERAL
 %token <Bool>	 BOOL_LITERAL
 
-%token PUBLIC
-%token STATIC
+%token PUBLIC PROTECTED PRIVATE ABSTRACT STATIC FINAL SYNCHRONIZED NATIVE STRICTFP
 %token VOID
 %token MAIN
 %token CLASS
@@ -48,10 +47,19 @@ TypeDeclaration					:ClassDeclaration
 								;
 ClassDeclaration				:NormalClassDeclaration
 								;
-NormalClassDeclaration			: ClassModifier CLASS IDENTIFIER ClassBody
+NormalClassDeclaration			: ClassModifiers CLASS IDENTIFIER ClassBody
 								| CLASS IDENTIFIER ClassBody
 								;
-ClassModifier					:PUBLIC
+ClassModifiers					:ClassModifier ClassModifiers
+								|ClassModifier
+								;
+ClassModifier					:PUBLIC 
+								|PROTECTED
+								|PRIVATE
+								|ABSTRACT
+								|STATIC
+								|FINAL 
+								|STRICTFP
 								;
 ClassBody						: OP_LT_BRACE ClassBodyDeclaration OP_RT_BRACE
 								;
@@ -59,9 +67,19 @@ ClassBodyDeclaration			:ClassMemberDeclaration
 								;
 ClassMemberDeclaration			:MethodDeclaration 
 								;
-MethodDeclaration				: MethodModifier MethodHeader MethodBody
+MethodDeclaration				: MethodModifiers MethodHeader MethodBody
 								|MethodHeader MethodBody;
-MethodModifier					:PUBLIC STATIC
+MethodModifiers					:MethodModifier MethodModifiers
+								|MethodModifier;
+MethodModifier					:PUBLIC 
+								|PROTECTED
+								|PRIVATE
+								|ABSTRACT
+								|STATIC
+								|FINAL 
+								|SYNCHRONIZED
+								|NATIVE
+								|STRICTFP
 								;
 MethodHeader					:Result MethodDeclarator
 								;

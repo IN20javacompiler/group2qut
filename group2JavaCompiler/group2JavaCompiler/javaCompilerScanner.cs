@@ -5,10 +5,10 @@
 //  See accompanying file GPLEXcopyright.rtf.
 //
 //  GPLEX Version:  1.2.2
-//  Machine:  SEF-PA00125849
-//  DateTime: 8/04/2016 12:56:32 PM
-//  UserName: n9615717
-//  GPLEX input file <javaCompilerScanner.lex - 8/04/2016 12:56:03 PM>
+//  Machine:  DELL
+//  DateTime: 4/8/2016 11:12:30 PM
+//  UserName: user
+//  GPLEX input file <javaCompilerScanner.lex - 4/8/2016 11:12:24 PM>
 //  GPLEX frame file <embedded resource>
 //
 //  Option settings: parser, minimize
@@ -124,8 +124,8 @@ namespace javaCompiler.Lexer
         
         enum Result {accept, noMatch, contextFound};
 
-        const int maxAccept = 32;
-        const int initial = 33;
+        const int maxAccept = 39;
+        const int initial = 40;
         const int eofNum = 0;
         const int goStart = -1;
         const int INITIAL = 0;
@@ -162,9 +162,9 @@ namespace javaCompiler.Lexer
         }
     };
 
-    static int[] startState = new int[] {33, 0};
+    static int[] startState = new int[] {40, 0};
 
-    static Table[] NxS = new Table[69] {
+    static Table[] NxS = new Table[114] {
 /* NxS[   0] */ new Table(0, 0, 0, null),
 /* NxS[   1] */ new Table(0, 0, -1, null),
 /* NxS[   2] */ new Table(0, 0, -1, null),
@@ -176,9 +176,9 @@ namespace javaCompiler.Lexer
 /* NxS[   8] */ new Table(48, 10, -1, new sbyte[] {8, 8, 8, 8, 8, 8, 
           8, 8, 8, 8}),
 /* NxS[   9] */ new Table(0, 0, -1, null),
-/* NxS[  10] */ new Table(61, 1, -1, new sbyte[] {30}),
-/* NxS[  11] */ new Table(61, 1, -1, new sbyte[] {29}),
-/* NxS[  12] */ new Table(61, 1, -1, new sbyte[] {28}),
+/* NxS[  10] */ new Table(61, 1, -1, new sbyte[] {37}),
+/* NxS[  11] */ new Table(61, 1, -1, new sbyte[] {36}),
+/* NxS[  12] */ new Table(61, 1, -1, new sbyte[] {35}),
 /* NxS[  13] */ new Table(0, 0, -1, null),
 /* NxS[  14] */ new Table(0, 0, -1, null),
 /* NxS[  15] */ new Table(0, 0, -1, null),
@@ -197,60 +197,109 @@ namespace javaCompiler.Lexer
 /* NxS[  28] */ new Table(0, 0, -1, null),
 /* NxS[  29] */ new Table(0, 0, -1, null),
 /* NxS[  30] */ new Table(0, 0, -1, null),
-/* NxS[  31] */ new Table(48, 75, -1, new sbyte[] {31, 31, 31, 31, 31, 31, 
-          31, 31, 31, 31, -1, -1, -1, -1, -1, -1, -1, 31, 31, 31, 31, 31, 
-          31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 
-          31, 31, 31, 31, 31, -1, -1, -1, -1, 31, -1, 31, 31, 31, 31, 31, 
-          31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 
-          31, 31, 31, 31, 31}),
+/* NxS[  31] */ new Table(0, 0, -1, null),
 /* NxS[  32] */ new Table(0, 0, -1, null),
-/* NxS[  33] */ new Table(33, 93, -1, new sbyte[] {34, -1, -1, 35, 1, -1, 
+/* NxS[  33] */ new Table(0, 0, -1, null),
+/* NxS[  34] */ new Table(0, 0, -1, null),
+/* NxS[  35] */ new Table(0, 0, -1, null),
+/* NxS[  36] */ new Table(0, 0, -1, null),
+/* NxS[  37] */ new Table(0, 0, -1, null),
+/* NxS[  38] */ new Table(48, 75, -1, new sbyte[] {38, 38, 38, 38, 38, 38, 
+          38, 38, 38, 38, -1, -1, -1, -1, -1, -1, -1, 38, 38, 38, 38, 38, 
+          38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 
+          38, 38, 38, 38, 38, -1, -1, -1, -1, 38, -1, 38, 38, 38, 38, 38, 
+          38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 
+          38, 38, 38, 38, 38}),
+/* NxS[  39] */ new Table(0, 0, -1, null),
+/* NxS[  40] */ new Table(33, 93, -1, new sbyte[] {41, -1, -1, 42, 1, -1, 
           -1, 2, 3, 4, 5, -1, 6, -1, 7, 8, 8, 8, 8, 8, 8, 8, 
           8, 8, 8, -1, 9, 10, 11, 12, -1, -1, -1, -1, -1, -1, -1, -1, 
           -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
-          -1, -1, -1, -1, 13, -1, 14, -1, -1, -1, 36, 37, 38, -1, -1, -1, 
-          -1, -1, 39, -1, -1, -1, 40, 41, 42, 43, -1, -1, 44, -1, -1, 45, 
+          -1, -1, -1, -1, 13, -1, 14, -1, -1, -1, 43, 44, 45, -1, -1, 46, 
+          -1, -1, 47, -1, -1, -1, 48, 49, 50, 51, -1, -1, 52, -1, -1, 53, 
           -1, -1, -1, -1, 15, -1, 16}),
-/* NxS[  34] */ new Table(61, 1, -1, new sbyte[] {32}),
-/* NxS[  35] */ new Table(65, 58, -1, new sbyte[] {31, 31, 31, 31, 31, 31, 
-          31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 
-          31, 31, 31, 31, -1, -1, -1, -1, -1, -1, 31, 31, 31, 31, 31, 31, 
-          31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 
-          31, 31, 31, 31}),
-/* NxS[  36] */ new Table(110, 1, -1, new sbyte[] {68}),
-/* NxS[  37] */ new Table(111, 1, -1, new sbyte[] {66}),
-/* NxS[  38] */ new Table(108, 1, -1, new sbyte[] {63}),
-/* NxS[  39] */ new Table(110, 1, -1, new sbyte[] {62}),
-/* NxS[  40] */ new Table(97, 1, -1, new sbyte[] {60}),
-/* NxS[  41] */ new Table(111, 1, -1, new sbyte[] {59}),
-/* NxS[  42] */ new Table(114, 1, -1, new sbyte[] {21}),
-/* NxS[  43] */ new Table(117, 1, -1, new sbyte[] {55}),
-/* NxS[  44] */ new Table(116, 1, -1, new sbyte[] {48}),
-/* NxS[  45] */ new Table(111, 1, -1, new sbyte[] {46}),
-/* NxS[  46] */ new Table(105, 1, -1, new sbyte[] {47}),
-/* NxS[  47] */ new Table(100, 1, -1, new sbyte[] {17}),
-/* NxS[  48] */ new Table(97, 18, -1, new sbyte[] {49, -1, -1, -1, -1, -1, 
-          -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 50}),
-/* NxS[  49] */ new Table(116, 1, -1, new sbyte[] {53}),
-/* NxS[  50] */ new Table(105, 1, -1, new sbyte[] {51}),
-/* NxS[  51] */ new Table(110, 1, -1, new sbyte[] {52}),
-/* NxS[  52] */ new Table(103, 1, -1, new sbyte[] {18}),
-/* NxS[  53] */ new Table(105, 1, -1, new sbyte[] {54}),
-/* NxS[  54] */ new Table(99, 1, -1, new sbyte[] {19}),
-/* NxS[  55] */ new Table(98, 1, -1, new sbyte[] {56}),
-/* NxS[  56] */ new Table(108, 1, -1, new sbyte[] {57}),
-/* NxS[  57] */ new Table(105, 1, -1, new sbyte[] {58}),
-/* NxS[  58] */ new Table(99, 1, -1, new sbyte[] {20}),
-/* NxS[  59] */ new Table(116, 1, -1, new sbyte[] {22}),
-/* NxS[  60] */ new Table(105, 1, -1, new sbyte[] {61}),
-/* NxS[  61] */ new Table(110, 1, -1, new sbyte[] {23}),
-/* NxS[  62] */ new Table(116, 1, -1, new sbyte[] {24}),
-/* NxS[  63] */ new Table(97, 1, -1, new sbyte[] {64}),
-/* NxS[  64] */ new Table(115, 1, -1, new sbyte[] {65}),
-/* NxS[  65] */ new Table(115, 1, -1, new sbyte[] {25}),
-/* NxS[  66] */ new Table(111, 1, -1, new sbyte[] {67}),
-/* NxS[  67] */ new Table(108, 1, -1, new sbyte[] {26}),
-/* NxS[  68] */ new Table(100, 1, -1, new sbyte[] {27}),
+/* NxS[  41] */ new Table(61, 1, -1, new sbyte[] {39}),
+/* NxS[  42] */ new Table(65, 58, -1, new sbyte[] {38, 38, 38, 38, 38, 38, 
+          38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 
+          38, 38, 38, 38, -1, -1, -1, -1, -1, -1, 38, 38, 38, 38, 38, 38, 
+          38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 
+          38, 38, 38, 38}),
+/* NxS[  43] */ new Table(98, 13, -1, new sbyte[] {107, -1, -1, -1, -1, -1, 
+          -1, -1, -1, -1, -1, -1, 108}),
+/* NxS[  44] */ new Table(111, 1, -1, new sbyte[] {105}),
+/* NxS[  45] */ new Table(108, 1, -1, new sbyte[] {102}),
+/* NxS[  46] */ new Table(105, 1, -1, new sbyte[] {99}),
+/* NxS[  47] */ new Table(110, 1, -1, new sbyte[] {98}),
+/* NxS[  48] */ new Table(97, 1, -1, new sbyte[] {96}),
+/* NxS[  49] */ new Table(97, 15, -1, new sbyte[] {91, -1, -1, -1, -1, -1, 
+          -1, -1, -1, -1, -1, -1, -1, -1, 92}),
+/* NxS[  50] */ new Table(114, 1, -1, new sbyte[] {25}),
+/* NxS[  51] */ new Table(114, 4, -1, new sbyte[] {76, -1, -1, 77}),
+/* NxS[  52] */ new Table(116, 6, -1, new sbyte[] {56, -1, -1, -1, -1, 57}),
+/* NxS[  53] */ new Table(111, 1, -1, new sbyte[] {54}),
+/* NxS[  54] */ new Table(105, 1, -1, new sbyte[] {55}),
+/* NxS[  55] */ new Table(100, 1, -1, new sbyte[] {17}),
+/* NxS[  56] */ new Table(97, 18, -1, new sbyte[] {67, -1, -1, -1, -1, -1, 
+          -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 68}),
+/* NxS[  57] */ new Table(110, 1, -1, new sbyte[] {58}),
+/* NxS[  58] */ new Table(99, 1, -1, new sbyte[] {59}),
+/* NxS[  59] */ new Table(104, 1, -1, new sbyte[] {60}),
+/* NxS[  60] */ new Table(114, 1, -1, new sbyte[] {61}),
+/* NxS[  61] */ new Table(111, 1, -1, new sbyte[] {62}),
+/* NxS[  62] */ new Table(110, 1, -1, new sbyte[] {63}),
+/* NxS[  63] */ new Table(105, 1, -1, new sbyte[] {64}),
+/* NxS[  64] */ new Table(122, 1, -1, new sbyte[] {65}),
+/* NxS[  65] */ new Table(101, 1, -1, new sbyte[] {66}),
+/* NxS[  66] */ new Table(100, 1, -1, new sbyte[] {18}),
+/* NxS[  67] */ new Table(116, 1, -1, new sbyte[] {74}),
+/* NxS[  68] */ new Table(105, 1, -1, new sbyte[] {69}),
+/* NxS[  69] */ new Table(99, 12, -1, new sbyte[] {70, -1, -1, -1, -1, -1, 
+          -1, -1, -1, -1, -1, 71}),
+/* NxS[  70] */ new Table(116, 1, -1, new sbyte[] {72}),
+/* NxS[  71] */ new Table(103, 1, -1, new sbyte[] {19}),
+/* NxS[  72] */ new Table(102, 1, -1, new sbyte[] {73}),
+/* NxS[  73] */ new Table(112, 1, -1, new sbyte[] {20}),
+/* NxS[  74] */ new Table(105, 1, -1, new sbyte[] {75}),
+/* NxS[  75] */ new Table(99, 1, -1, new sbyte[] {21}),
+/* NxS[  76] */ new Table(105, 7, -1, new sbyte[] {81, -1, -1, -1, -1, -1, 
+          82}),
+/* NxS[  77] */ new Table(98, 1, -1, new sbyte[] {78}),
+/* NxS[  78] */ new Table(108, 1, -1, new sbyte[] {79}),
+/* NxS[  79] */ new Table(105, 1, -1, new sbyte[] {80}),
+/* NxS[  80] */ new Table(99, 1, -1, new sbyte[] {22}),
+/* NxS[  81] */ new Table(118, 1, -1, new sbyte[] {88}),
+/* NxS[  82] */ new Table(116, 1, -1, new sbyte[] {83}),
+/* NxS[  83] */ new Table(101, 1, -1, new sbyte[] {84}),
+/* NxS[  84] */ new Table(99, 1, -1, new sbyte[] {85}),
+/* NxS[  85] */ new Table(116, 1, -1, new sbyte[] {86}),
+/* NxS[  86] */ new Table(101, 1, -1, new sbyte[] {87}),
+/* NxS[  87] */ new Table(100, 1, -1, new sbyte[] {23}),
+/* NxS[  88] */ new Table(97, 1, -1, new sbyte[] {89}),
+/* NxS[  89] */ new Table(116, 1, -1, new sbyte[] {90}),
+/* NxS[  90] */ new Table(101, 1, -1, new sbyte[] {24}),
+/* NxS[  91] */ new Table(116, 1, -1, new sbyte[] {93}),
+/* NxS[  92] */ new Table(116, 1, -1, new sbyte[] {26}),
+/* NxS[  93] */ new Table(105, 1, -1, new sbyte[] {94}),
+/* NxS[  94] */ new Table(118, 1, -1, new sbyte[] {95}),
+/* NxS[  95] */ new Table(101, 1, -1, new sbyte[] {27}),
+/* NxS[  96] */ new Table(105, 1, -1, new sbyte[] {97}),
+/* NxS[  97] */ new Table(110, 1, -1, new sbyte[] {28}),
+/* NxS[  98] */ new Table(116, 1, -1, new sbyte[] {29}),
+/* NxS[  99] */ new Table(110, 1, -1, new sbyte[] {100}),
+/* NxS[ 100] */ new Table(97, 1, -1, new sbyte[] {101}),
+/* NxS[ 101] */ new Table(108, 1, -1, new sbyte[] {30}),
+/* NxS[ 102] */ new Table(97, 1, -1, new sbyte[] {103}),
+/* NxS[ 103] */ new Table(115, 1, -1, new sbyte[] {104}),
+/* NxS[ 104] */ new Table(115, 1, -1, new sbyte[] {31}),
+/* NxS[ 105] */ new Table(111, 1, -1, new sbyte[] {106}),
+/* NxS[ 106] */ new Table(108, 1, -1, new sbyte[] {32}),
+/* NxS[ 107] */ new Table(115, 1, -1, new sbyte[] {109}),
+/* NxS[ 108] */ new Table(100, 1, -1, new sbyte[] {33}),
+/* NxS[ 109] */ new Table(116, 1, -1, new sbyte[] {110}),
+/* NxS[ 110] */ new Table(114, 1, -1, new sbyte[] {111}),
+/* NxS[ 111] */ new Table(97, 1, -1, new sbyte[] {112}),
+/* NxS[ 112] */ new Table(99, 1, -1, new sbyte[] {113}),
+/* NxS[ 113] */ new Table(116, 1, -1, new sbyte[] {34}),
     };
 
 int NextState() {
@@ -730,48 +779,69 @@ return (int) Tokens.OP_RT_BRACE;
 return (int)Tokens.VOID;
             break;
         case 18:
-return (int) Tokens.STRING;
+return (int)Tokens.SYNCHRONIZED;
             break;
         case 19:
-return (int)Tokens.STATIC;
+return (int) Tokens.STRING;
             break;
         case 20:
-return (int)Tokens.PUBLIC;
+return (int)Tokens.STRICTFP;
             break;
         case 21:
-return (int) Tokens.OP_OR;
+return (int)Tokens.STATIC;
             break;
         case 22:
-return (int) Tokens.OP_NOT;
+return (int)Tokens.PUBLIC;
             break;
         case 23:
-return (int)Tokens.MAIN;
+return (int)Tokens.PROTECTED;
             break;
         case 24:
-return (int) Tokens.INT;
+return (int)Tokens.PRIVATE;
             break;
         case 25:
-return (int)Tokens.CLASS;
+return (int) Tokens.OP_OR;
             break;
         case 26:
-bool.TryParse(yytext, out yylval.Bool); return (int) Tokens.BOOL;
+return (int) Tokens.OP_NOT;
             break;
         case 27:
-return (int) Tokens.OP_AND;
+return (int)Tokens.NATIVE;
             break;
         case 28:
-return (int) Tokens.OP_GT_EQ;
+return (int)Tokens.MAIN;
             break;
         case 29:
-return (int) Tokens.OP_EQU;
+return (int) Tokens.INT;
             break;
         case 30:
-return (int) Tokens.OP_LT_EQ;
+return (int)Tokens.FINAL;
             break;
         case 31:
-yylval.String = yytext.Substring(1); return (int) Tokens.IDENTIFIER;
+return (int)Tokens.CLASS;
             break;
         case 32:
+bool.TryParse(yytext, out yylval.Bool); return (int) Tokens.BOOL;
+            break;
+        case 33:
+return (int) Tokens.OP_AND;
+            break;
+        case 34:
+return (int)Tokens.ABSTRACT;
+            break;
+        case 35:
+return (int) Tokens.OP_GT_EQ;
+            break;
+        case 36:
+return (int) Tokens.OP_EQU;
+            break;
+        case 37:
+return (int) Tokens.OP_LT_EQ;
+            break;
+        case 38:
+yylval.String = yytext.Substring(1); return (int) Tokens.IDENTIFIER;
+            break;
+        case 39:
 return (int) Tokens.OP_NOT_EQU;
             break;
         default:
