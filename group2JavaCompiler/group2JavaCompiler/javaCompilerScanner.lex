@@ -91,3 +91,7 @@ SemiColon		";"
 {OpRtBrace}						{ return (int) Tokens.OP_RT_BRACE; }
 {SemiColon}						{ return (int) Tokens.SEMICOLON; }
 %%
+
+public Parser(javaCompiler.Lexer.Scanner scanner) : base(scanner)
+{
+}
