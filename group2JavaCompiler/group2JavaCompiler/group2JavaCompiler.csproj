@@ -34,7 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="QUT.ShiftReduceParser">
-      <HintPath>D:\Programming Language Theory\gppg-distro-1_5_2\binaries\QUT.ShiftReduceParser.dll</HintPath>
+      <HintPath>..\..\gppg-distro-1_5_2\binaries\QUT.ShiftReduceParser.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -46,13 +46,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="javaCompiler.cs" />
     <Compile Include="javaCompilerParser.cs" />
+    <Compile Include="javaCompilerScanner.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="javaCompilerParser.y" />
+    <None Include="javaCompilerScanner.lex" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

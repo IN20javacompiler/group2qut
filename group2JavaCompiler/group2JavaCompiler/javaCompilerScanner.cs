@@ -5,10 +5,10 @@
 //  See accompanying file GPLEXcopyright.rtf.
 //
 //  GPLEX Version:  1.2.2
-//  Machine:  DELL
-//  DateTime: 4/5/2016 11:28:57 PM
-//  UserName: user
-//  GPLEX input file <javaCompilerScanner.lex - 4/4/2016 4:54:39 PM>
+//  Machine:  SEF-PA00125849
+//  DateTime: 8/04/2016 12:56:32 PM
+//  UserName: n9615717
+//  GPLEX input file <javaCompilerScanner.lex - 8/04/2016 12:56:03 PM>
 //  GPLEX frame file <embedded resource>
 //
 //  Option settings: parser, minimize
@@ -46,13 +46,13 @@ namespace javaCompiler.Lexer
     // If you declare /noparser, or %option noparser then you get this.
     //
 
-     internal enum Tokens
+     public enum Tokens
     { 
       EOF = 0, maxParseToken = int.MaxValue 
       // must have at least these two, values are almost arbitrary
     }
 
-     internal abstract class ScanBase
+     public abstract class ScanBase
     {
         [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "yylex")]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "yylex")]
@@ -74,7 +74,7 @@ namespace javaCompiler.Lexer
         }
     }
     
-     internal interface IColorScan
+     public interface IColorScan
     {
         void SetSource(string source, int offset);
         int GetNext(ref int state, out int start, out int end);
@@ -86,7 +86,7 @@ namespace javaCompiler.Lexer
     // If the compiler can't find the scanner base class maybe you
     // need to run GPPG with the /gplex option, or GPLEX with /noparser
 #if BABEL
-     internal sealed partial class Scanner : ScanBase, IColorScan
+     public sealed partial class Scanner : ScanBase, IColorScan
     {
         private ScanBuff buffer;
         int currentScOrd;  // start condition ordinal
@@ -103,7 +103,7 @@ namespace javaCompiler.Lexer
                    currentStart = startState[value]; }
         }
 #else  // BABEL
-     internal sealed partial class Scanner : ScanBase
+     public sealed partial class Scanner : ScanBase
     {
         private ScanBuff buffer;
         int currentScOrd;  // start condition ordinal
@@ -333,12 +333,12 @@ int NextState() {
         // =================== End Nested classes =======================
 
 #if !NOFILES
-     internal Scanner(Stream file) {
+     public Scanner(Stream file) {
             SetSource(file); // no unicode option
         }   
 #endif // !NOFILES
 
-     internal Scanner() { }
+     public Scanner() { }
 
         private int readPos;
 
@@ -700,7 +700,7 @@ return (int) Tokens.OP_MINUS;
 return (int) Tokens.OP_DIV;
             break;
         case 8:
-yylval.num = int.Parse(yytext); return (int)Tokens.INTEGERLITERAL;
+yylval.Integer = int.Parse(yytext); return (int)Tokens.INTEGER_LITERAL;
             break;
         case 9:
 return (int) Tokens.SEMICOLON;

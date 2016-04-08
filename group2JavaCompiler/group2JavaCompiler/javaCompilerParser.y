@@ -1,8 +1,8 @@
-%namespace javaCompiler.parser
+%namespace javaCompiler.Parser
 
 %output=javaCompilerParser.cs
 %union {
-    public long Integer;
+    public int Integer;
     public string String;
   	public bool Bool;
 }
@@ -155,3 +155,7 @@ Literal 						:INTEGER_LITERAL
 						
 
 %%
+
+public Parser(javaCompiler.Lexer.Scanner scanner) : base(scanner)
+{
+}

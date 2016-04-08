@@ -1,7 +1,7 @@
 %using javaCompiler.Parser;
 %namespace javaCompiler.Lexer
 
-%visibility internal
+%visibility public
 
 Eol             (\r\n?|\n)
 NotWh           [^ \t\r\n]
@@ -45,7 +45,7 @@ OpRtBrace		"}"
 SemiColon		";"
 %%
 {Identifier}					{ yylval.String = yytext.Substring(1); return (int) Tokens.IDENTIFIER; }
-{IntegerLiteral}				{ yylval.num = int.Parse(yytext); return (int)Tokens.INTEGERLITERAL; }
+{IntegerLiteral}				{ yylval.Integer = int.Parse(yytext); return (int)Tokens.INTEGER_LITERAL; }
 {Bool}							{ bool.TryParse(yytext, out yylval.Bool); return (int) Tokens.BOOL; }
 {Public}						{ return (int)Tokens.PUBLIC; }
 {Static}						{ return (int)Tokens.STATIC; }

@@ -3,12 +3,12 @@
 // (see accompanying GPPGcopyright.rtf)
 
 // GPPG version 1.5.2
-// Machine:  DELL
-// DateTime: 4/5/2016 11:29:30 PM
-// UserName: user
-// Input file <javaCompilerParser.y - 4/4/2016 4:40:09 PM>
+// Machine:  SEF-PA00125849
+// DateTime: 8/04/2016 12:53:06 PM
+// UserName: n9615717
+// Input file <javaCompilerParser.y - 8/04/2016 12:52:43 PM>
 
-// options: lines
+// options: lines gplex
 
 using System;
 using System.Collections.Generic;
@@ -17,7 +17,7 @@ using System.Globalization;
 using System.Text;
 using QUT.Gppg;
 
-namespace javaCompiler.parser
+namespace javaCompiler.Parser
 {
 public enum Tokens {error=2,EOF=3,IDENTIFIER=4,INTEGER_LITERAL=5,BOOL_LITERAL=6,
     PUBLIC=7,STATIC=8,VOID=9,MAIN=10,CLASS=11,BOOL=12,
@@ -29,11 +29,30 @@ public enum Tokens {error=2,EOF=3,IDENTIFIER=4,INTEGER_LITERAL=5,BOOL_LITERAL=6,
 public struct ValueType
 #line 4 "javaCompilerParser.y"
        {
-    public long Integer;
+    public int Integer;
     public string String;
   	public bool Bool;
 }
 #line default
+// Abstract base class for GPLEX scanners
+[GeneratedCodeAttribute( "Gardens Point Parser Generator", "1.5.2")]
+public abstract class ScanBase : AbstractScanner<ValueType,LexLocation> {
+  private LexLocation __yylloc = new LexLocation();
+  public override LexLocation yylloc { get { return __yylloc; } set { __yylloc = value; } }
+  protected virtual bool yywrap() { return true; }
+}
+
+// Utility class for encapsulating token information
+[GeneratedCodeAttribute( "Gardens Point Parser Generator", "1.5.2")]
+public class ScanObj {
+  public int token;
+  public ValueType yylval;
+  public LexLocation yylloc;
+  public ScanObj( int t, ValueType val, LexLocation loc ) {
+    this.token = t; this.yylval = val; this.yylloc = loc;
+  }
+}
+
 [GeneratedCodeAttribute( "Gardens Point Parser Generator", "1.5.2")]
 public class Parser: ShiftReduceParser<ValueType, LexLocation>
 {
@@ -232,7 +251,11 @@ public class Parser: ShiftReduceParser<ValueType, LexLocation>
         return CharToString((char)terminal);
   }
 
-#line 157 "javaCompilerParser.y"
- #line default
+#line 158 "javaCompilerParser.y"
+
+public Parser(javaCompiler.Lexer.Scanner scanner) : base(scanner)
+{
+}
+#line default
 }
 }
