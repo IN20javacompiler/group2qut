@@ -46,6 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AST\AssignExpression.cs" />
+    <Compile Include="AST\Expression.cs" />
+    <Compile Include="AST\IdentifierExpression.cs" />
+    <Compile Include="AST\IntegerLiteralExpression.cs" />
+    <Compile Include="AST\Node.cs" />
     <Compile Include="javaCompilerParser.cs" />
     <Compile Include="javaCompilerScanner.cs" />
     <Compile Include="Program.cs" />
