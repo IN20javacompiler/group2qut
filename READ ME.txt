@@ -10,4 +10,7 @@
  b) Add -> Existing item -> javaCompilerScanner.cs
  c) Add -> Existing item -> javaCompilerParser.cs
  d) Add -> Reference -> Browse -> QUT.ShiftReduceParser.dll
- e) Build Projectname
+ e) Properties -> Debug -> Command Line Arguments	=> Test.java
+			-> Working Directory		=> path of Test.java
+ f) Build -> Build projectname
+ g) Debug -> Start without Debugging

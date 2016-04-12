@@ -6,9 +6,9 @@
 //
 //  GPLEX Version:  1.2.2
 //  Machine:  SUJITHGEETHU
-//  DateTime: 08-04-2016 8.38.05 PM
+//  DateTime: 13-04-2016 7.31.31 AM
 //  UserName: Sujith Geethu
-//  GPLEX input file <javaCompilerScanner.lex - 08-04-2016 6.59.07 PM>
+//  GPLEX input file <javaCompilerScanner.lex - 13-04-2016 7.29.40 AM>
 //  GPLEX frame file <embedded resource>
 //
 //  Option settings: parser, minimize
@@ -831,6 +831,14 @@ return (int) Tokens.OP_NOT_EQU;
         [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal void ECHO() { Console.Out.Write(yytext); }
         
+#region UserCodeSection
+
+public override void yyerror( string format, params object[] args ) 
+{
+Console.Error.WriteLine(format, args); 
+}
+
+#endregion
     } // end class $Scanner
 
 // ==============================================================

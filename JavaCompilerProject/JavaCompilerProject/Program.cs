@@ -10,7 +10,9 @@ namespace JavaCompilerProject
     {
         static void Main(string[] args)
         {
-            javaCompiler.Lexer.Scanner scanner = new javaCompiler.Lexer.Scanner(System.Console.OpenStandardInput());
+            var file = new System.IO.FileStream(args[0], System.IO.FileMode.Open);
+            javaCompiler.Lexer.Scanner scanner = new javaCompiler.Lexer.Scanner(file);
+            //javaCompiler.Lexer.Scanner scanner = new javaCompiler.Lexer.Scanner(System.Console.OpenStandardInput());
             javaCompiler.Parser.Parser parser = new javaCompiler.Parser.Parser(scanner);
             parser.Parse();
         }

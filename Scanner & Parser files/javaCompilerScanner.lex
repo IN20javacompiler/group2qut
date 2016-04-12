@@ -77,3 +77,8 @@ SemiColon		";"
 {OpRtBrace}						{ return (int) Tokens.OP_RT_BRACE; }
 {SemiColon}						{ return (int) Tokens.SEMICOLON; }
 %%
+
+public override void yyerror( string format, params object[] args ) 
+{
+Console.Error.WriteLine(format, args); 
+}
