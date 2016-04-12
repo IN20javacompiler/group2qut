@@ -10,5 +10,3 @@ D:\Programming Language Theory\git\group2JavaCompiler\group2JavaCompiler\bin\Deb
 D:\Programming Language Theory\git\group2JavaCompiler\group2JavaCompiler\bin\Debug\QUT.ShiftReduceParser.dll
 D:\Programming Language Theory\git\group2JavaCompiler\group2JavaCompiler\obj\Debug\group2JavaCompiler.exe
 D:\Programming Language Theory\git\group2JavaCompiler\group2JavaCompiler\obj\Debug\group2JavaCompiler.pdb
-D:\Programming Language Theory\git\group2JavaCompiler\group2JavaCompiler\bin\Debug\group2JavaCompiler.pdb
-D:\Programming Language Theory\git\group2JavaCompiler\group2JavaCompiler\obj\Debug\group2JavaCompiler.csprojResolveAssemblyReference.cache

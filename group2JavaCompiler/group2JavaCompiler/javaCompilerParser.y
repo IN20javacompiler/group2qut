@@ -17,12 +17,14 @@
 %token BOOL
 %token INT
 %token STRING
+%token IMPORT
 %token OP_LEFT_PAR
 %token OP_RIGHT_PAR
 %token OP_SQ_L_BR
 %token OP_SQ_R_BR
 %token OP_LT_BRACE OP_RT_BRACE
 %token SEMICOLON
+%token OP_DOT
 //left associated operands
 %left OP_ASSIGN
 %left OP_ADD OP_MINUS
@@ -42,6 +44,16 @@
 // YACC Rules
 %%
 CompilationUnit					:TypeDeclaration
+								|ImportDeclaration
+								|ImportDeclaration TypeDeclaration
+								;
+ImportDeclaration				:SingleTypeImportDeclaration
+								;
+SingleTypeImportDeclaration		:IMPORT TypeName ;
+TypeName						:PackageOrTypeName OP_DOT IDENTIFIER
+								;
+PackageOrTypeName				:PackageOrTypeName OP_DOT IDENTIFIER
+								|IDENTIFIER
 								;
 TypeDeclaration					:ClassDeclaration
 								;

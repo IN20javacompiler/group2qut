@@ -12,7 +12,7 @@ Letter 			[a-zA-Z]
 Identifier		\$([a-zA-Z]([a-zA-Z0-9_])*)
 IntegerLiteral	{Digit}+
 BooleanLiteral	(true|false)
-
+Import			import
 Public      	public
 Static      	static
 Final			final
@@ -33,6 +33,7 @@ OpAdd			+
 OpMinus			"-"
 OpMul			"*"
 OpDiv			"/"
+OpDot			"."
 OpModul			"%"
 OpAnd			and
 OpOr			or
@@ -55,6 +56,7 @@ SemiColon		";"
 {IntegerLiteral}				{ yylval.Integer = int.Parse(yytext); return (int)Tokens.INTEGER_LITERAL; }
 {Bool}							{ bool.TryParse(yytext, out yylval.Bool); return (int) Tokens.BOOL; }
 {Public}						{ return (int)Tokens.PUBLIC; }
+{Import}						{ return (int)Tokens.IMPORT; }
 {Protected}						{ return (int)Tokens.PROTECTED; }
 {Private}						{ return (int)Tokens.PRIVATE; }
 {Abstract}						{ return (int)Tokens.ABSTRACT; }
@@ -73,6 +75,7 @@ SemiColon		";"
 {OpMinus}						{ return (int) Tokens.OP_MINUS; }
 {OpMul}							{ return (int) Tokens.OP_MUL; }
 {OpDiv}							{ return (int) Tokens.OP_DIV; }
+{OpDot}							{ return (int) Tokens.OP_DOT; }
 {OpModul}						{ return (int) Tokens.OP_MODUL; }
 {OpAnd}							{ return (int) Tokens.OP_AND; }
 {OpOr}							{ return (int) Tokens.OP_OR; }
@@ -94,4 +97,8 @@ SemiColon		";"
 
 public Parser(javaCompiler.Lexer.Scanner scanner) : base(scanner)
 {
+}
+public override void yyerror( string format, params object[] args ) 
+{
+Console.Error.WriteLine(format, args); 
 }
