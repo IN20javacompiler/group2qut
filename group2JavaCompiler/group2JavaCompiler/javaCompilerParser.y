@@ -10,20 +10,25 @@
 %token <Integer> INTEGER_LITERAL
 %token <Bool>	 BOOL_LITERAL
 
-%token PUBLIC
-%token STATIC
+%token PUBLIC PROTECTED PRIVATE ABSTRACT STATIC FINAL SYNCHRONIZED NATIVE STRICTFP
 %token VOID
+%token EXPRESSION_STATEMENT 
 %token MAIN
 %token CLASS
 %token BOOL
 %token INT
 %token STRING
+%token IMPORT
 %token OP_LEFT_PAR
 %token OP_RIGHT_PAR
 %token OP_SQ_L_BR
 %token OP_SQ_R_BR
 %token OP_LT_BRACE OP_RT_BRACE
 %token SEMICOLON
+%token OP_DOT
+%token SYSTEM
+%token OUT
+%token PRINTLN
 //left associated operands
 %left OP_ASSIGN
 %left OP_ADD OP_MINUS
@@ -38,20 +43,40 @@
 %left OP_GT
 %left OP_GT_EQ
 %left OP_LT_EQ 
+%left OP_DOUBLE_QUOTE
 
 %start CompilationUnit
 // YACC Rules
 %%
 CompilationUnit					:TypeDeclaration
+								|ImportDeclaration
+								|ImportDeclaration TypeDeclaration
+								;
+ImportDeclaration				:SingleTypeImportDeclaration
+								;
+SingleTypeImportDeclaration		:IMPORT TypeName ;
+TypeName						:PackageOrTypeName OP_DOT IDENTIFIER
+								;
+PackageOrTypeName				:PackageOrTypeName OP_DOT IDENTIFIER
+								|IDENTIFIER
 								;
 TypeDeclaration					:ClassDeclaration
 								;
 ClassDeclaration				:NormalClassDeclaration
 								;
-NormalClassDeclaration			: ClassModifier CLASS IDENTIFIER ClassBody
+NormalClassDeclaration			: ClassModifiers CLASS IDENTIFIER ClassBody
 								| CLASS IDENTIFIER ClassBody
 								;
-ClassModifier					:PUBLIC
+ClassModifiers					:ClassModifier ClassModifiers
+								|ClassModifier
+								;
+ClassModifier					:PUBLIC 
+								|PROTECTED
+								|PRIVATE
+								|ABSTRACT
+								|STATIC
+								|FINAL 
+								|STRICTFP
 								;
 ClassBody						: OP_LT_BRACE ClassBodyDeclaration OP_RT_BRACE
 								;
@@ -59,9 +84,19 @@ ClassBodyDeclaration			:ClassMemberDeclaration
 								;
 ClassMemberDeclaration			:MethodDeclaration 
 								;
-MethodDeclaration				: MethodModifier MethodHeader MethodBody
+MethodDeclaration				: MethodModifiers MethodHeader MethodBody
 								|MethodHeader MethodBody;
-MethodModifier					:PUBLIC STATIC
+MethodModifiers					:MethodModifier MethodModifiers
+								|MethodModifier;
+MethodModifier					:PUBLIC 
+								|PROTECTED
+								|PRIVATE
+								|ABSTRACT
+								|STATIC
+								|FINAL 
+								|SYNCHRONIZED
+								|NATIVE
+								|STRICTFP
 								;
 MethodHeader					:Result MethodDeclarator
 								;
@@ -93,6 +128,27 @@ Block							: OP_LT_BRACE BlockStatements OP_RT_BRACE
 BlockStatements					:BlockStatement
 								;
 BlockStatement					:LocalVariableDeclarationStatement
+								|Statement
+								;
+Statement					:StatementWithoutTrailingSubstatement 
+								;
+StatementWithoutTrailingSubstatement 		:ExpressionStatement
+								;
+ExpressionStatement				:StatementExpression SEMICOLON
+								;
+StatementExpression				:MethodInvocation
+								;
+MethodInvocation				:MethodName OP_LEFT_PAR ArgumentList OP_RIGHT_PAR
+								;
+MethodName					:SYSTEM OP_DOT OUT OP_DOT PRINTLN
+								;
+ArgumentList					:Expression
+								;
+Expression					:LambdaExpression
+								;
+LambdaExpression				:LambdaParameters
+								;
+LambdaParameters				:OP_DOUBLE_QUOTE IDENTIFIER OP_DOUBLE_QUOTE
 								;
 LocalVariableDeclarationStatement: LocalVariableDeclaration SEMICOLON
 								;
@@ -155,7 +211,8 @@ Literal 						:INTEGER_LITERAL
 						
 
 %%
-
 public Parser(javaCompiler.Lexer.Scanner scanner) : base(scanner)
 {
 }
+
+
