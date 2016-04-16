@@ -12,6 +12,9 @@ Letter 			[a-zA-Z]
 Identifier		\$([a-zA-Z]([a-zA-Z0-9_])*)
 IntegerLiteral	{Digit}+
 BooleanLiteral	(true|false)
+System			system
+Out				out
+Println			println
 Import			import
 Public      	public
 Static      	static
@@ -51,6 +54,8 @@ RigthPar		")"
 OpLtBrace		"{"
 OpRtBrace		"}"
 SemiColon		";"
+OpDoubleQuote		"\""
+
 %%
 {Identifier}					{ yylval.String = yytext.Substring(1); return (int) Tokens.IDENTIFIER; }
 {IntegerLiteral}				{ yylval.Integer = int.Parse(yytext); return (int)Tokens.INTEGER_LITERAL; }
@@ -93,6 +98,11 @@ SemiColon		";"
 {OpLtBrace}						{ return (int) Tokens.OP_LT_BRACE; }
 {OpRtBrace}						{ return (int) Tokens.OP_RT_BRACE; }
 {SemiColon}						{ return (int) Tokens.SEMICOLON; }
+{System}						{ return (int) Tokens.SYSTEM; }
+{Out}							{ return (int) Tokens.OUT; }
+{Println}						{ return (int) Tokens.PRINTLN; }
+{OpDoubleQuote}					{ return (int) Tokens.OP_DOUBLE_QUOTE; }
+
 %%
 
 public Parser(javaCompiler.Lexer.Scanner scanner) : base(scanner)
@@ -102,3 +112,4 @@ public override void yyerror( string format, params object[] args )
 {
 Console.Error.WriteLine(format, args); 
 }
+
