@@ -25,6 +25,7 @@
 %token OP_LT_BRACE OP_RT_BRACE
 %token SEMICOLON
 %token OP_DOT
+
 //left associated operands
 %left OP_ASSIGN
 %left OP_ADD OP_MINUS
@@ -182,7 +183,17 @@ PrimaryNoNewArray				:Literal
 
 Literal 						:INTEGER_LITERAL 
 								;
-						
+			
+
+IfThenStatement					: IfStatement LeftPar Expression RigthPar Statement
+								;
+Statement						: EmptyStatement
+								| StatementWithoutTrailingSubstatement
+								; 
+EmptyStatement					:
+								;
+StatementWithoutTrailingSubstatement	: 	
+										;									
 
 %%
 
