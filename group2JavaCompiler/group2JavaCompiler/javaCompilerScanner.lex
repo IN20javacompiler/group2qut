@@ -1,20 +1,29 @@
 %using javaCompiler.Parser;
 %namespace javaCompiler.Lexer
 
-%visibility internal
+%visibility public
 
 Eol             (\r\n?|\n)
 NotWh           [^ \t\r\n]
 Space           [ \t]
-
 Digit			[0-9]
 Letter 			[a-zA-Z]
 Identifier		\$([a-zA-Z]([a-zA-Z0-9_])*)
 IntegerLiteral	{Digit}+
 BooleanLiteral	(true|false)
-
+System			system
+Out				out
+Println			println
+Import			import
 Public      	public
 Static      	static
+Final			final
+Abstract		abstract
+Strictfp		strictfp
+Private			private
+Protected       protected
+Synchronized	synchronized
+Native			native
 Void        	void
 Main			main
 Class			class
@@ -26,6 +35,7 @@ OpAdd			+
 OpMinus			"-"
 OpMul			"*"
 OpDiv			"/"
+OpDot			"."
 OpModul			"%"
 OpAnd			and
 OpOr			or
@@ -43,12 +53,25 @@ RigthPar		")"
 OpLtBrace		"{"
 OpRtBrace		"}"
 SemiColon		";"
+OpDoubleQuote	"\""
+If				if
+Else			else
+OpArrow			"->"
+
 %%
 {Identifier}					{ yylval.String = yytext.Substring(1); return (int) Tokens.IDENTIFIER; }
-{IntegerLiteral}				{ yylval.num = int.Parse(yytext); return (int)Tokens.INTEGERLITERAL; }
+{IntegerLiteral}				{ yylval.Integer = int.Parse(yytext); return (int)Tokens.INTEGER_LITERAL; }
 {Bool}							{ bool.TryParse(yytext, out yylval.Bool); return (int) Tokens.BOOL; }
 {Public}						{ return (int)Tokens.PUBLIC; }
+{Import}						{ return (int)Tokens.IMPORT; }
+{Protected}						{ return (int)Tokens.PROTECTED; }
+{Private}						{ return (int)Tokens.PRIVATE; }
+{Abstract}						{ return (int)Tokens.ABSTRACT; }
+{Final}							{ return (int)Tokens.FINAL; }
+{Synchronized}					{ return (int)Tokens.SYNCHRONIZED; }
+{Native}						{ return (int)Tokens.NATIVE; }
 {Static}						{ return (int)Tokens.STATIC; }
+{Strictfp}						{ return (int)Tokens.STRICTFP; }
 {Void}							{ return (int)Tokens.VOID; }
 {Main}							{ return (int)Tokens.MAIN; }
 {Class}							{ return (int)Tokens.CLASS; }
@@ -59,6 +82,7 @@ SemiColon		";"
 {OpMinus}						{ return (int) Tokens.OP_MINUS; }
 {OpMul}							{ return (int) Tokens.OP_MUL; }
 {OpDiv}							{ return (int) Tokens.OP_DIV; }
+{OpDot}							{ return (int) Tokens.OP_DOT; }
 {OpModul}						{ return (int) Tokens.OP_MODUL; }
 {OpAnd}							{ return (int) Tokens.OP_AND; }
 {OpOr}							{ return (int) Tokens.OP_OR; }
@@ -76,4 +100,16 @@ SemiColon		";"
 {OpLtBrace}						{ return (int) Tokens.OP_LT_BRACE; }
 {OpRtBrace}						{ return (int) Tokens.OP_RT_BRACE; }
 {SemiColon}						{ return (int) Tokens.SEMICOLON; }
+{System}						{ return (int) Tokens.SYSTEM; }
+{Out}							{ return (int) Tokens.OUT; }
+{Println}						{ return (int) Tokens.PRINTLN; }
+{OpDoubleQuote}					{ return (int) Tokens.OP_DOUBLE_QUOTE; }
+{If}							{ return (int) Tokens.IF; }
+{Else}							{ return (int) Tokens.ELSE; }
+{OpArrow}						{ return (int) Tokens.OP_ARROW; }
 %%
+
+public override void yyerror( string format, params object[] args ) 
+{
+Console.Error.WriteLine(format, args); 
+}
