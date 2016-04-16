@@ -5,11 +5,16 @@ public class Test
 		int x = 42;
 		if (x < 50)
 		{
-			// do nothing
+			break;
 		}
 		else
 		{
+			continue;
+		}
+		do
+		{
 			// do nothing
 		}
+		while(x < 50);
 	}
 }

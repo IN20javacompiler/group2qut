@@ -34,6 +34,10 @@
 %token IF
 %token ELSE
 %token OP_ARROW
+%token BREAK
+%token CONTINUE
+%token DO
+%token WHILE
 //left associated operands
 %left OP_ASSIGN
 %left OP_ADD OP_MINUS
@@ -147,10 +151,19 @@ StatementNoShortIf						:StatementWithoutTrailingSubstatement
 										;
 StatementWithoutTrailingSubstatement 	:ExpressionStatement
 										|EmptyStatement
+										|BreakStatement 
+										|ContinueStatement 
+										|DoStatement
 										;
 EmptyStatement							:SEMICOLON
 										;
 ExpressionStatement						:StatementExpression SEMICOLON
+										;
+BreakStatement							:BREAK IDENTIFIER SEMICOLON
+										;
+ContinueStatement						:CONTINUE IDENTIFIER SEMICOLON
+										;	
+DoStatement								:DO Statement WHILE OP_LEFT_PAR Expression OP_RIGHT_PAR SEMICOLON
 										;
 StatementExpression						:MethodInvocation
 										;
