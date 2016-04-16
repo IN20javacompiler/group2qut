@@ -1,8 +1,18 @@
 c:\users\user\documents\visual studio 2015\Projects\group2JavaCompiler\group2JavaCompiler\bin\Debug\group2JavaCompiler.exe.config
-D:\Programming Language Theory\git\group2JavaCompiler\group2JavaCompiler\bin\Debug\group2JavaCompiler.exe.config
 H:\group2\group2JavaCompiler\group2JavaCompiler\bin\Debug\group2JavaCompiler.exe.config
 H:\group2\group2JavaCompiler\group2JavaCompiler\bin\Debug\group2JavaCompiler.exe
 H:\group2\group2JavaCompiler\group2JavaCompiler\bin\Debug\group2JavaCompiler.pdb
 H:\group2\group2JavaCompiler\group2JavaCompiler\bin\Debug\QUT.ShiftReduceParser.dll
 H:\group2\group2JavaCompiler\group2JavaCompiler\obj\Debug\group2JavaCompiler.exe
 H:\group2\group2JavaCompiler\group2JavaCompiler\obj\Debug\group2JavaCompiler.pdb
+D:\Programming Language Theory\git\group2JavaCompiler\group2JavaCompiler\bin\Debug\group2JavaCompiler.exe
+D:\Programming Language Theory\git\group2JavaCompiler\group2JavaCompiler\bin\Debug\group2JavaCompiler.exe.config
+D:\Programming Language Theory\git\group2JavaCompiler\group2JavaCompiler\bin\Debug\QUT.ShiftReduceParser.dll
+D:\Programming Language Theory\git\group2JavaCompiler\group2JavaCompiler\obj\Debug\group2JavaCompiler.exe
+D:\Programming Language Theory\git\group2JavaCompiler\group2JavaCompiler\obj\Debug\group2JavaCompiler.pdb
+C:\Users\Watthana\Documents\Git\group2\group2JavaCompiler\group2JavaCompiler\bin\Debug\group2JavaCompiler.exe.config
+C:\Users\Watthana\Documents\Git\group2\group2JavaCompiler\group2JavaCompiler\obj\Debug\group2JavaCompiler.exe
+C:\Users\Watthana\Documents\Git\group2\group2JavaCompiler\group2JavaCompiler\obj\Debug\group2JavaCompiler.pdb
+C:\Users\Watthana\Documents\Git\group2\group2JavaCompiler\group2JavaCompiler\bin\Debug\group2JavaCompiler.exe
+C:\Users\Watthana\Documents\Git\group2\group2JavaCompiler\group2JavaCompiler\bin\Debug\group2JavaCompiler.pdb
+C:\Users\Watthana\Documents\Git\group2\group2JavaCompiler\group2JavaCompiler\bin\Debug\QUT.ShiftReduceParser.dll
