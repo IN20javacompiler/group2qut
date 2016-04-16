@@ -185,7 +185,7 @@ Literal 						:INTEGER_LITERAL
 								;
 			
 
-IfThenStatement					: IfStatement LeftPar Expression RigthPar Statement
+WhileStatement					: WHILE LeftPar Expression RigthPar Statement
 								;
 Statement						: EmptyStatement
 								| StatementWithoutTrailingSubstatement
