@@ -1,0 +1,16 @@
+1. Download Gplex.exe, Gppg.exe and QUT.ShiftReduceParser.dll from https://gppg.codeplex.com/downloads/get/899043
+   (gppg-distro-1_5_2)
+/*---------------------------------------------------------------------------------------------------------------*/
+2. Run following commands in cmd:
+ a) Gplex javaCompilerScanner.lex	=> javaCompilerScanner.cs
+ b) Gppg/Gplex javaCompilerParser.y	=> javaCompilerParser.cs
+/*---------------------------------------------------------------------------------------------------------------*/
+3. Open visual Studio:
+ a) Create new console application.
+ b) Add -> Existing item -> javaCompilerScanner.cs
+ c) Add -> Existing item -> javaCompilerParser.cs
+ d) Add -> Reference -> Browse -> QUT.ShiftReduceParser.dll
+ e) Properties -> Debug -> Command Line Arguments	=> Test.java
+			-> Working Directory		=> path of Test.java
+ f) Build -> Build projectname
+ g) Debug -> Start without Debugging
