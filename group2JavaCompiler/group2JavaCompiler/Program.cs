@@ -15,8 +15,17 @@ namespace group2JavaCompiler
              javaCompiler.Lexer.Scanner scanner = new javaCompiler.Lexer.Scanner(file);
              javaCompiler.Parser.Parser parser = new javaCompiler.Parser.Parser(scanner);
              parser.Parse();
-             /*
-            Expression root = new AssignExpression(new IdentifierExpression("x"), new IntegerLiteralExpression(42));*/
+            /*
+           Expression root = new AssignExpression(new IdentifierExpression("x"), new IntegerLiteralExpression(42));*/
+
+            Class root = new Class("test");
+           
+            Method method = new Method("public static", "void", "main");
+
+            ArrayType arrayType = new ArrayType(typeof(string[]));
+            NamedType nameType = new NamedType("args");
+            
+
         }
     }
 }
