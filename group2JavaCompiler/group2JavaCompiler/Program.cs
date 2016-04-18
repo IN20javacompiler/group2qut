@@ -20,9 +20,13 @@ namespace group2JavaCompiler
 
             Class root = new Class("test");
            
+            new Method("main", 
+                       new NamedType("void), 
+                       new List<??> { new Argument("args", new ArrayType(new NamedType("String")) },
+                       new List<Statement> {  new Ass}
             Method method = new Method("public static", "void", "main");
 
-            ArrayType arrayType = new ArrayType(typeof(string[]));
+            ArrayType arrayType = new ArrayType(new NamedType("String"));
             NamedType nameType = new NamedType("args");
             
 
