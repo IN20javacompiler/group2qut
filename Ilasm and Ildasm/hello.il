@@ -5,7 +5,7 @@
   .method private static void  Main(string[] args)
   {
     .entrypoint
-    ldstr      "hello"
+    ldstr      "hello world"
     call       void [mscorlib]System.Console::WriteLine(string)
     ret
   }
