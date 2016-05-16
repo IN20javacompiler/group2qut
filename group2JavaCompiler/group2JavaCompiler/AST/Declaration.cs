@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace group2JavaCompiler.AST
 {
-
-    abstract class Node
+    class Declaration
     {
-	    public abstract void ResolveNames(LexicalScope scope);
-        
+
     }
-   
 }
