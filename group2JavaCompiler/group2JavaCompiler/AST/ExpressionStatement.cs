@@ -6,18 +6,19 @@ using System.Threading.Tasks;
 
 namespace group2JavaCompiler.AST
 {
-    class IdentifierExpression : Expression
+    class ExpressionStatement : Statement
     {
-        private string name;
+        private Expression expr;
 
-        public IdentifierExpression(string name)
+        public ExpressionStatement(Expression expr)
         {
-            this.name = name;
+            this.expr = expr;
         }
 
         public override void dump(int indent)
         {
-            label(indent, "IdentifierExpression {0}\n", name);
+            label(indent, "ExpressionStatement\n");
+            expr.dump(indent + 1);
         }
     }
 }

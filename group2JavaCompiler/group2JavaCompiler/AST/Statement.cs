@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace group2JavaCompiler.AST
 {
-    abstract class Expression : Node
+    public abstract class Statement : Node
     {
-       /* void Dump()
-        {
-            // using Reflection
-        } */
+
     }
 }
