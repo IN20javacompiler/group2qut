@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace group2JavaCompiler.AST
+namespace group2JavaCompiler
 {
     abstract class Expression : Node
     {

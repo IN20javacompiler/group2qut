@@ -1,4 +1,19 @@
+
+// ==========================================================================
+//  GPPG error listing for yacc source file <javaCompilerParser.y - 5/23/2016 3:33:46 PM>
+// ==========================================================================
+//  Version:  1.5.2
+//  Machine:  PRETTYPC
+//  DateTime: 5/23/2016 3:34:45 PM
+//  UserName: Pretty
+// ==========================================================================
+
+
 %namespace group2JavaCompiler
+using group2JavaCompiler.AST;
+//^^^
+// Error: Syntax error, unexpected ident
+// -------------------------------------
 %output=javaCompilerParser.cs
 
 %union {
@@ -49,7 +64,7 @@ TypeDeclaration					:ClassDeclaration
 								;
 ClassDeclaration				:NormalClassDeclaration
 								;
-NormalClassDeclaration			: ClassModifiers CLASS IDENTIFIER ClassBody		
+NormalClassDeclaration			: ClassModifiers CLASS IDENTIFIER ClassBody		{$$= new AST.Class($1,$3,$4);}
 								| CLASS IDENTIFIER ClassBody
 								;
 ClassModifiers					:ClassModifier ClassModifiers
@@ -176,6 +191,7 @@ Literal 						:INTEGER_LITERAL
 
 %%
 
-public Parser(Scanner scanner) : base(scanner)
+public Parser(javaCompiler.Lexer.Scanner scanner) : base(scanner)
 {
-}
+}// ==========================================================================
+

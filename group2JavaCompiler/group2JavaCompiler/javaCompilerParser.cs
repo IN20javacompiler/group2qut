@@ -4,9 +4,9 @@
 
 // GPPG version 1.5.2
 // Machine:  PRETTYPC
-// DateTime: 5/23/2016 2:32:17 PM
+// DateTime: 5/23/2016 3:46:38 PM
 // UserName: Pretty
-// Input file <javaCompilerParser.y - 5/23/2016 2:26:57 PM>
+// Input file <javaCompilerParser.y - 5/23/2016 3:46:24 PM>
 
 // options: lines gplex
 
@@ -17,7 +17,7 @@ using System.Globalization;
 using System.Text;
 using QUT.Gppg;
 
-namespace javaCompiler.Parser
+namespace group2JavaCompiler
 {
 public enum Tokens {error=2,EOF=3,IDENTIFIER=4,INTEGER_LITERAL=5,BOOL_LITERAL=6,
     PUBLIC=7,PROTECTED=8,PRIVATE=9,ABSTRACT=10,STATIC=11,FINAL=12,
@@ -34,7 +34,7 @@ public struct ValueType
     public string String;
   	public bool Bool;
 	public char name;
-}
+	}
 #line default
 // Abstract base class for GPLEX scanners
 [GeneratedCodeAttribute( "Gardens Point Parser Generator", "1.5.2")]
@@ -289,7 +289,7 @@ public class Parser: ShiftReduceParser<ValueType, LexLocation>
   }
 
 #line 179 "javaCompilerParser.y"
-public Parser(javaCompiler.Lexer.Scanner scanner) : base(scanner)
+public Parser(Scanner scanner) : base(scanner)
 {
 }
 #line default

@@ -6,9 +6,9 @@
 //
 //  GPLEX Version:  1.2.2
 //  Machine:  PRETTYPC
-//  DateTime: 5/23/2016 2:32:13 PM
+//  DateTime: 5/23/2016 3:46:30 PM
 //  UserName: Pretty
-//  GPLEX input file <javaCompilerScanner.lex - 5/23/2016 2:32:05 PM>
+//  GPLEX input file <javaCompilerScanner.lex - 5/23/2016 3:36:10 PM>
 //  GPLEX frame file <embedded resource>
 //
 //  Option settings: parser, minimize
@@ -32,9 +32,8 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Diagnostics.CodeAnalysis;
 
-using javaCompiler.Parser;
 
-namespace javaCompiler.Lexer
+namespace group2JavaCompiler
 {   
     /// <summary>
     /// Summary Canonical example of GPLEX automaton
