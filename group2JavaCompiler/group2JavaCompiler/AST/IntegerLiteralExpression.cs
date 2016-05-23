@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace group2JavaCompiler.AST
 {
-    
+
     class IntegerLiteralExpression
     {
         private int value;

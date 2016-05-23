@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace group2JavaCompiler.AST
 {
-    abstract class Expression:Node
+    abstract class Expression : Node
     {
     }
 }
