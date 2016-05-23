@@ -3,9 +3,9 @@
 //  GPLEX error listing for lex source file <javaCompilerScanner.lex>
 // ==========================================================================
 //  Version:  1.2.2
-//  Machine:  DELL
-//  DateTime: 4/8/2016 11:11:49 PM
-//  UserName: user
+//  Machine:  PRETTYPC
+//  DateTime: 5/23/2016 2:30:33 PM
+//  UserName: Pretty
 // ==========================================================================
 
 
@@ -19,8 +19,7 @@ NotWh           [^ \t\r\n]
 Space           [ \t]
 
 Digit			[0-9]
-Letter 			[a-zA-Z]
-Identifier		\$([a-zA-Z]([a-zA-Z0-9_])*)
+Identifier		[a-zA-Z][a-zA-Z]*
 IntegerLiteral	{Digit}+
 BooleanLiteral	(true|false)
 
@@ -62,19 +61,17 @@ OpLtBrace		"{"
 OpRtBrace		"}"
 SemiColon		";"
 %%
-{Identifier}					{ yylval.String = yytext.Substring(1); return (int) Tokens.IDENTIFIER; }
+{Identifier}					{ yylval.string = yytext[0]; return (int) Tokens.IDENTIFIER; }
+//---------------^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+// Error: Invalid action
+// Error: Parser error <Syntax error, unexpected csKeyword, expecting csIdent> 
+// ----------------------------------------------------------------------------
 {IntegerLiteral}				{ yylval.Integer = int.Parse(yytext); return (int)Tokens.INTEGER_LITERAL; }
 {Bool}							{ bool.TryParse(yytext, out yylval.Bool); return (int) Tokens.BOOL; }
 {Public}						{ return (int)Tokens.PUBLIC; }
-//^^^^^^
-// Warning: This pattern always overrides "{Public}" 
-// --------------------------------------------------
 {Protected}						{ return (int)Tokens.PROTECTED; }
-{Abstract}						{ return (int)Tokens.PRIVATE; }
-{Public}						{ return (int)Tokens.ABSTRACT; }
-//^^^^^^
-// Warning: This pattern always overridden by "{Public}" 
-// ------------------------------------------------------
+{Private}						{ return (int)Tokens.PRIVATE; }
+{Abstract}						{ return (int)Tokens.ABSTRACT; }
 {Final}							{ return (int)Tokens.FINAL; }
 {Synchronized}					{ return (int)Tokens.SYNCHRONIZED; }
 {Native}						{ return (int)Tokens.NATIVE; }
@@ -92,7 +89,7 @@ SemiColon		";"
 {OpDiv}							{ return (int) Tokens.OP_DIV; }
 {OpModul}						{ return (int) Tokens.OP_MODUL; }
 {OpAnd}							{ return (int) Tokens.OP_AND; }
-{OpOr}							{ return (int) Tokens.OP_OR; }
+
 {OpNot}							{ return (int) Tokens.OP_NOT; }
 {OpEqu}							{ return (int) Tokens.OP_EQU; }
 {OpNotEqu}						{ return (int) Tokens.OP_NOT_EQU; }
@@ -107,5 +104,11 @@ SemiColon		";"
 {OpLtBrace}						{ return (int) Tokens.OP_LT_BRACE; }
 {OpRtBrace}						{ return (int) Tokens.OP_RT_BRACE; }
 {SemiColon}						{ return (int) Tokens.SEMICOLON; }
-%%// ==========================================================================
+.								{System.Console.Error.WriteLine("Unexpected charactern'{0}'",yytext);}
+%%
+
+public override void yyerror( string format, params object[] args ) 
+ {
+ Console.Error.WriteLine(format, args);  		 
+   } // ==========================================================================
 

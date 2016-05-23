@@ -3,12 +3,12 @@
 // (see accompanying GPPGcopyright.rtf)
 
 // GPPG version 1.5.2
-// Machine:  DELL
-// DateTime: 4/8/2016 11:12:57 PM
-// UserName: user
-// Input file <javaCompilerParser.y - 4/8/2016 11:01:47 PM>
+// Machine:  PRETTYPC
+// DateTime: 5/23/2016 2:32:17 PM
+// UserName: Pretty
+// Input file <javaCompilerParser.y - 5/23/2016 2:26:57 PM>
 
-// options: lines
+// options: lines gplex
 
 using System;
 using System.Collections.Generic;
@@ -24,9 +24,8 @@ public enum Tokens {error=2,EOF=3,IDENTIFIER=4,INTEGER_LITERAL=5,BOOL_LITERAL=6,
     SYNCHRONIZED=13,NATIVE=14,STRICTFP=15,VOID=16,MAIN=17,CLASS=18,
     BOOL=19,INT=20,STRING=21,OP_LEFT_PAR=22,OP_RIGHT_PAR=23,OP_SQ_L_BR=24,
     OP_SQ_R_BR=25,OP_LT_BRACE=26,OP_RT_BRACE=27,SEMICOLON=28,OP_ASSIGN=29,OP_ADD=30,
-    OP_MINUS=31,OP_MUL=32,OP_DIV=33,OP_MODUL=34,OP_AND=35,OP_OR=36,
-    OP_NOT=37,OP_EQU=38,OP_NOT_EQU=39,OP_LT=40,OP_GT=41,OP_GT_EQ=42,
-    OP_LT_EQ=43};
+    OP_MINUS=31,OP_MUL=32,OP_DIV=33,OP_MODUL=34,OP_AND=35,OP_NOT=36,
+    OP_EQU=37,OP_NOT_EQU=38,OP_LT=39,OP_GT=40,OP_GT_EQ=41,OP_LT_EQ=42};
 
 public struct ValueType
 #line 4 "javaCompilerParser.y"
@@ -34,29 +33,29 @@ public struct ValueType
     public int Integer;
     public string String;
   	public bool Bool;
+	public char name;
 }
 #line default
-    public abstract class ScanBase : AbstractScanner<ValueType, LexLocation>
-    {
-        private LexLocation __yylloc = new LexLocation();
-        public override LexLocation yylloc { get { return __yylloc; } set { __yylloc = value; } }
-        protected virtual bool yywrap() { return true; }
-    }
+// Abstract base class for GPLEX scanners
+[GeneratedCodeAttribute( "Gardens Point Parser Generator", "1.5.2")]
+public abstract class ScanBase : AbstractScanner<ValueType,LexLocation> {
+  private LexLocation __yylloc = new LexLocation();
+  public override LexLocation yylloc { get { return __yylloc; } set { __yylloc = value; } }
+  protected virtual bool yywrap() { return true; }
+}
 
-    // Utility class for encapsulating token information
-    [GeneratedCodeAttribute("Gardens Point Parser Generator", "1.5.2")]
-    public class ScanObj
-    {
-        public int token;
-        public ValueType yylval;
-        public LexLocation yylloc;
-        public ScanObj(int t, ValueType val, LexLocation loc)
-        {
-            this.token = t; this.yylval = val; this.yylloc = loc;
-        }
-    }
+// Utility class for encapsulating token information
+[GeneratedCodeAttribute( "Gardens Point Parser Generator", "1.5.2")]
+public class ScanObj {
+  public int token;
+  public ValueType yylval;
+  public LexLocation yylloc;
+  public ScanObj( int t, ValueType val, LexLocation loc ) {
+    this.token = t; this.yylval = val; this.yylloc = loc;
+  }
+}
 
-    [GeneratedCodeAttribute( "Gardens Point Parser Generator", "1.5.2")]
+[GeneratedCodeAttribute( "Gardens Point Parser Generator", "1.5.2")]
 public class Parser: ShiftReduceParser<ValueType, LexLocation>
 {
 #pragma warning disable 649
@@ -110,7 +109,7 @@ public class Parser: ShiftReduceParser<ValueType, LexLocation>
     states[26] = new State(new int[]{4,52},new int[]{-33,27,-36,28,-22,29});
     states[27] = new State(-50);
     states[28] = new State(-54);
-    states[29] = new State(new int[]{38,30});
+    states[29] = new State(new int[]{37,30});
     states[30] = new State(new int[]{5,51},new int[]{-37,31,-38,32,-39,33,-40,34,-41,35,-42,36,-43,37,-44,38,-45,39,-46,40,-47,41,-48,42,-49,43,-50,44,-51,45,-52,46,-53,47,-54,48,-55,49,-56,50});
     states[31] = new State(-55);
     states[32] = new State(-57);
@@ -239,7 +238,7 @@ public class Parser: ShiftReduceParser<ValueType, LexLocation>
     rules[52] = new Rule(-34, new int[]{-35});
     rules[53] = new Rule(-35, new int[]{20});
     rules[54] = new Rule(-33, new int[]{-36});
-    rules[55] = new Rule(-36, new int[]{-22,38,-37});
+    rules[55] = new Rule(-36, new int[]{-22,37,-37});
     rules[56] = new Rule(-22, new int[]{4});
     rules[57] = new Rule(-37, new int[]{-38});
     rules[58] = new Rule(-38, new int[]{-39});
@@ -289,8 +288,7 @@ public class Parser: ShiftReduceParser<ValueType, LexLocation>
         return CharToString((char)terminal);
   }
 
-#line 176 "javaCompilerParser.y"
-
+#line 179 "javaCompilerParser.y"
 public Parser(javaCompiler.Lexer.Scanner scanner) : base(scanner)
 {
 }

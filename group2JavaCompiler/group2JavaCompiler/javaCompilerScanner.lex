@@ -8,8 +8,7 @@ NotWh           [^ \t\r\n]
 Space           [ \t]
 
 Digit			[0-9]
-Letter 			[a-zA-Z]
-Identifier		\$([a-zA-Z]([a-zA-Z0-9_])*)
+Identifier		[a-zA-Z][a-zA-Z]*
 IntegerLiteral	{Digit}+
 BooleanLiteral	(true|false)
 
@@ -51,7 +50,7 @@ OpLtBrace		"{"
 OpRtBrace		"}"
 SemiColon		";"
 %%
-{Identifier}					{ yylval.String = yytext.Substring(1); return (int) Tokens.IDENTIFIER; }
+[a-zA-Z]						{ yylval.name = yytext[0];   return (int)Tokens.IDENTIFIER; }
 {IntegerLiteral}				{ yylval.Integer = int.Parse(yytext); return (int)Tokens.INTEGER_LITERAL; }
 {Bool}							{ bool.TryParse(yytext, out yylval.Bool); return (int) Tokens.BOOL; }
 {Public}						{ return (int)Tokens.PUBLIC; }
@@ -75,7 +74,7 @@ SemiColon		";"
 {OpDiv}							{ return (int) Tokens.OP_DIV; }
 {OpModul}						{ return (int) Tokens.OP_MODUL; }
 {OpAnd}							{ return (int) Tokens.OP_AND; }
-{OpOr}							{ return (int) Tokens.OP_OR; }
+
 {OpNot}							{ return (int) Tokens.OP_NOT; }
 {OpEqu}							{ return (int) Tokens.OP_EQU; }
 {OpNotEqu}						{ return (int) Tokens.OP_NOT_EQU; }
@@ -90,11 +89,9 @@ SemiColon		";"
 {OpLtBrace}						{ return (int) Tokens.OP_LT_BRACE; }
 {OpRtBrace}						{ return (int) Tokens.OP_RT_BRACE; }
 {SemiColon}						{ return (int) Tokens.SEMICOLON; }
+.								{System.Console.Error.WriteLine("Unexpected charactern'{0}'",yytext);}
 %%
 
-public Parser(javaCompiler.Lexer.Scanner scanner) : base(scanner)
-{
-}
 public override void yyerror( string format, params object[] args ) 
  {
  Console.Error.WriteLine(format, args);  		 

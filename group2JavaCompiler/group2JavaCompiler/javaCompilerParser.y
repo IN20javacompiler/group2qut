@@ -5,7 +5,9 @@
     public int Integer;
     public string String;
   	public bool Bool;
+	public char name;
 }
+
 %token <String>	 IDENTIFIER
 %token <Integer> INTEGER_LITERAL
 %token <Bool>	 BOOL_LITERAL
@@ -29,7 +31,7 @@
 %left OP_MUL OP_DIV 
 %left OP_MODUL
 %left OP_AND
-%left OP_OR
+//%left OP_OR
 %left OP_NOT
 %left OP_EQU
 %left OP_NOT_EQU
@@ -61,7 +63,7 @@ ClassModifier					:PUBLIC
 								|FINAL 
 								|STRICTFP
 								;
-ClassBody						: OP_LT_BRACE ClassBodyDeclaration OP_RT_BRACE
+ClassBody						:OP_LT_BRACE ClassBodyDeclaration OP_RT_BRACE
 								;
 ClassBodyDeclaration			:ClassMemberDeclaration
 								;
