@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-namespace group2JavaCompiler { 
+namespace group2JavaCompiler.AST { 
     public abstract class Statement : Node
     {
 
