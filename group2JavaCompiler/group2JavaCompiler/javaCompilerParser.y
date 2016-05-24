@@ -1,4 +1,4 @@
-%namespace javaCompiler.Parser
+%namespace group2JavaCompiler
 
 %output=javaCompilerParser.cs
 

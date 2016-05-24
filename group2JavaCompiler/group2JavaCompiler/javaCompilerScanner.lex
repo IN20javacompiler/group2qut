@@ -1,5 +1,4 @@
-%using javaCompiler.Parser;
-%namespace javaCompiler.Lexer
+%namespace group2JavaCompiler
 
 %visibility public
 

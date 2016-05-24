@@ -4,9 +4,9 @@
 
 // GPPG version 1.5.2
 // Machine:  PRETTYPC
-// DateTime: 5/24/2016 12:25:01 AM
+// DateTime: 5/24/2016 12:31:54 AM
 // UserName: Pretty
-// Input file <javaCompilerParser.y - 5/24/2016 12:24:47 AM>
+// Input file <javaCompilerParser.y - 5/24/2016 12:28:17 AM>
 
 // options: lines gplex
 
@@ -17,7 +17,7 @@ using System.Globalization;
 using System.Text;
 using QUT.Gppg;
 
-namespace javaCompiler.Parser
+namespace group2JavaCompiler
 {
 public enum Tokens {error=2,EOF=3,IDENTIFIER=4,INTEGER_LITERAL=5,BOOL_LITERAL=6,
     PUBLIC=7,PROTECTED=8,PRIVATE=9,ABSTRACT=10,STATIC=11,FINAL=12,
