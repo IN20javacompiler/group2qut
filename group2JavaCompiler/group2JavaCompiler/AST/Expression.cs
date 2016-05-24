@@ -6,11 +6,75 @@ using System.Threading.Tasks;
 
 namespace group2JavaCompiler
 {
-    abstract class Expression : Node
+    public abstract class Expression : Node
     {
        /* void Dump()
         {
             // using Reflection
         } */
     }
+    public class AssignExpression : Expression
+    {
+        private Expression lhs, rhs;
+
+        public AssignExpression(Expression lhs, Expression rhs)
+        {
+            this.lhs = lhs;
+            this.rhs = rhs;
+        }
+
+        public override void dump(int indent)
+        {
+            label(indent, "AssignmentExpression\n");
+            lhs.dump(indent + 1, "lhs");
+            rhs.dump(indent + 1, "rhs");
+        }
+    };
+    public class BinaryExpression : Expression
+    {
+        private char op;
+        private Expression lhs, rhs;
+
+        public BinaryExpression(Expression lhs, char op, Expression rhs)
+        {
+            this.op = op;
+            this.lhs = lhs;
+            this.rhs = rhs;
+        }
+
+        public override void dump(int indent)
+        {
+            label(indent, "BinaryExpression {0}\n", op);
+            lhs.dump(indent + 1, "lhs");
+            rhs.dump(indent + 1, "rhs");
+        }
+    };
+    public class IdentifierExpression : Expression
+    {
+        private string name;
+
+        public IdentifierExpression(string name)
+        {
+            this.name = name;
+        }
+
+        public override void dump(int indent)
+        {
+            label(indent, "IdentifierExpression {0}\n", name);
+        }
+    };
+    public class IntegerLiteralExpression : Expression
+    {
+        private int value;
+
+        public IntegerLiteralExpression(int value)
+        {
+            this.value = value;
+        }
+
+        public override void dump(int indent)
+        {
+            label(indent, "IntegerLiteralExpression {0}\n", value);
+        }
+    };
 }

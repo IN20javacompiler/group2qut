@@ -11,7 +11,7 @@ namespace group2JavaCompiler
 
     }
 
-    class NamedType : Types
+    public class NamedType : Types
     {
         string name;
 
@@ -24,9 +24,24 @@ namespace group2JavaCompiler
         {
             label(indent, "NamedType {0}\n", name);
         }
-    }
+    };
+    public class IntType : Types
+    {
+        public override void dump(int indent)
+        {
+            label(indent, "IntType\n");
+        }
+    };
 
-    class ArrayType : Types
+
+    public class BoolType : Types
+    {
+        public override void dump(int indent)
+        {
+            label(indent, "BoolType\n");
+        }
+    };
+    public class ArrayType : Types
     {
         NamedType elementType;
 
@@ -39,5 +54,5 @@ namespace group2JavaCompiler
         {
             label(indent, "ArrayType\n");
         }
-    }
+    };
 }

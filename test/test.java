@@ -1,6 +1,6 @@
-public class test{
+public class test{{
 public static void main(String[] args)
 {
-x=42;	
+double x=42;	
 }
 }

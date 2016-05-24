@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace group2JavaCompiler
 {
-    class Arguments : Expression
+    public class Arguments : Expression
     {
         private string name;
         private ArrayType type;

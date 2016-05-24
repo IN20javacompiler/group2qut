@@ -4,9 +4,9 @@
 
 // GPPG version 1.5.2
 // Machine:  PRETTYPC
-// DateTime: 5/23/2016 3:46:38 PM
+// DateTime: 5/23/2016 8:17:33 PM
 // UserName: Pretty
-// Input file <javaCompilerParser.y - 5/23/2016 3:46:24 PM>
+// Input file <javaCompilerParser.y - 5/23/2016 8:09:41 PM>
 
 // options: lines gplex
 
@@ -28,12 +28,16 @@ public enum Tokens {error=2,EOF=3,IDENTIFIER=4,INTEGER_LITERAL=5,BOOL_LITERAL=6,
     OP_EQU=37,OP_NOT_EQU=38,OP_LT=39,OP_GT=40,OP_GT_EQ=41,OP_LT_EQ=42};
 
 public struct ValueType
-#line 4 "javaCompilerParser.y"
+#line 6 "javaCompilerParser.y"
        {
     public int Integer;
     public string String;
   	public bool Bool;
 	public char name;
+	public System.Collections.Generic.List<AST.Statement> stmts;
+	public AST.Expression expr;
+	public AST.Statement stmt;
+	public AST.Types type;
 	}
 #line default
 // Abstract base class for GPLEX scanners
@@ -58,6 +62,12 @@ public class ScanObj {
 [GeneratedCodeAttribute( "Gardens Point Parser Generator", "1.5.2")]
 public class Parser: ShiftReduceParser<ValueType, LexLocation>
 {
+  // Verbatim content from javaCompilerParser.y - 5/23/2016 8:09:41 PM
+#line 4 "javaCompilerParser.y"
+public static AST.Statement root;
+#line default
+  // End verbatim content from javaCompilerParser.y - 5/23/2016 8:09:41 PM
+
 #pragma warning disable 649
   private static Dictionary<int, string> aliases;
 #pragma warning restore 649
@@ -288,7 +298,8 @@ public class Parser: ShiftReduceParser<ValueType, LexLocation>
         return CharToString((char)terminal);
   }
 
-#line 179 "javaCompilerParser.y"
+#line 184 "javaCompilerParser.y"
+
 public Parser(Scanner scanner) : base(scanner)
 {
 }

@@ -1,11 +1,17 @@
 %namespace group2JavaCompiler
 %output=javaCompilerParser.cs
-
+%{
+public static AST.Statement root;
+%}
 %union {
     public int Integer;
     public string String;
   	public bool Bool;
 	public char name;
+	public System.Collections.Generic.List<AST.Statement> stmts;
+	public AST.Expression expr;
+	public AST.Statement stmt;
+	public AST.Types type;
 	}
 
 %token <String>	 IDENTIFIER

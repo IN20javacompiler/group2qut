@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace group2JavaCompiler
 {
-    class Class : Node
+    public class Class : Node
     {
         string modifier, name;
         Method method;
