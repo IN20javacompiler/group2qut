@@ -1,4 +1,6 @@
 ﻿using System.IO;
+using group2JavaCompiler.AST;
+
 namespace group2JavaCompiler
 {
     class Program
@@ -30,7 +32,7 @@ namespace group2JavaCompiler
                       );
             */
 
-            /* Class root = new Class("public", "Test",
+             /*Class root = new Class("public", "Test",
                              new Method("public static",
                              new NamedType("void"),
                              "main",
