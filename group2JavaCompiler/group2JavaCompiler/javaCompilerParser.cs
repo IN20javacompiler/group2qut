@@ -4,9 +4,9 @@
 
 // GPPG version 1.5.2
 // Machine:  PRETTYPC
-// DateTime: 5/24/2016 2:00:31 AM
+// DateTime: 5/24/2016 2:02:58 AM
 // UserName: Pretty
-// Input file <javaCompilerParser.y - 5/24/2016 2:00:26 AM>
+// Input file <javaCompilerParser.y - 5/24/2016 2:01:50 AM>
 
 // options: lines gplex
 
@@ -64,11 +64,11 @@ public class ScanObj {
 [GeneratedCodeAttribute( "Gardens Point Parser Generator", "1.5.2")]
 public class Parser: ShiftReduceParser<ValueType, LexLocation>
 {
-  // Verbatim content from javaCompilerParser.y - 5/24/2016 2:00:26 AM
+  // Verbatim content from javaCompilerParser.y - 5/24/2016 2:01:50 AM
 #line 5 "javaCompilerParser.y"
 public static AST.Class root;
 #line default
-  // End verbatim content from javaCompilerParser.y - 5/24/2016 2:00:26 AM
+  // End verbatim content from javaCompilerParser.y - 5/24/2016 2:01:50 AM
 
 #pragma warning disable 649
   private static Dictionary<int, string> aliases;
@@ -397,14 +397,9 @@ public static AST.Class root;
 #pragma warning disable 162, 1522
     switch (action)
     {
-      case 11: // ClassDeclaration -> NormalClassDeclaration
-#line 83 "javaCompilerParser.y"
-                                              { root = ValueStack[ValueStack.Depth-1]; }
-#line default
-        break;
       case 68: // IfThenElseStatement -> IF, OP_LEFT_PAR, Expression, OP_RIGHT_PAR, Statement, 
                //                        ELSE, Statement
-#line 165 "javaCompilerParser.y"
+#line 166 "javaCompilerParser.y"
                                                                                            { CurrentSemanticValue.stmt = new AST.IfStatement(ValueStack[ValueStack.Depth-5].expr, ValueStack[ValueStack.Depth-3].stmt, ValueStack[ValueStack.Depth-1].stmt); }
 #line default
         break;
@@ -422,7 +417,7 @@ public static AST.Class root;
         return CharToString((char)terminal);
   }
 
-#line 252 "javaCompilerParser.y"
+#line 253 "javaCompilerParser.y"
 
 public Parser(Scanner scanner) : base(scanner)
 {
