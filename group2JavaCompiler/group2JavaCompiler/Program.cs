@@ -13,26 +13,7 @@ namespace group2JavaCompiler
             Parser parser = new Parser(scanner);
             parser.Parse();
             Parser.root.dump(0);
-            /*  var file = new System.IO.FileStream(args[0], System.IO.FileMode.Open);
-             javaCompilerScanner scanner = new Scanner(file);
-              //javaCompiler.Lexer.Scanner scanner = new javaCompiler.Lexer.Scanner(System.Console.OpenStandardInput());
-              Parser parser = new Parser(scanner);
-              parser.Parse();*/
-
-            /*
-            Statement root = new ExpressionStatement(new AssignExpression(new IdentifierExpression("x"), new IntegerLiteralExpression(42)));
-            root.dump(0);
-            */
-
-            /*
-            new Method("main",
-                        new NamedType("void"),
-                        new List<??> { new Argument("args", new ArrayType(new NamedType("String")) },
-                        new List<Statement> { new Ass.. }
-                      );
-            */
-
-             /*Class root = new Class("public", "Test",
+                        /*Class root = new Class("public", "Test",
                              new Method("public static",
                              new NamedType("void"),
                              "main",

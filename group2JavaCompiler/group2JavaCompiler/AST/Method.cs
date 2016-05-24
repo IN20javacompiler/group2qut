@@ -9,11 +9,11 @@ namespace group2JavaCompiler.AST
     public class Method : Node
     {
         string modifier, name;
-        Types type;
+        Type type;
         VariableDeclarationStatement stmt;
         Arguments arg;
 
-        public Method(string modifier, Types type, string name, Arguments arg, VariableDeclarationStatement stmt)
+        public Method(string modifier, Type type, string name, Arguments arg, VariableDeclarationStatement stmt)
         {
             this.modifier = modifier;
             this.type = type;

@@ -29,9 +29,9 @@ namespace group2JavaCompiler.AST {
 
     public class VariableDeclaration : Statement
     {
-        private Types type;
+        private Type type;
         private char name;
-        public VariableDeclaration(Types type, char name)
+        public VariableDeclaration(Type type, char name)
         {
             this.type = type;
             this.name = name;
@@ -75,11 +75,11 @@ namespace group2JavaCompiler.AST {
     };
     public class VariableDeclarationStatement : Statement
     {
-        private Types type;
+        private Type type;
         private IdentifierExpression name;
         private IntegerLiteralExpression value;
 
-        public VariableDeclarationStatement(Types type, IdentifierExpression name, IntegerLiteralExpression value)
+        public VariableDeclarationStatement(Type type, IdentifierExpression name, IntegerLiteralExpression value)
         {
             this.type = type;
             this.name = name;

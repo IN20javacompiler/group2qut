@@ -1,12 +1,24 @@
 %namespace group2JavaCompiler
 
 %output=javaCompilerParser.cs
+%{
+public static AST.Class root;
+%}
 
-%union {
+%union
+{
+public AST.Class class;
+    public AST.Expression expr;
+	public AST.Statement stmt;
+	public AST.Type type;
+	public System.Collections.Generic.List<AST.Statement> stmts;
     public int Integer;
     public string String;
   	public bool Bool;
 }
+%type <expr> Expression
+%type <stmt> Statement
+
 
 %token <String>	 IDENTIFIER
 %token <Integer> INTEGER_LITERAL
@@ -53,6 +65,7 @@
 %start CompilationUnit
 // YACC Rules
 %%
+
 CompilationUnit							:TypeDeclaration
 										|ImportDeclaration
 										|ImportDeclaration TypeDeclaration
@@ -68,10 +81,10 @@ PackageOrTypeName						:PackageOrTypeName OP_DOT IDENTIFIER
 										;
 TypeDeclaration							:ClassDeclaration
 										;
-ClassDeclaration						:NormalClassDeclaration
+ClassDeclaration						:NormalClassDeclaration 
 										;
-NormalClassDeclaration					: ClassModifiers CLASS IDENTIFIER ClassBody
-										| CLASS IDENTIFIER ClassBody
+NormalClassDeclaration					: ClassModifiers CLASS IDENTIFIER OP_LT_BRACE ClassMemberDeclaration OP_RT_BRACE
+										| CLASS IDENTIFIER OP_LT_BRACE ClassMemberDeclaration OP_RT_BRACE
 										;
 ClassModifiers							:ClassModifier ClassModifiers
 										|ClassModifier
@@ -84,12 +97,20 @@ ClassModifier							:PUBLIC
 										|FINAL 
 										|STRICTFP
 										;
-ClassBody								: OP_LT_BRACE ClassBodyDeclaration OP_RT_BRACE
-										;
-ClassBodyDeclaration					:ClassMemberDeclaration
+Annotation								:PUBLIC 
+										|PROTECTED
+										|PRIVATE
+										|ABSTRACT
+										|STATIC
+										|FINAL 
 										;
 ClassMemberDeclaration					:MethodDeclaration 
+										|FieldDeclaration 
 										;
+FieldDeclaration						: UnannType VariableDeclaratorList 
+										|FieldModifier UnannType VariableDeclaratorList 
+										;
+FieldModifier							:Annotation;
 MethodDeclaration						: MethodModifiers MethodHeader MethodBody
 										|MethodHeader MethodBody;
 MethodModifiers							:MethodModifier MethodModifiers
@@ -134,26 +155,29 @@ MethodBody								:Block
 Block									: OP_LT_BRACE BlockStatements OP_RT_BRACE
 										;
 BlockStatements							:BlockStatement
+										|BlockStatement OP_LT_BRACE BlockStatement OP_RT_BRACE 
 										;
 BlockStatement							:LocalVariableDeclarationStatement
-										|Statement
+										|Statement 
 										;
 Statement								:StatementWithoutTrailingSubstatement 
 										|IfThenElseStatement
 										;
-IfThenElseStatement						:IF OP_LEFT_PAR Expression OP_RIGHT_PAR StatementNoShortIf ELSE Statement
+IfThenElseStatement						:IF OP_LEFT_PAR Expression OP_RIGHT_PAR Statement ELSE Statement  { $$.stmt = new AST.IfStatement($3, $5, $7); }
 										;
-StatementNoShortIf						:StatementWithoutTrailingSubstatement
-										;
-StatementWithoutTrailingSubstatement 	:ExpressionStatement
+
+StatementWithoutTrailingSubstatement 	:OP_LT_BRACE Statement OP_RT_BRACE  
+										|ExpressionStatement 
 										|EmptyStatement
-										|Block
 										;
 EmptyStatement							:SEMICOLON
 										;
 ExpressionStatement						:StatementExpression SEMICOLON
 										;
-StatementExpression						:MethodInvocation
+StatementExpression						:ExpressionName OP_ASSIGN Expression
+										|MethodInvocation
+										;
+ExpressionName							:IDENTIFIER
 										;
 MethodInvocation						:MethodName OP_LEFT_PAR ArgumentList OP_RIGHT_PAR
 										;
@@ -189,7 +213,8 @@ VariableDeclaratorId					:IDENTIFIER
 VariableInitializer						:Expression
 										;
 AssignmentExpression					:ConditionalExpression
-										;
+										|ExpressionName OP_ASSIGN Expression;
+							
 ConditionalExpression					: ConditionalOrExpression
 										;
 ConditionalOrExpression					: ConditionalAndExpression
@@ -226,6 +251,6 @@ Literal 								:INTEGER_LITERAL
 										;
 %%
 
-public Parser(javaCompiler.Lexer.Scanner scanner) : base(scanner)
+public Parser(Scanner scanner) : base(scanner)
 {
 }

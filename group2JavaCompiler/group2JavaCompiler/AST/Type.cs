@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace group2JavaCompiler.AST
 {
-    public abstract class Types : Node
+    public abstract class Type : Node
     {
 
     }
 
-    public class NamedType : Types
+    public class NamedType : Type
     {
         string name;
 
@@ -25,7 +25,7 @@ namespace group2JavaCompiler.AST
             label(indent, "NamedType {0}\n", name);
         }
     };
-    public class IntType : Types
+    public class IntType : Type
     {
         public override void dump(int indent)
         {
@@ -34,14 +34,14 @@ namespace group2JavaCompiler.AST
     };
 
 
-    public class BoolType : Types
+    public class BoolType : Type
     {
         public override void dump(int indent)
         {
             label(indent, "BoolType\n");
         }
     };
-    public class ArrayType : Types
+    public class ArrayType : Type
     {
         NamedType elementType;
 
