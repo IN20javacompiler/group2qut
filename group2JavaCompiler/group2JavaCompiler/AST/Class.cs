@@ -20,8 +20,8 @@ namespace group2JavaCompiler
 
         public override void dump(int indent)
         {
-            label(indent, "ClassDeclaration {0}\n", name);
-            label(indent + 1, "Modifier {0}\n", modifier);
+            label(indent, "Class Modifier :{0}\n", modifier);
+            label(indent, "Class name Identifier :{0}\n", name);
             method.dump(indent + 1);
         }
     }

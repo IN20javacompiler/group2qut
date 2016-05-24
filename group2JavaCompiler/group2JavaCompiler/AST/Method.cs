@@ -24,12 +24,12 @@ namespace group2JavaCompiler
 
         public override void dump(int indent)
         {
-            label(indent, "MethodDeclaration {0}\n", name);
-            label(indent + 1, "Modifier {0}\n", modifier);
-            type.dump(indent + 1);
-            arg.dump(indent + 1);
+            label(indent, "Method Modifier :{0}\n", modifier);
+            type.dump(indent);
+            label(indent, "Method Declaration :{0}\n", name);
+            arg.dump(indent);
             label(indent + 1, "MethodBody\n");
-            stmt.dump(indent + 1);
+            stmt.dump(indent);
         }
     }
 }

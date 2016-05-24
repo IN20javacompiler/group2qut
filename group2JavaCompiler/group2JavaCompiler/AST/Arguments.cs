@@ -19,8 +19,8 @@ namespace group2JavaCompiler
 
         public override void dump(int indent)
         {
-            label(indent, "Arguments {0}\n", name);
-            type.dump(indent + 1);
+            label(indent, "Arguments :{0}", name);
+            type.dump(indent);
         }
     }
 }
