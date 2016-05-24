@@ -7,7 +7,6 @@ public static AST.Class root;
 
 %union
 {
-public AST.Class class;
     public AST.Expression expr;
 	public AST.Statement stmt;
 	public AST.Type type;
