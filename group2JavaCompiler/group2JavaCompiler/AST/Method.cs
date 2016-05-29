@@ -1,33 +1,47 @@
-﻿
+﻿using System;
+
 namespace group2JavaCompiler.AST
 {
-    class Method : Node
+    public class Method : Node
     {
-        Modifier modifier1, modifier2;  // public  &&  static
-        string name;
-        Type type;
-        VariableDeclarationStatement stmt;
-        Arguments arg;
+        public string modifier, name;
+        public Type type;
+        public VariableDeclarationStatement stmt;
+        public Parameter parameters;
+        public CompoundStatement body;
 
-        public Method(Modifier modifier1, Modifier modifier2, Type type, string name, Arguments arg, VariableDeclarationStatement stmt)
+        public Method(Type type, String name)
         {
-            this.modifier1 = modifier1;
-            this.modifier2 = modifier2;
+            // this.modifier = modifiers;
             this.type = type;
             this.name = name;
-            this.arg = arg;
-            this.stmt = stmt;
+        }
+
+        public Method(Type type, String name, Parameter parameters)
+        {
+            //this.modifier = modifiers;
+            this.type = type;
+            this.name = name;
+            this.parameters = parameters;
+        }
+
+        public Method(Type type, String name, Parameter parameters, CompoundStatement body)
+        {
+            //this.modifier = modifiers;
+            this.type = type;
+            this.name = name;
+            this.parameters = parameters;
+            this.body = body;
         }
 
         public override void dump(int indent)
         {
-            modifier1.dump(indent + 1);
-            modifier2.dump(indent + 1);
-            label(indent + 1, "MethodDeclaration {0}\n", name);
-            type.dump(indent + 1);
-            arg.dump(indent + 1);
+            label(indent, "Method Modifier :{0}\n", modifier);
+            type.dump(indent);
+            label(indent, "Method Declaration :{0}\n", name);
+
             label(indent + 1, "MethodBody\n");
-            stmt.dump(indent + 1);
+            stmt.dump(indent);
         }
     }
 }
