@@ -55,14 +55,10 @@ OpDoubleQuote	"\""
 If				if
 Else			else
 OpArrow			"->"
-Break			break
-Continue		continue
-Do				do
-While			while
 
 %%
 {Identifier}					{ yylval.String = yytext.Substring(1); return (int) Tokens.IDENTIFIER; }
-{Digit}							{ yylval.num = int.Parse(yytext); return (int)Tokens.NUMBER; }
+{Digit}				{ yylval.num = int.Parse(yytext); return (int)Tokens.NUMBER; }
 {Bool}							{ bool.TryParse(yytext, out yylval.Bool); return (int) Tokens.BOOL; }
 {Public}						{ return (int)Tokens.PUBLIC; }
 {Import}						{ return (int)Tokens.IMPORT; }
@@ -109,13 +105,9 @@ While			while
 {If}							{ return (int) Tokens.IF; }
 {Else}							{ return (int) Tokens.ELSE; }
 {OpArrow}						{ return (int) Tokens.OP_ARROW; }
-{Break}							{ return (int) Tokens.BREAK; }
-{Continue}						{ return (int) Tokens.CONTINUE; }
-{Do}							{ return (int) Tokens.DO; }
-{While}							{ return (int) Tokens.WHILE; }
 %%
 
 public override void yyerror( string format, params object[] args ) 
 {
-	Console.Error.WriteLine(format, args); 
+Console.Error.WriteLine(format, args); 
 }
