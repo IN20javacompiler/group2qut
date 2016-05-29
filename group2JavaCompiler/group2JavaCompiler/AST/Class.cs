@@ -35,5 +35,5 @@ namespace group2JavaCompiler.AST
         {
             throw new NotImplementedException();
         }
-    };
+    }
 }
