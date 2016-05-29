@@ -16,12 +16,14 @@ namespace group2JavaCompiler.AST
             this.type = type;
             this.varDeclarationstmt = variable;
         }
+
         public FieldDeclaration(string modifier, Type type, List<VariableDeclarationStatement> variable)
         {
             this.modifier = modifier;
             this.type = type;
             this.variableList = variable;
         }
+
         public override void dump(int indent)
         {
             throw new NotImplementedException();
