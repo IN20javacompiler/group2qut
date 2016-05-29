@@ -1,24 +1,39 @@
-﻿
+﻿using System;
+
 namespace group2JavaCompiler.AST
 {
-    class Class : Node
+    public class Class : Node
     {
-        Modifier modifier;
-        string name;
-        Method method;
+        string modifier, name;
+        ClassMemberDeclaration method;
 
-        public Class(Modifier modifier, string name, Method method)
+        public Class(string name, ClassMemberDeclaration member)
         {
-            this.modifier = modifier;
+            // this.modifier = modifier;
             this.name = name;
-            this.method = method;
+            this.method = member;
         }
 
         public override void dump(int indent)
         {
-            modifier.dump(indent + 1);
-            label(indent + 1, "ClassDeclaration {0}\n", name);
+            label(indent, "Class Modifier :{0}\n", modifier);
+            label(indent, "Class name Identifier :{0}\n", name);
             method.dump(indent + 1);
         }
     }
+
+    public class ClassMemberDeclaration : Node
+    {
+        FieldDeclaration field;
+        Method method;
+
+        public ClassMemberDeclaration(Method method)
+        {
+            this.method = method;
+        }
+        public override void dump(int indent)
+        {
+            throw new NotImplementedException();
+        }
+    };
 }

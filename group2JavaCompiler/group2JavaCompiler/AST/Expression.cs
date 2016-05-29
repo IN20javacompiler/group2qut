@@ -1,4 +1,5 @@
-﻿
+﻿using System.Collections.Generic;
+
 namespace group2JavaCompiler.AST
 {
     public abstract class Expression : Node
@@ -25,7 +26,7 @@ namespace group2JavaCompiler.AST
             lhs.dump(indent + 1, "lhs");
             rhs.dump(indent + 1, "rhs");
         }
-    }
+    };
 
     public class BinaryExpression : Expression
     {
@@ -45,7 +46,7 @@ namespace group2JavaCompiler.AST
             lhs.dump(indent + 1, "lhs");
             rhs.dump(indent + 1, "rhs");
         }
-    }
+    };
 
     public class IdentifierExpression : Expression
     {
@@ -60,20 +61,44 @@ namespace group2JavaCompiler.AST
         {
             label(indent, "IdentifierExpression {0}\n", name);
         }
-    }
+    };
 
-    public class IntegerLiteralExpression : Expression
+    public class NumberExpression : Expression
     {
         private int value;
-
-        public IntegerLiteralExpression(int value)
+        public NumberExpression(int value)
         {
             this.value = value;
         }
-
         public override void dump(int indent)
         {
-            label(indent, "IntegerLiteralExpression {0}\n", value);
+            label(indent, "NumberExpression {0}\n", value);
         }
-    }
+    };
+    public class VariableDeclarationExpr : Expression
+    {
+        private Type type;
+        private string modifiers;
+        private List<VariableDeclarator> vars;
+        public VariableDeclarationExpr()
+        {
+        }
+
+        public VariableDeclarationExpr(Type type, List<VariableDeclarator> vars)
+        {
+            this.type = type;
+            this.vars = vars;
+        }
+
+        public VariableDeclarationExpr(string modifiers, Type type, List<VariableDeclarator> vars)
+        {
+            this.modifiers = modifiers;
+            this.type = type;
+            this.vars = vars;
+        }
+        public override void dump(int indent)
+        {
+            label(indent, "VariableDeclarationExpr {0}\n");
+        }
+    };
 }
