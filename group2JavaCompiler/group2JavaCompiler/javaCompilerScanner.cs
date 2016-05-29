@@ -6,9 +6,9 @@
 //
 //  GPLEX Version:  1.2.2
 //  Machine:  SUJITHGEETHU
-//  DateTime: 01-05-2016 7.17.51 PM
+//  DateTime: 29-05-2016 11.59.24 AM
 //  UserName: Sujith Geethu
-//  GPLEX input file <javaCompilerScanner.lex - 01-05-2016 7.16.29 PM>
+//  GPLEX input file <javaCompilerScanner.lex - 29-05-2016 7.40.56 AM>
 //  GPLEX frame file <embedded resource>
 //
 //  Option settings: parser, minimize
@@ -31,9 +31,8 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Diagnostics.CodeAnalysis;
 
-using javaCompiler.Parser;
 
-namespace javaCompiler.Lexer
+namespace group2JavaCompiler
 {   
     /// <summary>
     /// Summary Canonical example of GPLEX automaton
@@ -987,7 +986,7 @@ return (int) Tokens.OP_NOT_EQU;
 
 public override void yyerror( string format, params object[] args ) 
 {
-Console.Error.WriteLine(format, args); 
+	Console.Error.WriteLine(format, args); 
 }
 
 #endregion

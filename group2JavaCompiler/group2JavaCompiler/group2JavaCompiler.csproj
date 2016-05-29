@@ -47,20 +47,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AST\Arguments.cs" />
-    <Compile Include="AST\AssignExpression.cs" />
-    <Compile Include="AST\BinaryExpression.cs" />
     <Compile Include="AST\Class.cs" />
-    <Compile Include="AST\CompoundStatement.cs" />
     <Compile Include="AST\Expression.cs" />
-    <Compile Include="AST\ExpressionStatement.cs" />
-    <Compile Include="AST\IdentifierExpression.cs" />
-    <Compile Include="AST\IfThenElseStatement.cs" />
-    <Compile Include="AST\IntegerLiteralExpression.cs" />
     <Compile Include="AST\Method.cs" />
+    <Compile Include="AST\Modifier.cs" />
     <Compile Include="AST\Node.cs" />
     <Compile Include="AST\Statement.cs" />
-    <Compile Include="AST\Types.cs" />
-    <Compile Include="AST\VariableDeclarationStatement.cs" />
+    <Compile Include="AST\Type.cs" />
     <Compile Include="javaCompilerParser.cs" />
     <Compile Include="javaCompilerScanner.cs" />
     <Compile Include="Program.cs" />

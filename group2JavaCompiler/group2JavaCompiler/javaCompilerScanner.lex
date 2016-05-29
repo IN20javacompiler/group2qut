@@ -1,5 +1,4 @@
-%using javaCompiler.Parser;
-%namespace javaCompiler.Lexer
+%namespace group2JavaCompiler
 
 %visibility public
 
@@ -119,5 +118,5 @@ While			while
 
 public override void yyerror( string format, params object[] args ) 
 {
-Console.Error.WriteLine(format, args); 
+	Console.Error.WriteLine(format, args); 
 }

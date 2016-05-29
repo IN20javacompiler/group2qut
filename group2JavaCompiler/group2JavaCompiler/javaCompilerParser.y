@@ -1,12 +1,26 @@
-%namespace javaCompiler.Parser
+%namespace group2JavaCompiler
 
 %output=javaCompilerParser.cs
 
+%{
+	public static AST.Class root;
+%}
+
 %union {
+	public AST.Expression expr;
+	public AST.Statement stmt;
+	public AST.Method method;
+	public AST.Type type;
+	public AST.Modifier modifier;
+	public System.Collections.Generic.List<AST.Statement> stmts;
+	
     public int Integer;
     public string String;
   	public bool Bool;
 }
+
+%type <expr> Expression
+%type <method> MethodHeader MethodDeclarator MethodDeclaration
 
 %token <String>	 IDENTIFIER
 %token <Integer> INTEGER_LITERAL
@@ -57,7 +71,7 @@
 %start CompilationUnit
 // YACC Rules
 %%
-CompilationUnit							:TypeDeclaration
+CompilationUnit							:TypeDeclaration											{ $$ = $1; }
 										|ImportDeclaration
 										|ImportDeclaration TypeDeclaration
 										;
@@ -68,19 +82,19 @@ SingleTypeImportDeclaration				:IMPORT TypeName
 TypeName								:PackageOrTypeName OP_DOT IDENTIFIER
 										;
 PackageOrTypeName						:PackageOrTypeName OP_DOT IDENTIFIER
-										|IDENTIFIER
+										|IDENTIFIER													{ $$ = new AST.IdentifierExpression($1); }
 										;
-TypeDeclaration							:ClassDeclaration
+TypeDeclaration							:ClassDeclaration											{ $$ = $1; }
 										;
-ClassDeclaration						:NormalClassDeclaration
+ClassDeclaration						:NormalClassDeclaration										{ $$ = $1; }
 										;
-NormalClassDeclaration					: ClassModifiers CLASS IDENTIFIER ClassBody
+NormalClassDeclaration					: ClassModifiers CLASS IDENTIFIER ClassBody					{ $$ = new AST.Class($1,$3,$4); }
 										| CLASS IDENTIFIER ClassBody
 										;
 ClassModifiers							:ClassModifier ClassModifiers
-										|ClassModifier
+										|ClassModifier												{ $$ = $1; }
 										;
-ClassModifier							:PUBLIC 
+ClassModifier							:PUBLIC														{ $$ = new AST.Modifier($1); } 
 										|PROTECTED
 										|PRIVATE
 										|ABSTRACT
@@ -88,58 +102,59 @@ ClassModifier							:PUBLIC
 										|FINAL 
 										|STRICTFP
 										;
-ClassBody								: OP_LT_BRACE ClassBodyDeclaration OP_RT_BRACE
+ClassBody								: OP_LT_BRACE ClassBodyDeclaration OP_RT_BRACE				{ $$ = $2; }
 										;
-ClassBodyDeclaration					:ClassMemberDeclaration
+ClassBodyDeclaration					:ClassMemberDeclaration										{ $$ = $1; }
 										;
-ClassMemberDeclaration					:MethodDeclaration 
+ClassMemberDeclaration					:MethodDeclaration											{ $$ = $1; } 
 										;
-MethodDeclaration						: MethodModifiers MethodHeader MethodBody
+MethodDeclaration						: MethodModifiers MethodHeader MethodBody					{ $2.stmt = $3; $$ = $2; }
 										|MethodHeader MethodBody;
-MethodModifiers							:MethodModifier MethodModifiers
-										|MethodModifier;
-MethodModifier							:PUBLIC 
+MethodModifiers							:MethodModifier MethodModifiers								{ $$ = $1; } 
+										|MethodModifier												{ $$ = $1; }
+										;											
+MethodModifier							:PUBLIC														{ $$ = new AST.Modifier($1); }  
 										|PROTECTED
 										|PRIVATE
 										|ABSTRACT
-										|STATIC
+										|STATIC														{ $$ = new AST.Modifier($1); }  
 										|FINAL 
 										|SYNCHRONIZED
 										|NATIVE
 										|STRICTFP
 										;
-MethodHeader							:Result MethodDeclarator
+MethodHeader							:Result MethodDeclarator									{ $2.type = $1; $$ = $2; }
 										;
-Result									:VOID
+Result									:VOID														{ $$ = new AST.NamedType("void"); }
 										;
-MethodDeclarator						:IDENTIFIER OP_LEFT_PAR FormalParameterList OP_RIGHT_PAR
+MethodDeclarator						:IDENTIFIER OP_LEFT_PAR FormalParameterList OP_RIGHT_PAR	{ $$ = new AST.Method($3); }
 										|IDENTIFIER OP_LEFT_PAR OP_RIGHT_PAR
 										;
-FormalParameterList						:LastFormalParameter
+FormalParameterList						:LastFormalParameter										{ $$ = $1; } 
 										;
-LastFormalParameter						:FormalParameter
+LastFormalParameter						:FormalParameter											{ $$ = $1; } 
 										;
-FormalParameter							:UnannType VariableDeclaratorId
+FormalParameter							:UnannType VariableDeclaratorId								{ $2.type = $1; $$ = $2; }
 										;
-UnannType								:UnannReferenceType
-										|UnannPrimitiveType
+UnannType								:UnannReferenceType											{ $$ = $1; } 
+										|UnannPrimitiveType											{ $$ = $1; } 
 										;
-UnannReferenceType						:UnannArrayType
+UnannReferenceType						:UnannArrayType												{ $$ = new AST.ArraType(new AST.NamedType(STRING)); } 
 										;
 UnannArrayType							:UnannTypeVariable Dims
 										;
-UnannTypeVariable						:IDENTIFIER
+UnannTypeVariable						:IDENTIFIER													{ $$ = new AST.IdentifierExpression($1); }
 										;
 
 Dims									:OP_SQ_L_BR OP_SQ_R_BR
 										;
-MethodBody								:Block
+MethodBody								:Block														{ $$ = $1; } 
 										;
-Block									: OP_LT_BRACE BlockStatements OP_RT_BRACE
+Block									: OP_LT_BRACE BlockStatements OP_RT_BRACE					{ $$ = new AST.CompoundStatement($2); }
 										;
-BlockStatements							:BlockStatement
+BlockStatements							:BlockStatement												{ $$ = $1; } 
 										;
-BlockStatement							:LocalVariableDeclarationStatement
+BlockStatement							:LocalVariableDeclarationStatement							{ $$ = $1; } 
 										|Statement
 										;
 Statement								:StatementWithoutTrailingSubstatement 
@@ -173,7 +188,7 @@ MethodName								:SYSTEM OP_DOT OUT OP_DOT PRINTLN
 										;
 ArgumentList							:Expression
 										;
-Expression								:AssignmentExpression
+Expression								:AssignmentExpression										{ $$ = $1; }
 										|LambdaExpression 
 										;
 LambdaExpression						:LambdaParameters OP_ARROW LambdaBody
@@ -182,59 +197,59 @@ LambdaParameters						:OP_DOUBLE_QUOTE IDENTIFIER OP_DOUBLE_QUOTE
 										;
 LambdaBody								:Block
 										;
-LocalVariableDeclarationStatement		:LocalVariableDeclaration SEMICOLON
+LocalVariableDeclarationStatement		:LocalVariableDeclaration SEMICOLON							{ $$ = $1; } 
 										;
-LocalVariableDeclaration				:UnannType VariableDeclaratorList
+LocalVariableDeclaration				:UnannType VariableDeclaratorList							{ $2.type = $1; $$ = $2; } 
 										;
 UnannPrimitiveType						:NumericType
 										;
 NumericType								:IntegralType
 										;
-IntegralType							:INT
+IntegralType							:INT														{ $$ = new AST.IntType(); }
 										;
-VariableDeclaratorList					:VariableDeclarator
+VariableDeclaratorList					:VariableDeclarator											{ $$ = $1; } 
 										;
-VariableDeclarator						:VariableDeclaratorId OP_EQU VariableInitializer
+VariableDeclarator						:VariableDeclaratorId OP_EQU VariableInitializer			{ $$ = new AST.VariableDeclarationStatement($1,$3); }
 										;
-VariableDeclaratorId					:IDENTIFIER
+VariableDeclaratorId					:IDENTIFIER													{ $$ = new AST.IdentifierExpression($1); }
 										;
-VariableInitializer						:Expression
+VariableInitializer						:Expression													{ $$ = $1; }
 										;
-AssignmentExpression					:ConditionalExpression
+AssignmentExpression					:ConditionalExpression										{ $$ = $1; } 
 										;
-ConditionalExpression					: ConditionalOrExpression
+ConditionalExpression					: ConditionalOrExpression									{ $$ = $1; } 
 										;
-ConditionalOrExpression					: ConditionalAndExpression
+ConditionalOrExpression					: ConditionalAndExpression									{ $$ = $1; }
 										;
-ConditionalAndExpression				: InclusiveOrExpression
+ConditionalAndExpression				: InclusiveOrExpression										{ $$ = $1; }
 										;
-InclusiveOrExpression					: ExclusiveOrExpression 
+InclusiveOrExpression					: ExclusiveOrExpression										{ $$ = $1; } 
 										;
-ExclusiveOrExpression					: AndExpression
+ExclusiveOrExpression					: AndExpression												{ $$ = $1; }
 										;
-AndExpression							: EqualityExpression
+AndExpression							: EqualityExpression										{ $$ = $1; }
 										;
-EqualityExpression						: RelationalExpression
+EqualityExpression						: RelationalExpression										{ $$ = $1; }
 										;
-RelationalExpression					:ShiftExpression
+RelationalExpression					:ShiftExpression											{ $$ = $1; }
 										;
-ShiftExpression							:AdditiveExpression
+ShiftExpression							:AdditiveExpression											{ $$ = $1; }
 										;
-AdditiveExpression						:MultiplicativeExpression
+AdditiveExpression						:MultiplicativeExpression									{ $$ = $1; }
 										;
-MultiplicativeExpression				:UnaryExpression
+MultiplicativeExpression				:UnaryExpression											{ $$ = $1; }
 										;
-UnaryExpression							:UnaryExpressionNotPlusMinus
+UnaryExpression							:UnaryExpressionNotPlusMinus								{ $$ = $1; }
 										;
-UnaryExpressionNotPlusMinus    			:PostfixExpression 
+UnaryExpressionNotPlusMinus    			:PostfixExpression 											{ $$ = $1; }
 										;
-PostfixExpression						:Primary 
+PostfixExpression						:Primary 													{ $$ = $1; }
 										;
-Primary									:PrimaryNoNewArray 
+Primary									:PrimaryNoNewArray 											{ $$ = $1; }
 										;
-PrimaryNoNewArray						:Literal 
+PrimaryNoNewArray						:Literal 													{ $$ = $1; }
 										;
-Literal 								:INTEGER_LITERAL 
+Literal 								:INTEGER_LITERAL 											{ $$ = new IntegerLiteralExpression($1); }
 										;
 %%
 

@@ -1,21 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace group2JavaCompiler.AST
 {
     class Method : Node
     {
-        string modifier, name;
-        Types type;
+        Modifier modifier1, modifier2;  // public  &&  static
+        string name;
+        Type type;
         VariableDeclarationStatement stmt;
         Arguments arg;
 
-        public Method(string modifier, Types type, string name, Arguments arg, VariableDeclarationStatement stmt)
+        public Method(Modifier modifier1, Modifier modifier2, Type type, string name, Arguments arg, VariableDeclarationStatement stmt)
         {
-            this.modifier = modifier;
+            this.modifier1 = modifier1;
+            this.modifier2 = modifier2;
             this.type = type;
             this.name = name;
             this.arg = arg;
@@ -24,8 +21,9 @@ namespace group2JavaCompiler.AST
 
         public override void dump(int indent)
         {
-            label(indent, "MethodDeclaration {0}\n", name);
-            label(indent + 1, "Modifier {0}\n", modifier);
+            modifier1.dump(indent + 1);
+            modifier2.dump(indent + 1);
+            label(indent + 1, "MethodDeclaration {0}\n", name);
             type.dump(indent + 1);
             arg.dump(indent + 1);
             label(indent + 1, "MethodBody\n");

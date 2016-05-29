@@ -1,17 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace group2JavaCompiler.AST
 {
-    public abstract class Types : Node
+    public abstract class Type : Node
     {
 
     }
 
-    class NamedType : Types
+    public class IntType : Type
+    {
+        public override void dump(int indent)
+        {
+            label(indent, "IntType\n");
+        }
+    }
+
+    public class BoolType : Type
+    {
+        public override void dump(int indent)
+        {
+            label(indent, "BoolType\n");
+        }
+    }
+
+    class NamedType : Type
     {
         string name;
 
@@ -26,7 +37,7 @@ namespace group2JavaCompiler.AST
         }
     }
 
-    class ArrayType : Types
+    class ArrayType : Type
     {
         NamedType elementType;
 
