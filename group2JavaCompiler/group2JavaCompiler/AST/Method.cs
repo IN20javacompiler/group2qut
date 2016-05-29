@@ -39,7 +39,6 @@ namespace group2JavaCompiler.AST
             label(indent, "Method Modifier :{0}\n", modifier);
             type.dump(indent);
             label(indent, "Method Declaration :{0}\n", name);
-
             label(indent + 1, "MethodBody\n");
             stmt.dump(indent);
         }
