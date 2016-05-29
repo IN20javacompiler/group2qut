@@ -75,6 +75,7 @@ namespace group2JavaCompiler.AST
             label(indent, "NumberExpression {0}\n", value);
         }
     };
+
     public class VariableDeclarationExpr : Expression
     {
         private Type type;
