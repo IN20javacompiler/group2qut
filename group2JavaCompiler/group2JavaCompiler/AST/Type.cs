@@ -6,25 +6,9 @@ namespace group2JavaCompiler.AST
 
     }
 
-    public class IntType : Type
+    public class NamedType : Type
     {
-        public override void dump(int indent)
-        {
-            label(indent, "IntType\n");
-        }
-    }
-
-    public class BoolType : Type
-    {
-        public override void dump(int indent)
-        {
-            label(indent, "BoolType\n");
-        }
-    }
-
-    class NamedType : Type
-    {
-        string name;
+        private string name;
 
         public NamedType(string name)
         {
@@ -35,9 +19,25 @@ namespace group2JavaCompiler.AST
         {
             label(indent, "NamedType {0}\n", name);
         }
-    }
+    };
 
-    class ArrayType : Type
+    public class IntType : Type
+    {
+        public override void dump(int indent)
+        {
+            label(indent, "IntType\n");
+        }
+    };
+
+    public class BoolType : Type
+    {
+        public override void dump(int indent)
+        {
+            label(indent, "BoolType\n");
+        }
+    };
+
+    public class ArrayType : Type
     {
         NamedType elementType;
 
@@ -50,5 +50,18 @@ namespace group2JavaCompiler.AST
         {
             label(indent, "ArrayType\n");
         }
-    }
+    };
+
+    public class VoidType : Type
+    {
+        public VoidType()
+        {
+
+        }
+
+        public override void dump(int indent)
+        {
+            label(indent, "VoidType\n");
+        }
+    };
 }

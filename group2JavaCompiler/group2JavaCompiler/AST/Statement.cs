@@ -26,7 +26,7 @@ namespace group2JavaCompiler.AST
             thenStmt.dump(indent + 1, "then");
             elseStmt.dump(indent + 1, "else");
         }
-    }
+    };
 
     public class VariableDeclaration : Statement
     {
@@ -42,7 +42,24 @@ namespace group2JavaCompiler.AST
             label(indent, "VariableDeclaration {0}\n", name);
             type.dump(indent + 1);
         }
-    }
+    };
+
+    public class VariableDeclarationList : Statement
+    {
+        private Type type;
+        List<VariableDeclarator> name;
+        public VariableDeclarationList(Type type, List<VariableDeclarator> name)
+        {
+            this.type = type;
+            this.name = name;
+        }
+        public override void dump(int indent)
+        {
+            label(indent, "VariableDeclarationList {0}\n", name);
+            foreach (var child in name)
+                child.dump(indent + 1);
+        }
+    };
 
     public class ExpressionStatement : Statement
     {
@@ -58,7 +75,7 @@ namespace group2JavaCompiler.AST
             label(indent, "ExpressionStatement\n");
             expr.dump(indent + 1);
         }
-    }
+    };
 
     public class CompoundStatement : Statement
     {
@@ -75,15 +92,15 @@ namespace group2JavaCompiler.AST
             foreach (var child in stmts)
                 child.dump(indent + 1);
         }
-    }
+    };
 
     public class VariableDeclarationStatement : Statement
     {
         private Type type;
         private IdentifierExpression name;
-        private IntegerLiteralExpression value;
+        private NumberExpression value;
 
-        public VariableDeclarationStatement(Type type, IdentifierExpression name, IntegerLiteralExpression value)
+        public VariableDeclarationStatement(Type type, IdentifierExpression name, NumberExpression value)
         {
             this.type = type;
             this.name = name;
@@ -97,5 +114,26 @@ namespace group2JavaCompiler.AST
             name.dump(indent + 2);
             value.dump(indent + 2);
         }
-    }
+    };
+
+    public class IfThenElseStatement : Statement
+    {
+        private Expression cond;
+        private Statement thenStmt, elseStmt;
+
+        public IfThenElseStatement(Expression cond, Statement thenStmt, Statement elseStmt)
+        {
+            this.cond = cond;
+            this.thenStmt = thenStmt;
+            this.elseStmt = elseStmt;
+        }
+
+        public override void dump(int indent)
+        {
+            label(indent, "IfThenElseStatement\n");
+            cond.dump(indent + 1, "cond");
+            thenStmt.dump(indent + 1, "then");
+            elseStmt.dump(indent + 1, "else");
+        }
+    };
 }
