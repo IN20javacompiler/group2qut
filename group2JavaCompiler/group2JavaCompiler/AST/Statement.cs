@@ -130,30 +130,4 @@ namespace group2JavaCompiler.AST {
             elseStmt.dump(indent + 1, "else");
         }
     };
-    public class VariableDeclarationExpr : Statement
-    {
-        private Type type;
-        private string modifiers;
-        private List<VariableDeclarator> vars;
-        public VariableDeclarationExpr()
-        {
-        }
-
-        public VariableDeclarationExpr(Type type, List<VariableDeclarator> vars)
-        {
-            this.type = type;
-            this.vars = vars;
-        }
-
-        public VariableDeclarationExpr(string modifiers, Type type, List<VariableDeclarator> vars)
-        {
-            this.modifiers = modifiers;
-            this.type = type;
-            this.vars = vars;
-        }
-        public override void dump(int indent)
-        {
-            label(indent, "VariableDeclarationExpr {0}\n");
-        }
-    };
-}
+ }

@@ -26,13 +26,15 @@ public static AST.Class root;
 	
 }
 %type <varDeclarator> VariableDeclarator
-%type <varDeclaratorId> VariableDeclaratorId
+%type <varDeclaratorId> VariableDeclaratorId ExpressionName
 %type <varList> VariableDeclaratorList
 %type <varDeclaratorExpr> LocalVariableDeclaration
 %type <param> FormalParameterList LastFormalParameter FormalParameter
 %type <type> UnannType Result IntegralType NumericType UnannPrimitiveType
 %type <member> ClassMemberDeclaration
-%type <expr> Expression
+%type <expr> Expression VariableInitializer AssignmentExpression ConditionalExpression ConditionalAndExpression ConditionalOrExpression InclusiveOrExpression ExclusiveOrExpression AndExpression
+%type <expr> Expression EqualityExpression RelationalExpression ShiftExpression AdditiveExpression MultiplicativeExpression UnaryExpression UnaryExpressionNotPlusMinus PostfixExpression
+%type <expr> Primary PrimaryNoNewArray Literal 
 %type <stmt> Statement BlockStatement  
 %type <compoundStmt> MethodBody Block 
 %type <stmts>  BlockStatements
@@ -122,10 +124,10 @@ Block									:OP_LT_BRACE BlockStatements OP_RT_BRACE 										 {$$ = new AST.
 BlockStatements							:BlockStatements BlockStatement									 				{$$ = $1; $$.Add($2); }
 										|																				{ $$ = new System.Collections.Generic.List<AST.Statement>(); }
 										;
-BlockStatement							:LocalVariableDeclaration SEMICOLON   											{$$ = $1;}
+BlockStatement							:LocalVariableDeclaration SEMICOLON   											{$$ = new AST.ExpressionStatement($1);}
 										|Statement 
 										;
-VariableDeclaratorId 					:IDENTIFIER																	{$$=new AST.VariableDeclaratorId($1);}
+VariableDeclaratorId 					:IDENTIFIER																		{$$=new AST.VariableDeclaratorId($1);}
 										;
 LocalVariableDeclaration				:UnannType VariableDeclaratorList 												 {$$=new AST.VariableDeclarationExpr($1,$2);}
 										;
@@ -140,7 +142,7 @@ VariableInitializer						:Expression 																	 {$$=$1;}
 Expression								:AssignmentExpression   														 {$$=$1;}
 										;
 AssignmentExpression					:ConditionalExpression 															 {$$=$1;}
-										|ExpressionName OP_ASSIGN Expression   											 {$$=new AST.AssignExpression($1,$3);}
+										|ExpressionName OP_ASSIGN Expression   											 
 										;
 							
 ConditionalExpression					: ConditionalOrExpression   													 {$$=$1;}
@@ -193,7 +195,7 @@ ExpressionStatement						:StatementExpression SEMICOLON
 StatementExpression						:ExpressionName OP_ASSIGN Expression
 										|MethodInvocation
 										;
-ExpressionName							:IDENTIFIER
+ExpressionName							:IDENTIFIER    											{$$=new AST.VariableDeclaratorId($1);}
 										;
 MethodInvocation						:MethodName OP_LEFT_PAR ArgumentList OP_RIGHT_PAR
 										;

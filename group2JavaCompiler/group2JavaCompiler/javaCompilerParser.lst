@@ -1,10 +1,10 @@
 
 // ==========================================================================
-//  GPPG error listing for yacc source file <javaCompilerParser.y - 5/29/2016 2:53:10 PM>
+//  GPPG error listing for yacc source file <javaCompilerParser.y - 5/29/2016 4:15:12 PM>
 // ==========================================================================
 //  Version:  1.5.2
 //  Machine:  PRETTYPC
-//  DateTime: 5/29/2016 2:53:14 PM
+//  DateTime: 5/29/2016 4:15:16 PM
 //  UserName: Pretty
 // ==========================================================================
 
@@ -25,6 +25,7 @@ public static AST.Class root;
 	public AST.Method method;
 	public AST.Type type;
 	public AST.Parameter param;
+	public AST.VariableDeclarator varDeclarator;
 	public AST.VariableDeclaratorId varDeclaratorId;
 	public AST.VariableDeclarationExpr varDeclaratorExpr;
 	public AST.Class classRoot;
@@ -35,19 +36,22 @@ public static AST.Class root;
   	public bool Bool;
 	
 }
-
+%type <varDeclarator> VariableDeclarator
+%type <varDeclaratorId> VariableDeclaratorId ExpressionName
 %type <varList> VariableDeclaratorList
 %type <varDeclaratorExpr> LocalVariableDeclaration
 %type <param> FormalParameterList LastFormalParameter FormalParameter
 %type <type> UnannType Result IntegralType NumericType UnannPrimitiveType
 %type <member> ClassMemberDeclaration
-%type <expr> Expression
+%type <expr> Expression VariableInitializer AssignmentExpression ConditionalExpression ConditionalAndExpression ConditionalOrExpression InclusiveOrExpression ExclusiveOrExpression AndExpression
+%type <expr> Expression EqualityExpression RelationalExpression ShiftExpression AdditiveExpression MultiplicativeExpression UnaryExpression UnaryExpressionNotPlusMinus PostfixExpression
+%type <expr> Primary PrimaryNoNewArray Literal NUMBER
 %type <stmt> Statement BlockStatement  
 %type <compoundStmt> MethodBody Block 
 %type <stmts>  BlockStatements
 %type <method> MethodDeclaration
 %type <classRoot> NormalClassDeclaration
-%token <String>	 IDENTIFIER
+%token <String>	 IDENTIFIER 
 %token <num> NUMBER
 %token <Bool>	 BOOL_LITERAL
 
@@ -92,6 +96,13 @@ public static AST.Class root;
 %start CompilationUnit
 // YACC Rules
 %%
+// Warning: NonTerminal symbol "NUMBER" is unreachable
+// Error: NonTerminal symbol "NUMBER" has no productions
+// Error: There are 1 non-terminating NonTerminal Symbols
+   //  {NUMBER}
+// Warning: Terminating NUMBER fixes the following size-1 NonTerminal set
+   // {NUMBER}
+// ----------------------------------------------------------------------
 
 ClassDeclaration						:NormalClassDeclaration  														{root=$1;}
 										;
@@ -131,27 +142,25 @@ Block									:OP_LT_BRACE BlockStatements OP_RT_BRACE 										 {$$ = new AST.
 BlockStatements							:BlockStatements BlockStatement									 				{$$ = $1; $$.Add($2); }
 										|																				{ $$ = new System.Collections.Generic.List<AST.Statement>(); }
 										;
-BlockStatement							:LocalVariableDeclaration SEMICOLON   											{$$ = $1;}
+BlockStatement							:LocalVariableDeclaration SEMICOLON   											{$$ = new AST.ExpressionStatement($1);}
 										|Statement 
 										;
-VariableDeclaratorId 					:IDENTIFIER;																	{$$=new AST.VariableDeclaratorId($1);}
-//----------------------------------------------------^^
-// Error: Syntax error, unexpected '{', expecting %%, or anchoredSymbol, or EOF
-// ----------------------------------------------------------------------------
+VariableDeclaratorId 					:IDENTIFIER																		{$$=new AST.VariableDeclaratorId($1);}
+										;
 LocalVariableDeclaration				:UnannType VariableDeclaratorList 												 {$$=new AST.VariableDeclarationExpr($1,$2);}
 										;
 VariableDeclaratorList					:VariableDeclaratorList VariableDeclarator										{$$ = $1; $$.Add($2); }
 										|																				{ $$ = new System.Collections.Generic.List<AST.VariableDeclarator>(); }
 										;
-VariableDeclarator						:IDENTIFIER															{$$=new AST.VariableDeclarator($1);}
-										|IDENTIFIER OP_EQU VariableInitializer 								{$$=new AST.VariableDeclarator($1,$3);}
+VariableDeclarator						:VariableDeclaratorId															{$$=new AST.VariableDeclarator($1);}
+										|VariableDeclaratorId OP_EQU VariableInitializer 								{$$=new AST.VariableDeclarator($1,$3);}
 										;
 VariableInitializer						:Expression 																	 {$$=$1;}
 										;
 Expression								:AssignmentExpression   														 {$$=$1;}
 										;
 AssignmentExpression					:ConditionalExpression 															 {$$=$1;}
-										|ExpressionName OP_ASSIGN Expression   											 {$$=new AST.AssignExpression($1,$3);}
+										|ExpressionName OP_ASSIGN Expression   											 
 										;
 							
 ConditionalExpression					: ConditionalOrExpression   													 {$$=$1;}
@@ -204,7 +213,7 @@ ExpressionStatement						:StatementExpression SEMICOLON
 StatementExpression						:ExpressionName OP_ASSIGN Expression
 										|MethodInvocation
 										;
-ExpressionName							:IDENTIFIER
+ExpressionName							:IDENTIFIER    											{$$=new AST.VariableDeclaratorId($1);}
 										;
 MethodInvocation						:MethodName OP_LEFT_PAR ArgumentList OP_RIGHT_PAR
 										;
