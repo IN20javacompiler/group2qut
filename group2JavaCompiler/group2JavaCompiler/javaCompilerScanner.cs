@@ -6,9 +6,9 @@
 //
 //  GPLEX Version:  1.2.2
 //  Machine:  SUJITHGEETHU
-//  DateTime: 29-05-2016 11.59.24 AM
+//  DateTime: 29-05-2016 4.34.19 PM
 //  UserName: Sujith Geethu
-//  GPLEX input file <javaCompilerScanner.lex - 29-05-2016 7.40.56 AM>
+//  GPLEX input file <javaCompilerScanner.lex - 29-05-2016 2.07.57 PM>
 //  GPLEX frame file <embedded resource>
 //
 //  Option settings: parser, minimize
@@ -797,7 +797,7 @@ return (int) Tokens.OP_DOT;
 return (int) Tokens.OP_DIV;
             break;
         case 10:
-yylval.Integer = int.Parse(yytext); return (int)Tokens.INTEGER_LITERAL;
+yylval.num = int.Parse(yytext); return (int)Tokens.NUMBER;
             break;
         case 11:
 return (int) Tokens.SEMICOLON;

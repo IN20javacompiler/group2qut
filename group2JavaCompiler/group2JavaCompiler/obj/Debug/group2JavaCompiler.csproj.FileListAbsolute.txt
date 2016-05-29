@@ -5,9 +5,3 @@ C:\Users\Geethu\Desktop\group2JavaCompiler\group2JavaCompiler\bin\Debug\QUT.Shif
 C:\Users\Geethu\Desktop\group2JavaCompiler\group2JavaCompiler\obj\Debug\group2JavaCompiler.csprojResolveAssemblyReference.cache
 C:\Users\Geethu\Desktop\group2JavaCompiler\group2JavaCompiler\obj\Debug\group2JavaCompiler.exe
 C:\Users\Geethu\Desktop\group2JavaCompiler\group2JavaCompiler\obj\Debug\group2JavaCompiler.pdb
-G:\QUT\Semester 1 2016\IFN660 - Programming Language Theory\JavaCompilerProject\group2JavaCompiler\group2JavaCompiler\obj\Debug\group2JavaCompiler.csprojResolveAssemblyReference.cache
-G:\QUT\Semester 1 2016\IFN660 - Programming Language Theory\JavaCompilerProject\group2JavaCompiler\group2JavaCompiler\bin\Debug\group2JavaCompiler.exe.config
-G:\QUT\Semester 1 2016\IFN660 - Programming Language Theory\JavaCompilerProject\group2JavaCompiler\group2JavaCompiler\bin\Debug\group2JavaCompiler.exe
-G:\QUT\Semester 1 2016\IFN660 - Programming Language Theory\JavaCompilerProject\group2JavaCompiler\group2JavaCompiler\bin\Debug\group2JavaCompiler.pdb
-G:\QUT\Semester 1 2016\IFN660 - Programming Language Theory\JavaCompilerProject\group2JavaCompiler\group2JavaCompiler\obj\Debug\group2JavaCompiler.exe
-G:\QUT\Semester 1 2016\IFN660 - Programming Language Theory\JavaCompilerProject\group2JavaCompiler\group2JavaCompiler\obj\Debug\group2JavaCompiler.pdb

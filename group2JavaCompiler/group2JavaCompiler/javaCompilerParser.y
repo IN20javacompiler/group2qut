@@ -14,7 +14,7 @@
 	public AST.Modifier modifier;
 	public System.Collections.Generic.List<AST.Statement> stmts;
 	
-    public int Integer;
+    public int num;
     public string String;
   	public bool Bool;
 }
@@ -23,7 +23,7 @@
 %type <method> MethodHeader MethodDeclarator MethodDeclaration
 
 %token <String>	 IDENTIFIER
-%token <Integer> INTEGER_LITERAL
+%token <num> NUMBER
 %token <Bool>	 BOOL_LITERAL
 
 %token PUBLIC PROTECTED PRIVATE ABSTRACT STATIC FINAL SYNCHRONIZED NATIVE STRICTFP
@@ -71,18 +71,9 @@
 %start CompilationUnit
 // YACC Rules
 %%
-CompilationUnit							:TypeDeclaration											{ $$ = $1; }
+CompilationUnit							:TypeDeclaration											{ root = $1; }
 										|ImportDeclaration
 										|ImportDeclaration TypeDeclaration
-										;
-ImportDeclaration						:SingleTypeImportDeclaration
-										;
-SingleTypeImportDeclaration				:IMPORT TypeName 
-										;
-TypeName								:PackageOrTypeName OP_DOT IDENTIFIER
-										;
-PackageOrTypeName						:PackageOrTypeName OP_DOT IDENTIFIER
-										|IDENTIFIER													{ $$ = new AST.IdentifierExpression($1); }
 										;
 TypeDeclaration							:ClassDeclaration											{ $$ = $1; }
 										;
@@ -91,14 +82,14 @@ ClassDeclaration						:NormalClassDeclaration										{ $$ = $1; }
 NormalClassDeclaration					: ClassModifiers CLASS IDENTIFIER ClassBody					{ $$ = new AST.Class($1,$3,$4); }
 										| CLASS IDENTIFIER ClassBody
 										;
-ClassModifiers							:ClassModifier ClassModifiers
+ClassModifiers							:ClassModifier ClassModifiers								{ $$ = $1; }
 										|ClassModifier												{ $$ = $1; }
 										;
 ClassModifier							:PUBLIC														{ $$ = new AST.Modifier($1); } 
 										|PROTECTED
 										|PRIVATE
 										|ABSTRACT
-										|STATIC
+										|STATIC														{ $$ = new AST.Modifier($1); } 
 										|FINAL 
 										|STRICTFP
 										;
@@ -249,7 +240,7 @@ Primary									:PrimaryNoNewArray 											{ $$ = $1; }
 										;
 PrimaryNoNewArray						:Literal 													{ $$ = $1; }
 										;
-Literal 								:INTEGER_LITERAL 											{ $$ = new IntegerLiteralExpression($1); }
+Literal 								:NUMBER 													{ $$ = new IntegerLiteralExpression($1); }
 										;
 %%
 
