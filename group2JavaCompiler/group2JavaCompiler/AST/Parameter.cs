@@ -11,6 +11,7 @@ namespace group2JavaCompiler.AST
 
         public Parameter()
         {
+
         }
 
         public Parameter(Type type, VariableDeclaratorId id)
