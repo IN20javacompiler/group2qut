@@ -9,18 +9,31 @@ public static AST.Class root;
 {
     public AST.Expression expr;
 	public AST.Statement stmt;
+	public AST.CompoundStatement compoundStmt;
+	public AST.ClassMemberDeclaration member;
 	public AST.Method method;
 	public AST.Type type;
+	public AST.Parameter param;
+	public AST.VariableDeclaratorId varDeclaratorId;
+	public AST.Class classRoot;
 	public System.Collections.Generic.List<AST.Statement> stmts;
-    public int Integer;
+	 public int num;
     public string String;
   	public bool Bool;
+	
 }
-%type <expr> Expression
-%type <method> MethodHeader MethodDeclarator MethodDeclaration
-
+%type <varDeclaratorId> VariableDeclaratorId
+%type <param> FormalParameterList LastFormalParameter FormalParameter
+%type <type> UnannType Result IntegralType NumericType UnannPrimitiveType
+%type <member> ClassMemberDeclaration
+%type <expr> Expression 
+%type <stmt> Statement BlockStatement  
+%type <compoundStmt> MethodBody Block 
+%type <stmts>  BlockStatements
+%type <method> MethodDeclaration
+%type <classRoot> NormalClassDeclaration
 %token <String>	 IDENTIFIER
-%token <Integer> INTEGER_LITERAL
+%token <num> NUMBER
 %token <Bool>	 BOOL_LITERAL
 
 %token PUBLIC PROTECTED PRIVATE ABSTRACT STATIC FINAL SYNCHRONIZED NATIVE STRICTFP
@@ -65,112 +78,105 @@ public static AST.Class root;
 // YACC Rules
 %%
 
-CompilationUnit							:TypeDeclaration						{$$=$1;}
-										|ImportDeclaration
-										|ImportDeclaration TypeDeclaration
+ClassDeclaration						:NormalClassDeclaration  														{root=$1;}
 										;
-ImportDeclaration						:SingleTypeImportDeclaration
+NormalClassDeclaration					:ClassModifiers CLASS IDENTIFIER OP_LT_BRACE ClassMemberDeclaration OP_RT_BRACE	{$$ =new AST.Class($3,$5);}
 										;
-SingleTypeImportDeclaration				:IMPORT TypeName 
-										;
-TypeName								:PackageOrTypeName OP_DOT IDENTIFIER
-										;
-PackageOrTypeName						:PackageOrTypeName OP_DOT IDENTIFIER
-										|IDENTIFIER
-										;
-TypeDeclaration							:ClassDeclaration
-										;
-ClassDeclaration						:NormalClassDeclaration  {$$=$1;}
-										;
-NormalClassDeclaration					: ClassModifiers CLASS IDENTIFIER OP_LT_BRACE ClassMemberDeclaration OP_RT_BRACE {$$ =new AST.Class($3,$5);}
-																				;
-ClassModifiers							: ClassModifier ClassModifiers
-										|
-										;
-ClassModifier							:PUBLIC 
-										|PROTECTED
-										|PRIVATE
-										|ABSTRACT
-										|STATIC
-										|FINAL 
-										|STRICTFP
-										;
-Annotation								:PUBLIC 
-										|PROTECTED
-										|PRIVATE
-										|ABSTRACT
-										|STATIC
-										|FINAL 
-										;
-ClassMemberDeclaration					:MethodDeclaration {$$=$1;}
+ClassMemberDeclaration					:MethodDeclaration																{$$= new AST.ClassMemberDeclaration($1);}
 										|FieldDeclaration 
 										;
-FieldDeclaration						: UnannType VariableDeclaratorList 
-										|FieldModifier UnannType VariableDeclaratorList 
+MethodDeclaration						:MethodModifiers Result IDENTIFIER OP_LEFT_PAR FormalParameterList OP_RIGHT_PAR MethodBody  	{$$ =new AST.Method($2,$3,$5,$7);}
 										;
-
-FieldModifier							:Annotation
-										;
-
-MethodDeclaration						:MethodModifiers MethodHeader MethodBody {$2.stmt=$3;$$=$2;}
-										;
-
 MethodModifiers							:MethodModifier MethodModifiers
 										|
-										;
+										;										
 
-MethodModifier							:PUBLIC 
-										|PROTECTED
-										|PRIVATE
-										|ABSTRACT
-										|STATIC
-										|FINAL 
-										|SYNCHRONIZED
-										|NATIVE
-										|STRICTFP
+Result									:VOID																			{$$= new AST.VoidType();}
 										;
-MethodHeader							:Result MethodDeclarator {$2.type=$1;$$=$2;}
-										;
-Result									:VOID {$$= new AST.NamedType("void");}
-										;
-MethodDeclarator						:IDENTIFIER OP_LEFT_PAR FormalParameterList OP_RIGHT_PAR {$$=new AST.Method($1,$3);}
-										;
-FormalParameterList						:LastFormalParameter
+FormalParameterList						:LastFormalParameter															{$$=$1;}
 										|
 										;
-LastFormalParameter						:FormalParameter
+LastFormalParameter						:FormalParameter																{$$=$1;}
 										;
-FormalParameter							:UnannType VariableDeclaratorId
+FormalParameter							:UnannType VariableDeclaratorId													{$$=new AST.Parameter($1,$2);}
 										;
 UnannType								:UnannReferenceType
-										|UnannPrimitiveType {$$=$1;}
+										|UnannPrimitiveType 															 {$$=$1;}
 										;
-UnannReferenceType						:UnannArrayType
+UnannPrimitiveType						:NumericType 																	 {$$=$1;}
 										;
-UnannArrayType							:UnannTypeVariable Dims
+NumericType								:IntegralType																	 {$$=$1;}
 										;
-UnannTypeVariable						:IDENTIFIER
+IntegralType							:INT    																		 {$$=new AST.IntType();}
 										;
-
-Dims									:OP_SQ_L_BR OP_SQ_R_BR
+MethodBody								:Block 																			 {$$=$1;}
 										;
-MethodBody								:Block {$$=$1;}
+Block									:OP_LT_BRACE BlockStatements OP_RT_BRACE 										 {$$ = new AST.CompoundStatement($2); }
 										;
-Block									: OP_LT_BRACE BlockStatements OP_RT_BRACE {$$=$2;}
+BlockStatements							:BlockStatements BlockStatement									 {$$ = $1; $$.Add($2); }
+										|																{ $$ = new System.Collections.Generic.List<AST.Statement>(); }
 										;
-BlockStatements							:BlockStatement BlockStatements
-										|
-										;
-
-BlockStatement							:LocalVariableDeclarationStatement {$$=$1;}
+BlockStatement							:LocalVariableDeclaration SEMICOLON   											{$$ = new AST.ExpressionStatement($1);}
 										|Statement 
+										;
+
+LocalVariableDeclaration				:UnannType VariableDeclaratorList 												 {$2.type=$1; $$=$2;}
+										;
+VariableDeclaratorList					:VariableDeclaratorList VariableDeclarator											
+										|																				
+										;
+VariableDeclarator						:VariableDeclaratorId															{$$=$1;}
+										|VariableDeclaratorId OP_EQU VariableInitializer 								 {$$=new AST.VariableDeclarationStatement($1,$2);}
+										;
+VariableDeclaratorId					:IDENTIFIER 																	 {$$=new AST.VariableDeclaratorId($1);}
+										;
+VariableInitializer						:Expression 																	 {$$=$1;}
+										;
+Expression								:AssignmentExpression   														 {$$=$1;}
+										;
+AssignmentExpression					:ConditionalExpression 															 {$$=$1;}
+										|ExpressionName OP_ASSIGN Expression   											 {$$=new AST.AssignExpression($1,$3);}
+										;
+							
+ConditionalExpression					: ConditionalOrExpression   													 {$$=$1;}
+										;
+ConditionalOrExpression					: ConditionalAndExpression   													 {$$=$1;}
+										;
+ConditionalAndExpression				: InclusiveOrExpression    														 {$$=$1;}
+										;
+InclusiveOrExpression					: ExclusiveOrExpression    														 {$$=$1;}
+										;
+ExclusiveOrExpression					: AndExpression      															 {$$=$1;}
+										;
+AndExpression							: EqualityExpression   															 {$$=$1;}
+										;
+EqualityExpression						: RelationalExpression   														 {$$=$1;}
+										;
+RelationalExpression					:ShiftExpression    															 {$$=$1;}
+										;
+ShiftExpression							:AdditiveExpression   															 {$$=$1;}
+										;
+AdditiveExpression						:MultiplicativeExpression   													 {$$=$1;}
+										;
+MultiplicativeExpression				:UnaryExpression    															 {$$=$1;}
+										;
+UnaryExpression							:UnaryExpressionNotPlusMinus    												 {$$=$1;}
+										;
+UnaryExpressionNotPlusMinus    			:PostfixExpression    															 {$$=$1;}
+										;
+PostfixExpression						:Primary    																	 {$$=$1;}
+										;
+Primary									:PrimaryNoNewArray    															 {$$=$1;}
+										;
+PrimaryNoNewArray						:Literal     																	 {$$=$1;}
+										;
+Literal 								:NUMBER 																 {$$ = new AST.NumberExpression($1);}
 										;
 Statement								:StatementWithoutTrailingSubstatement 
 										|IfThenElseStatement
 										;
-IfThenElseStatement						:IF OP_LEFT_PAR Expression OP_RIGHT_PAR Statement ELSE Statement  { $$.stmt = new AST.IfStatement($3, $5, $7); }
+IfThenElseStatement						:IF OP_LEFT_PAR Expression OP_RIGHT_PAR Statement ELSE Statement  				 
 										;
-
 StatementWithoutTrailingSubstatement 	:OP_LT_BRACE Statement OP_RT_BRACE  
 										|ExpressionStatement 
 										|EmptyStatement
@@ -190,63 +196,65 @@ MethodName								:SYSTEM OP_DOT OUT OP_DOT PRINTLN
 										;
 ArgumentList							:Expression
 										;
-Expression								:AssignmentExpression   {$$=$1;}
+
+MethodModifier							:PUBLIC 
+										|PROTECTED
+										|PRIVATE
+										|ABSTRACT
+										|STATIC
+										|FINAL 
+										|SYNCHRONIZED
+										|NATIVE
+										|STRICTFP
 										;
-LocalVariableDeclarationStatement		:LocalVariableDeclaration SEMICOLON  {$$=$1;}
+CompilationUnit							:TypeDeclaration																 
+										|ImportDeclaration
+										|ImportDeclaration TypeDeclaration
 										;
-LocalVariableDeclaration				:UnannType VariableDeclaratorList {$2.type=$1; $$=$2;}
+ImportDeclaration						:SingleTypeImportDeclaration
 										;
-UnannPrimitiveType						:NumericType {$$=$1;}
+SingleTypeImportDeclaration				:IMPORT TypeName 
 										;
-NumericType								:IntegralType{$$=$1;}
+TypeName								:PackageOrTypeName OP_DOT IDENTIFIER
 										;
-IntegralType							:INT    {$$=new AST.IntType();}
+PackageOrTypeName						:PackageOrTypeName OP_DOT IDENTIFIER
+										|IDENTIFIER
 										;
-VariableDeclaratorList					:VariableDeclarator {$$=$1;}
+TypeDeclaration							:ClassDeclaration
+										;	
+																							
+ClassModifiers							: ClassModifier ClassModifiers
+										|
 										;
-VariableDeclarator						:VariableDeclaratorId OP_EQU VariableInitializer {$$=new AST.VariableDeclarationStatement($1,$2);}
+ClassModifier							:PUBLIC 
+										|PROTECTED
+										|PRIVATE
+										|ABSTRACT
+										|STATIC
+										|FINAL 
+										|STRICTFP
 										;
-VariableDeclaratorId					:IDENTIFIER {$$=$1;}
+Annotation								:PUBLIC 
+										|PROTECTED
+										|PRIVATE
+										|ABSTRACT
+										|STATIC
+										|FINAL 
 										;
-VariableInitializer						:Expression {$$=$1;}
+FieldDeclaration						: UnannType VariableDeclaratorList 
+										|FieldModifier UnannType VariableDeclaratorList 
 										;
-AssignmentExpression					:ConditionalExpression {$$=$1;}
-										|ExpressionName OP_ASSIGN Expression   {$$=new AST.AssignExpression($1,$3);}
+
+FieldModifier							:Annotation
 										;
-							
-ConditionalExpression					: ConditionalOrExpression   {$$=$1;}
+UnannReferenceType						:UnannArrayType
 										;
-ConditionalOrExpression					: ConditionalAndExpression   {$$=$1;}
+UnannArrayType							:UnannTypeVariable Dims
 										;
-ConditionalAndExpression				: InclusiveOrExpression    {$$=$1;}
+UnannTypeVariable						:IDENTIFIER
 										;
-InclusiveOrExpression					: ExclusiveOrExpression    {$$=$1;}
-										;
-ExclusiveOrExpression					: AndExpression      {$$=$1;}
-										;
-AndExpression							: EqualityExpression   {$$=$1;}
-										;
-EqualityExpression						: RelationalExpression   {$$=$1;}
-										;
-RelationalExpression					:ShiftExpression    {$$=$1;}
-										;
-ShiftExpression							:AdditiveExpression   {$$=$1;}
-										;
-AdditiveExpression						:MultiplicativeExpression   {$$=$1;}
-										;
-MultiplicativeExpression				:UnaryExpression    {$$=$1;}
-										;
-UnaryExpression							:UnaryExpressionNotPlusMinus    {$$=$1;}
-										;
-UnaryExpressionNotPlusMinus    			:PostfixExpression    {$$=$1;}
-										;
-PostfixExpression						:Primary    {$$=$1;}
-										;
-Primary									:PrimaryNoNewArray    {$$=$1;}
-										;
-PrimaryNoNewArray						:Literal     {$$=$1; }
-										;
-Literal 								:INTEGER_LITERAL {$$= new AST.IntegerLiteralExpression($1);}
+
+Dims									:OP_SQ_L_BR OP_SQ_R_BR
 										;
 %%
 

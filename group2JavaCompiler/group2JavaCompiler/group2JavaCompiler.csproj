@@ -61,13 +61,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AST\Arguments.cs" />
     <Compile Include="AST\Class.cs" />
     <Compile Include="AST\Expression.cs" />
+    <Compile Include="AST\FieldDeclaration.cs" />
     <Compile Include="AST\Method.cs" />
     <Compile Include="AST\Node.cs" />
+    <Compile Include="AST\Parameter.cs" />
     <Compile Include="AST\Statement.cs" />
     <Compile Include="AST\Type.cs" />
+    <Compile Include="AST\VariableDeclaratorId.cs" />
     <Compile Include="javaCompilerParser.cs" />
     <Compile Include="javaCompilerScanner.cs" />
     <Compile Include="Program.cs" />

@@ -77,9 +77,9 @@ namespace group2JavaCompiler.AST {
     {
         private Type type;
         private IdentifierExpression name;
-        private IntegerLiteralExpression value;
+        private NumberExpression value;
 
-        public VariableDeclarationStatement(Type type, IdentifierExpression name, IntegerLiteralExpression value)
+        public VariableDeclarationStatement(Type type, IdentifierExpression name, NumberExpression value)
         {
             this.type = type;
             this.name = name;
@@ -113,5 +113,5 @@ namespace group2JavaCompiler.AST {
             thenStmt.dump(indent + 1, "then");
             elseStmt.dump(indent + 1, "else");
         }
-    };
+    }
 }

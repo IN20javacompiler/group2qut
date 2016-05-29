@@ -63,18 +63,16 @@ namespace group2JavaCompiler.AST
             label(indent, "IdentifierExpression {0}\n", name);
         }
     };
-    public class IntegerLiteralExpression : Expression
+    public class NumberExpression : Expression
     {
         private int value;
-
-        public IntegerLiteralExpression(int value)
+        public NumberExpression(int value)
         {
             this.value = value;
         }
-
         public override void dump(int indent)
         {
-            label(indent, "IntegerLiteralExpression {0}\n", value);
+            label(indent, "NumberExpression {0}\n", value);
         }
     };
 }

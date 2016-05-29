@@ -8,18 +8,33 @@ namespace group2JavaCompiler.AST
 {
     public class Method : Node
     {
-        string modifier, name;
-        Type type;
-        VariableDeclarationStatement stmt;
-        Arguments arg;
-
-        public Method(string modifier, Type type, string name, Arguments arg, VariableDeclarationStatement stmt)
+        public string modifier, name;
+        public Type type;
+        public VariableDeclarationStatement stmt;
+        public Parameter parameters;
+        public CompoundStatement body;
+              
+        public Method(Type type, String name)
         {
-            this.modifier = modifier;
+           // this.modifier = modifiers;
             this.type = type;
             this.name = name;
-            this.arg = arg;
-            this.stmt = stmt;
+        }
+
+        public Method( Type type, String name, Parameter parameters)
+        {
+            //this.modifier = modifiers;
+            this.type = type;
+            this.name = name;
+            this.parameters = parameters;
+        }
+        public Method( Type type, String name, Parameter parameters, CompoundStatement body)
+        {
+            //this.modifier = modifiers;
+            this.type = type;
+            this.name = name;
+            this.parameters = parameters;
+            this.body = body;
         }
 
         public override void dump(int indent)
@@ -27,7 +42,7 @@ namespace group2JavaCompiler.AST
             label(indent, "Method Modifier :{0}\n", modifier);
             type.dump(indent);
             label(indent, "Method Declaration :{0}\n", name);
-            arg.dump(indent);
+
             label(indent + 1, "MethodBody\n");
             stmt.dump(indent);
         }

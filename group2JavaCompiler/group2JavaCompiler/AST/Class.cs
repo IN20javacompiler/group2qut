@@ -9,13 +9,13 @@ namespace group2JavaCompiler.AST
     public class Class : Node
     {
         string modifier, name;
-        Method method;
+        ClassMemberDeclaration method;
 
-        public Class(string modifier, string name, Method method)
+        public Class( string name, ClassMemberDeclaration member)
         {
-            this.modifier = modifier;
+           // this.modifier = modifier;
             this.name = name;
-            this.method = method;
+            this.method = member;
         }
 
         public override void dump(int indent)
@@ -25,4 +25,18 @@ namespace group2JavaCompiler.AST
             method.dump(indent + 1);
         }
     }
+    public class ClassMemberDeclaration : Node
+    {
+        FieldDeclaration field;
+        Method method;
+
+        public ClassMemberDeclaration(Method method)
+        {
+            this.method = method;
+        }
+        public override void dump(int indent)
+        {
+            throw new NotImplementedException();
+        }
+    };
 }

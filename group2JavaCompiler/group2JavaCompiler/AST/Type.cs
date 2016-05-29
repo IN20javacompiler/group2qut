@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace group2JavaCompiler.AST
 {
+
     public abstract class Type : Node
     {
 
@@ -13,7 +14,7 @@ namespace group2JavaCompiler.AST
 
     public class NamedType : Type
     {
-        string name;
+        private string name;
 
         public NamedType(string name)
         {
@@ -53,6 +54,18 @@ namespace group2JavaCompiler.AST
         public override void dump(int indent)
         {
             label(indent, "ArrayType\n");
+        }
+    };
+    public class VoidType : Type
+    {
+             public VoidType()
+        {
+            
+        }
+
+        public override void dump(int indent)
+        {
+            label(indent, "VoidType\n");
         }
     };
 }

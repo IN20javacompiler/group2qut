@@ -5,10 +5,9 @@
 Eol             (\r\n?|\n)
 NotWh           [^ \t\r\n]
 Space           [ \t]
-Digit			[0-9]
+Digit			[0-9]+
 Letter 			[a-zA-Z]
 Identifier		\$([a-zA-Z]([a-zA-Z0-9_])*)
-IntegerLiteral	{Digit}+
 BooleanLiteral	(true|false)
 System			system
 Out				out
@@ -59,7 +58,7 @@ OpArrow			"->"
 
 %%
 {Identifier}					{ yylval.String = yytext.Substring(1); return (int) Tokens.IDENTIFIER; }
-{IntegerLiteral}				{ yylval.Integer = int.Parse(yytext); return (int)Tokens.INTEGER_LITERAL; }
+{Digit}				{ yylval.num = int.Parse(yytext); return (int)Tokens.NUMBER; }
 {Bool}							{ bool.TryParse(yytext, out yylval.Bool); return (int) Tokens.BOOL; }
 {Public}						{ return (int)Tokens.PUBLIC; }
 {Import}						{ return (int)Tokens.IMPORT; }
