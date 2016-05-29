@@ -14,25 +14,31 @@ public static AST.Class root;
 	public AST.Method method;
 	public AST.Type type;
 	public AST.Parameter param;
+	public AST.VariableDeclarator varDeclarator;
 	public AST.VariableDeclaratorId varDeclaratorId;
+	public AST.VariableDeclarationExpr varDeclaratorExpr;
 	public AST.Class classRoot;
 	public System.Collections.Generic.List<AST.Statement> stmts;
-	 public int num;
+	public System.Collections.Generic.List<AST.VariableDeclarator> varList;
+	public int num;
     public string String;
   	public bool Bool;
 	
 }
+%type <varDeclarator> VariableDeclarator
 %type <varDeclaratorId> VariableDeclaratorId
+%type <varList> VariableDeclaratorList
+%type <varDeclaratorExpr> LocalVariableDeclaration
 %type <param> FormalParameterList LastFormalParameter FormalParameter
 %type <type> UnannType Result IntegralType NumericType UnannPrimitiveType
 %type <member> ClassMemberDeclaration
-%type <expr> Expression 
+%type <expr> Expression
 %type <stmt> Statement BlockStatement  
 %type <compoundStmt> MethodBody Block 
 %type <stmts>  BlockStatements
 %type <method> MethodDeclaration
 %type <classRoot> NormalClassDeclaration
-%token <String>	 IDENTIFIER
+%token <String>	 IDENTIFIER 
 %token <num> NUMBER
 %token <Bool>	 BOOL_LITERAL
 
@@ -113,22 +119,21 @@ MethodBody								:Block 																			 {$$=$1;}
 										;
 Block									:OP_LT_BRACE BlockStatements OP_RT_BRACE 										 {$$ = new AST.CompoundStatement($2); }
 										;
-BlockStatements							:BlockStatements BlockStatement									 {$$ = $1; $$.Add($2); }
-										|																{ $$ = new System.Collections.Generic.List<AST.Statement>(); }
+BlockStatements							:BlockStatements BlockStatement									 				{$$ = $1; $$.Add($2); }
+										|																				{ $$ = new System.Collections.Generic.List<AST.Statement>(); }
 										;
-BlockStatement							:LocalVariableDeclaration SEMICOLON   											{$$ = new AST.ExpressionStatement($1);}
+BlockStatement							:LocalVariableDeclaration SEMICOLON   											{$$ = $1;}
 										|Statement 
 										;
-
-LocalVariableDeclaration				:UnannType VariableDeclaratorList 												 {$2.type=$1; $$=$2;}
+VariableDeclaratorId 					:IDENTIFIER																	{$$=new AST.VariableDeclaratorId($1);}
 										;
-VariableDeclaratorList					:VariableDeclaratorList VariableDeclarator											
-										|																				
+LocalVariableDeclaration				:UnannType VariableDeclaratorList 												 {$$=new AST.VariableDeclarationExpr($1,$2);}
 										;
-VariableDeclarator						:VariableDeclaratorId															{$$=$1;}
-										|VariableDeclaratorId OP_EQU VariableInitializer 								 {$$=new AST.VariableDeclarationStatement($1,$2);}
+VariableDeclaratorList					:VariableDeclaratorList VariableDeclarator										{$$ = $1; $$.Add($2); }
+										|																				{ $$ = new System.Collections.Generic.List<AST.VariableDeclarator>(); }
 										;
-VariableDeclaratorId					:IDENTIFIER 																	 {$$=new AST.VariableDeclaratorId($1);}
+VariableDeclarator						:VariableDeclaratorId															{$$=new AST.VariableDeclarator($1);}
+										|VariableDeclaratorId OP_EQU VariableInitializer 								{$$=new AST.VariableDeclarator($1,$3);}
 										;
 VariableInitializer						:Expression 																	 {$$=$1;}
 										;

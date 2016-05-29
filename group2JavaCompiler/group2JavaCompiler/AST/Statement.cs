@@ -42,6 +42,22 @@ namespace group2JavaCompiler.AST {
             type.dump(indent + 1);
         }
     };
+    public class VariableDeclarationList : Statement
+    {
+        private Type type;
+        List<VariableDeclarator> name;
+        public VariableDeclarationList(Type type, List<VariableDeclarator> name)
+        {
+            this.type = type;
+            this.name = name;
+        }
+        public override void dump(int indent)
+        {
+            label(indent, "VariableDeclarationList {0}\n", name);
+            foreach (var child in name)
+                child.dump(indent + 1);
+        }
+       };
     public class ExpressionStatement : Statement
     {
         private Expression expr;
@@ -113,5 +129,31 @@ namespace group2JavaCompiler.AST {
             thenStmt.dump(indent + 1, "then");
             elseStmt.dump(indent + 1, "else");
         }
-    }
+    };
+    public class VariableDeclarationExpr : Statement
+    {
+        private Type type;
+        private string modifiers;
+        private List<VariableDeclarator> vars;
+        public VariableDeclarationExpr()
+        {
+        }
+
+        public VariableDeclarationExpr(Type type, List<VariableDeclarator> vars)
+        {
+            this.type = type;
+            this.vars = vars;
+        }
+
+        public VariableDeclarationExpr(string modifiers, Type type, List<VariableDeclarator> vars)
+        {
+            this.modifiers = modifiers;
+            this.type = type;
+            this.vars = vars;
+        }
+        public override void dump(int indent)
+        {
+            label(indent, "VariableDeclarationExpr {0}\n");
+        }
+    };
 }
