@@ -20,7 +20,7 @@ namespace group2JavaCompiler.AST
 
         public void dump(int i, string name)
         {
-            label(i, "{0}:\n", name);
+            label(i, "{0}: \n", name);
             dump(i + 1);
         }
     }
