@@ -3,7 +3,7 @@ namespace group2JavaCompiler.AST
 {
     public abstract class Type : Node
     {
-
+	
     }
 
     public class NamedType : Type
