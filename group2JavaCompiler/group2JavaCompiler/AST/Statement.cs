@@ -32,11 +32,13 @@ namespace group2JavaCompiler.AST
     {
         private Type type;
         private char name;
+
         public VariableDeclaration(Type type, char name)
         {
             this.type = type;
             this.name = name;
         }
+
         public override void dump(int indent)
         {
             label(indent, "VariableDeclaration {0}\n", name);
@@ -48,11 +50,13 @@ namespace group2JavaCompiler.AST
     {
         private Type type;
         List<VariableDeclarator> name;
+
         public VariableDeclarationList(Type type, List<VariableDeclarator> name)
         {
             this.type = type;
             this.name = name;
         }
+
         public override void dump(int indent)
         {
             label(indent, "VariableDeclarationList {0}\n", name);
