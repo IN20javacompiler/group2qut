@@ -5,11 +5,11 @@ namespace group2JavaCompiler.AST
     public class VariableDeclaratorId : Node
     {
         private String name;
-
         private int arrayCount;
 
         public VariableDeclaratorId()
         {
+
         }
 
         public VariableDeclaratorId(String name)
@@ -22,6 +22,7 @@ namespace group2JavaCompiler.AST
             this.name = name;
             this.arrayCount = arrayCount;
         }
+
         public override void dump(int indent)
         {
             throw new NotImplementedException();
