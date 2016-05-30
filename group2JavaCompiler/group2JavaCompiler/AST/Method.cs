@@ -39,12 +39,12 @@ namespace group2JavaCompiler.AST
 
         public override void dump(int indent)
         {
-            label(indent, "Method Modifier :{0}\n", modifier);
+           
             type.dump(indent);
             label(indent, "Method Declaration :{0}\n", name);
-
+            parameters.dump(indent);
             label(indent + 1, "MethodBody\n");
-            stmt.dump(indent);
+            body.dump(indent);
         }
     }
 }

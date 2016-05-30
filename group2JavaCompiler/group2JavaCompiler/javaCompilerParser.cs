@@ -4,9 +4,9 @@
 
 // GPPG version 1.5.2
 // Machine:  PRETTYPC
-// DateTime: 5/29/2016 4:15:55 PM
+// DateTime: 5/30/2016 12:39:46 PM
 // UserName: Pretty
-// Input file <javaCompilerParser.y - 5/29/2016 4:15:23 PM>
+// Input file <javaCompilerParser.y - 5/30/2016 12:38:38 PM>
 
 // options: lines gplex
 
@@ -21,13 +21,13 @@ namespace group2JavaCompiler
 {
 public enum Tokens {error=2,EOF=3,IDENTIFIER=4,NUMBER=5,BOOL_LITERAL=6,
     PUBLIC=7,PROTECTED=8,PRIVATE=9,ABSTRACT=10,STATIC=11,FINAL=12,
-    SYNCHRONIZED=13,NATIVE=14,STRICTFP=15,VOID=16,EXPRESSION_STATEMENT=17,MAIN=18,
-    CLASS=19,BOOL=20,INT=21,STRING=22,IMPORT=23,OP_LEFT_PAR=24,
-    OP_RIGHT_PAR=25,OP_SQ_L_BR=26,OP_SQ_R_BR=27,OP_LT_BRACE=28,OP_RT_BRACE=29,SEMICOLON=30,
-    OP_DOT=31,SYSTEM=32,OUT=33,PRINTLN=34,IF=35,ELSE=36,
-    OP_ARROW=37,OP_ASSIGN=38,OP_ADD=39,OP_MINUS=40,OP_MUL=41,OP_DIV=42,
-    OP_MODUL=43,OP_AND=44,OP_OR=45,OP_NOT=46,OP_EQU=47,OP_NOT_EQU=48,
-    OP_LT=49,OP_GT=50,OP_GT_EQ=51,OP_LT_EQ=52,OP_DOUBLE_QUOTE=53};
+    SYNCHRONIZED=13,NATIVE=14,STRICTFP=15,VOID=16,EXPRESSION_STATEMENT=17,CLASS=18,
+    BOOL=19,INT=20,STRING=21,IMPORT=22,OP_LEFT_PAR=23,OP_RIGHT_PAR=24,
+    OP_SQ_L_BR=25,OP_SQ_R_BR=26,OP_LT_BRACE=27,OP_RT_BRACE=28,SEMICOLON=29,OP_DOT=30,
+    SYSTEM=31,OUT=32,PRINTLN=33,IF=34,ELSE=35,OP_ARROW=36,
+    OP_ASSIGN=37,OP_ADD=38,OP_MINUS=39,OP_MUL=40,OP_DIV=41,OP_MODUL=42,
+    OP_AND=43,OP_OR=44,OP_NOT=45,OP_EQU=46,OP_NOT_EQU=47,OP_LT=48,
+    OP_GT=49,OP_GT_EQ=50,OP_LT_EQ=51,OP_DOUBLE_QUOTE=52};
 
 public struct ValueType
 #line 9 "javaCompilerParser.y"
@@ -73,11 +73,11 @@ public class ScanObj {
 [GeneratedCodeAttribute( "Gardens Point Parser Generator", "1.5.2")]
 public class Parser: ShiftReduceParser<ValueType, LexLocation>
 {
-  // Verbatim content from javaCompilerParser.y - 5/29/2016 4:15:23 PM
+  // Verbatim content from javaCompilerParser.y - 5/30/2016 12:38:38 PM
 #line 5 "javaCompilerParser.y"
 public static AST.Class root;
 #line default
-  // End verbatim content from javaCompilerParser.y - 5/29/2016 4:15:23 PM
+  // End verbatim content from javaCompilerParser.y - 5/30/2016 12:38:38 PM
 
 #pragma warning disable 649
   private static Dictionary<int, string> aliases;
@@ -104,37 +104,37 @@ public static AST.Class root;
       "UnannArrayType", "UnannTypeVariable", "Dims", };
 
   static Parser() {
-    states[0] = new State(new int[]{7,133,8,134,9,135,10,136,11,137,12,138,15,139,23,143,19,-85},new int[]{-42,1,-58,3,-43,4,-41,5,-45,6,-63,131,-59,140,-60,142});
+    states[0] = new State(new int[]{7,133,8,134,9,135,10,136,11,137,12,138,15,139,22,143,18,-85},new int[]{-42,1,-58,3,-43,4,-41,5,-45,6,-63,131,-59,140,-60,142});
     states[1] = new State(new int[]{3,2});
     states[2] = new State(-1);
     states[3] = new State(-75);
     states[4] = new State(-83);
     states[5] = new State(-2);
-    states[6] = new State(new int[]{19,7});
+    states[6] = new State(new int[]{18,7});
     states[7] = new State(new int[]{4,8});
-    states[8] = new State(new int[]{28,9});
-    states[9] = new State(new int[]{7,118,8,119,9,120,10,121,11,122,12,123,13,115,14,116,15,117,4,105,21,68,16,-8},new int[]{-14,10,-40,12,-47,13,-48,107,-46,124,-9,125,-49,58,-66,59,-67,60,-13,65,-12,66,-11,67,-65,127,-64,130});
-    states[10] = new State(new int[]{29,11});
+    states[8] = new State(new int[]{27,9});
+    states[9] = new State(new int[]{7,118,8,119,9,120,10,121,11,122,12,123,13,115,14,116,15,117,4,105,20,68,16,-8},new int[]{-14,10,-40,12,-47,13,-48,107,-46,124,-9,125,-49,58,-66,59,-67,60,-13,65,-12,66,-11,67,-65,127,-64,130});
+    states[10] = new State(new int[]{28,11});
     states[11] = new State(-3);
     states[12] = new State(-4);
     states[13] = new State(new int[]{16,106},new int[]{-10,14});
     states[14] = new State(new int[]{4,15});
-    states[15] = new State(new int[]{24,16});
-    states[16] = new State(new int[]{4,105,21,68,25,-11},new int[]{-6,17,-7,101,-8,102,-9,103,-49,58,-66,59,-67,60,-13,65,-12,66,-11,67});
-    states[17] = new State(new int[]{25,18});
-    states[18] = new State(new int[]{28,21},new int[]{-37,19,-38,20});
+    states[15] = new State(new int[]{23,16});
+    states[16] = new State(new int[]{4,105,20,68,24,-11},new int[]{-6,17,-7,101,-8,102,-9,103,-49,58,-66,59,-67,60,-13,65,-12,66,-11,67});
+    states[17] = new State(new int[]{24,18});
+    states[18] = new State(new int[]{27,21},new int[]{-37,19,-38,20});
     states[19] = new State(-6);
     states[20] = new State(-19);
     states[21] = new State(-22,new int[]{-39,22});
-    states[22] = new State(new int[]{29,23,4,64,21,68,28,71,32,86,30,92,35,94},new int[]{-36,24,-5,25,-9,27,-49,58,-66,59,-67,60,-13,65,-12,66,-11,67,-35,69,-50,70,-52,74,-54,75,-3,77,-55,80,-56,81,-53,91,-51,93});
+    states[22] = new State(new int[]{28,23,4,64,20,68,27,71,31,86,29,92,34,94},new int[]{-36,24,-5,25,-9,27,-49,58,-66,59,-67,60,-13,65,-12,66,-11,67,-35,69,-50,70,-52,74,-54,75,-3,77,-55,80,-56,81,-53,91,-51,93});
     states[23] = new State(-20);
     states[24] = new State(-21);
-    states[25] = new State(new int[]{30,26});
+    states[25] = new State(new int[]{29,26});
     states[26] = new State(-23);
     states[27] = new State(-28,new int[]{-4,28});
-    states[28] = new State(new int[]{4,57,30,-26},new int[]{-1,29,-2,30});
+    states[28] = new State(new int[]{4,57,29,-26},new int[]{-1,29,-2,30});
     states[29] = new State(-27);
-    states[30] = new State(new int[]{47,31,4,-29,30,-29,29,-29});
+    states[30] = new State(new int[]{46,31,4,-29,29,-29,28,-29});
     states[31] = new State(new int[]{5,52,4,56},new int[]{-16,32,-15,33,-17,34,-18,35,-20,36,-19,37,-21,38,-22,39,-23,40,-24,41,-25,42,-26,43,-27,44,-28,45,-29,46,-30,47,-31,48,-32,49,-33,50,-34,51,-3,53});
     states[32] = new State(-30);
     states[33] = new State(-31);
@@ -157,53 +157,53 @@ public static AST.Class root;
     states[50] = new State(-49);
     states[51] = new State(-50);
     states[52] = new State(-51);
-    states[53] = new State(new int[]{38,54});
+    states[53] = new State(new int[]{46,54});
     states[54] = new State(new int[]{5,52,4,56},new int[]{-15,55,-17,34,-18,35,-20,36,-19,37,-21,38,-22,39,-23,40,-24,41,-25,42,-26,43,-27,44,-28,45,-29,46,-30,47,-31,48,-32,49,-33,50,-34,51,-3,53});
     states[55] = new State(-34);
     states[56] = new State(-62);
     states[57] = new State(-25);
     states[58] = new State(-14);
     states[59] = new State(-102);
-    states[60] = new State(new int[]{26,62},new int[]{-68,61});
+    states[60] = new State(new int[]{25,62},new int[]{-68,61});
     states[61] = new State(-103);
-    states[62] = new State(new int[]{27,63});
+    states[62] = new State(new int[]{26,63});
     states[63] = new State(-105);
-    states[64] = new State(new int[]{26,-104,38,-62});
+    states[64] = new State(new int[]{25,-104,46,-62});
     states[65] = new State(-15);
     states[66] = new State(-16);
     states[67] = new State(-17);
     states[68] = new State(-18);
     states[69] = new State(-24);
     states[70] = new State(-52);
-    states[71] = new State(new int[]{28,71,4,56,32,86,30,92,35,94},new int[]{-35,72,-50,70,-52,74,-54,75,-3,77,-55,80,-56,81,-53,91,-51,93});
-    states[72] = new State(new int[]{29,73});
+    states[71] = new State(new int[]{27,71,4,56,31,86,29,92,34,94},new int[]{-35,72,-50,70,-52,74,-54,75,-3,77,-55,80,-56,81,-53,91,-51,93});
+    states[72] = new State(new int[]{28,73});
     states[73] = new State(-55);
     states[74] = new State(-56);
-    states[75] = new State(new int[]{30,76});
+    states[75] = new State(new int[]{29,76});
     states[76] = new State(-59);
-    states[77] = new State(new int[]{38,78});
+    states[77] = new State(new int[]{46,78});
     states[78] = new State(new int[]{5,52,4,56},new int[]{-15,79,-17,34,-18,35,-20,36,-19,37,-21,38,-22,39,-23,40,-24,41,-25,42,-26,43,-27,44,-28,45,-29,46,-30,47,-31,48,-32,49,-33,50,-34,51,-3,53});
     states[79] = new State(-60);
     states[80] = new State(-61);
-    states[81] = new State(new int[]{24,82});
+    states[81] = new State(new int[]{23,82});
     states[82] = new State(new int[]{5,52,4,56},new int[]{-57,83,-15,85,-17,34,-18,35,-20,36,-19,37,-21,38,-22,39,-23,40,-24,41,-25,42,-26,43,-27,44,-28,45,-29,46,-30,47,-31,48,-32,49,-33,50,-34,51,-3,53});
-    states[83] = new State(new int[]{25,84});
+    states[83] = new State(new int[]{24,84});
     states[84] = new State(-63);
     states[85] = new State(-65);
-    states[86] = new State(new int[]{31,87});
-    states[87] = new State(new int[]{33,88});
-    states[88] = new State(new int[]{31,89});
-    states[89] = new State(new int[]{34,90});
+    states[86] = new State(new int[]{30,87});
+    states[87] = new State(new int[]{32,88});
+    states[88] = new State(new int[]{30,89});
+    states[89] = new State(new int[]{33,90});
     states[90] = new State(-64);
     states[91] = new State(-57);
     states[92] = new State(-58);
     states[93] = new State(-53);
-    states[94] = new State(new int[]{24,95});
+    states[94] = new State(new int[]{23,95});
     states[95] = new State(new int[]{5,52,4,56},new int[]{-15,96,-17,34,-18,35,-20,36,-19,37,-21,38,-22,39,-23,40,-24,41,-25,42,-26,43,-27,44,-28,45,-29,46,-30,47,-31,48,-32,49,-33,50,-34,51,-3,53});
-    states[96] = new State(new int[]{25,97});
-    states[97] = new State(new int[]{28,71,4,56,32,86,30,92,35,94},new int[]{-35,98,-50,70,-52,74,-54,75,-3,77,-55,80,-56,81,-53,91,-51,93});
-    states[98] = new State(new int[]{36,99});
-    states[99] = new State(new int[]{28,71,4,56,32,86,30,92,35,94},new int[]{-35,100,-50,70,-52,74,-54,75,-3,77,-55,80,-56,81,-53,91,-51,93});
+    states[96] = new State(new int[]{24,97});
+    states[97] = new State(new int[]{27,71,4,56,31,86,29,92,34,94},new int[]{-35,98,-50,70,-52,74,-54,75,-3,77,-55,80,-56,81,-53,91,-51,93});
+    states[98] = new State(new int[]{35,99});
+    states[99] = new State(new int[]{27,71,4,56,31,86,29,92,34,94},new int[]{-35,100,-50,70,-52,74,-54,75,-3,77,-55,80,-56,81,-53,91,-51,93});
     states[100] = new State(-54);
     states[101] = new State(-10);
     states[102] = new State(-12);
@@ -222,20 +222,20 @@ public static AST.Class root;
     states[115] = new State(-72);
     states[116] = new State(-73);
     states[117] = new State(-74);
-    states[118] = new State(new int[]{7,-66,8,-66,9,-66,10,-66,11,-66,12,-66,13,-66,14,-66,15,-66,16,-66,4,-93,21,-93});
-    states[119] = new State(new int[]{7,-67,8,-67,9,-67,10,-67,11,-67,12,-67,13,-67,14,-67,15,-67,16,-67,4,-94,21,-94});
-    states[120] = new State(new int[]{7,-68,8,-68,9,-68,10,-68,11,-68,12,-68,13,-68,14,-68,15,-68,16,-68,4,-95,21,-95});
-    states[121] = new State(new int[]{7,-69,8,-69,9,-69,10,-69,11,-69,12,-69,13,-69,14,-69,15,-69,16,-69,4,-96,21,-96});
-    states[122] = new State(new int[]{7,-70,8,-70,9,-70,10,-70,11,-70,12,-70,13,-70,14,-70,15,-70,16,-70,4,-97,21,-97});
-    states[123] = new State(new int[]{7,-71,8,-71,9,-71,10,-71,11,-71,12,-71,13,-71,14,-71,15,-71,16,-71,4,-98,21,-98});
+    states[118] = new State(new int[]{7,-66,8,-66,9,-66,10,-66,11,-66,12,-66,13,-66,14,-66,15,-66,16,-66,4,-93,20,-93});
+    states[119] = new State(new int[]{7,-67,8,-67,9,-67,10,-67,11,-67,12,-67,13,-67,14,-67,15,-67,16,-67,4,-94,20,-94});
+    states[120] = new State(new int[]{7,-68,8,-68,9,-68,10,-68,11,-68,12,-68,13,-68,14,-68,15,-68,16,-68,4,-95,20,-95});
+    states[121] = new State(new int[]{7,-69,8,-69,9,-69,10,-69,11,-69,12,-69,13,-69,14,-69,15,-69,16,-69,4,-96,20,-96});
+    states[122] = new State(new int[]{7,-70,8,-70,9,-70,10,-70,11,-70,12,-70,13,-70,14,-70,15,-70,16,-70,4,-97,20,-97});
+    states[123] = new State(new int[]{7,-71,8,-71,9,-71,10,-71,11,-71,12,-71,13,-71,14,-71,15,-71,16,-71,4,-98,20,-98});
     states[124] = new State(-5);
     states[125] = new State(-28,new int[]{-4,126});
-    states[126] = new State(new int[]{4,57,29,-99},new int[]{-1,29,-2,30});
-    states[127] = new State(new int[]{4,105,21,68},new int[]{-9,128,-49,58,-66,59,-67,60,-13,65,-12,66,-11,67});
+    states[126] = new State(new int[]{4,57,28,-99},new int[]{-1,29,-2,30});
+    states[127] = new State(new int[]{4,105,20,68},new int[]{-9,128,-49,58,-66,59,-67,60,-13,65,-12,66,-11,67});
     states[128] = new State(-28,new int[]{-4,129});
-    states[129] = new State(new int[]{4,57,29,-100},new int[]{-1,29,-2,30});
+    states[129] = new State(new int[]{4,57,28,-100},new int[]{-1,29,-2,30});
     states[130] = new State(-101);
-    states[131] = new State(new int[]{7,133,8,134,9,135,10,136,11,137,12,138,15,139,19,-85},new int[]{-45,132,-63,131});
+    states[131] = new State(new int[]{7,133,8,134,9,135,10,136,11,137,12,138,15,139,18,-85},new int[]{-45,132,-63,131});
     states[132] = new State(-84);
     states[133] = new State(-86);
     states[134] = new State(-87);
@@ -244,24 +244,24 @@ public static AST.Class root;
     states[137] = new State(-90);
     states[138] = new State(-91);
     states[139] = new State(-92);
-    states[140] = new State(new int[]{7,133,8,134,9,135,10,136,11,137,12,138,15,139,3,-76,19,-85},new int[]{-58,141,-43,4,-41,5,-45,6,-63,131});
+    states[140] = new State(new int[]{7,133,8,134,9,135,10,136,11,137,12,138,15,139,3,-76,18,-85},new int[]{-58,141,-43,4,-41,5,-45,6,-63,131});
     states[141] = new State(-77);
     states[142] = new State(-78);
     states[143] = new State(new int[]{4,148},new int[]{-61,144,-62,145});
     states[144] = new State(-79);
-    states[145] = new State(new int[]{31,146});
+    states[145] = new State(new int[]{30,146});
     states[146] = new State(new int[]{4,147});
-    states[147] = new State(new int[]{7,-80,8,-80,9,-80,10,-80,11,-80,12,-80,15,-80,19,-80,3,-80,31,-81});
+    states[147] = new State(new int[]{7,-80,8,-80,9,-80,10,-80,11,-80,12,-80,15,-80,18,-80,3,-80,30,-81});
     states[148] = new State(-82);
 
     for (int sNo = 0; sNo < states.Length; sNo++) states[sNo].number = sNo;
 
     rules[1] = new Rule(-44, new int[]{-42,3});
     rules[2] = new Rule(-43, new int[]{-41});
-    rules[3] = new Rule(-41, new int[]{-45,19,4,28,-14,29});
+    rules[3] = new Rule(-41, new int[]{-45,18,4,27,-14,28});
     rules[4] = new Rule(-14, new int[]{-40});
     rules[5] = new Rule(-14, new int[]{-46});
-    rules[6] = new Rule(-40, new int[]{-47,-10,4,24,-6,25,-37});
+    rules[6] = new Rule(-40, new int[]{-47,-10,4,23,-6,24,-37});
     rules[7] = new Rule(-47, new int[]{-48,-47});
     rules[8] = new Rule(-47, new int[]{});
     rules[9] = new Rule(-10, new int[]{16});
@@ -273,23 +273,23 @@ public static AST.Class root;
     rules[15] = new Rule(-9, new int[]{-13});
     rules[16] = new Rule(-13, new int[]{-12});
     rules[17] = new Rule(-12, new int[]{-11});
-    rules[18] = new Rule(-11, new int[]{21});
+    rules[18] = new Rule(-11, new int[]{20});
     rules[19] = new Rule(-37, new int[]{-38});
-    rules[20] = new Rule(-38, new int[]{28,-39,29});
+    rules[20] = new Rule(-38, new int[]{27,-39,28});
     rules[21] = new Rule(-39, new int[]{-39,-36});
     rules[22] = new Rule(-39, new int[]{});
-    rules[23] = new Rule(-36, new int[]{-5,30});
+    rules[23] = new Rule(-36, new int[]{-5,29});
     rules[24] = new Rule(-36, new int[]{-35});
     rules[25] = new Rule(-2, new int[]{4});
     rules[26] = new Rule(-5, new int[]{-9,-4});
     rules[27] = new Rule(-4, new int[]{-4,-1});
     rules[28] = new Rule(-4, new int[]{});
     rules[29] = new Rule(-1, new int[]{-2});
-    rules[30] = new Rule(-1, new int[]{-2,47,-16});
+    rules[30] = new Rule(-1, new int[]{-2,46,-16});
     rules[31] = new Rule(-16, new int[]{-15});
     rules[32] = new Rule(-15, new int[]{-17});
     rules[33] = new Rule(-17, new int[]{-18});
-    rules[34] = new Rule(-17, new int[]{-3,38,-15});
+    rules[34] = new Rule(-17, new int[]{-3,46,-15});
     rules[35] = new Rule(-18, new int[]{-20});
     rules[36] = new Rule(-20, new int[]{-19});
     rules[37] = new Rule(-19, new int[]{-21});
@@ -309,17 +309,17 @@ public static AST.Class root;
     rules[51] = new Rule(-34, new int[]{5});
     rules[52] = new Rule(-35, new int[]{-50});
     rules[53] = new Rule(-35, new int[]{-51});
-    rules[54] = new Rule(-51, new int[]{35,24,-15,25,-35,36,-35});
-    rules[55] = new Rule(-50, new int[]{28,-35,29});
+    rules[54] = new Rule(-51, new int[]{34,23,-15,24,-35,35,-35});
+    rules[55] = new Rule(-50, new int[]{27,-35,28});
     rules[56] = new Rule(-50, new int[]{-52});
     rules[57] = new Rule(-50, new int[]{-53});
-    rules[58] = new Rule(-53, new int[]{30});
-    rules[59] = new Rule(-52, new int[]{-54,30});
-    rules[60] = new Rule(-54, new int[]{-3,38,-15});
+    rules[58] = new Rule(-53, new int[]{29});
+    rules[59] = new Rule(-52, new int[]{-54,29});
+    rules[60] = new Rule(-54, new int[]{-3,46,-15});
     rules[61] = new Rule(-54, new int[]{-55});
     rules[62] = new Rule(-3, new int[]{4});
-    rules[63] = new Rule(-55, new int[]{-56,24,-57,25});
-    rules[64] = new Rule(-56, new int[]{32,31,33,31,34});
+    rules[63] = new Rule(-55, new int[]{-56,23,-57,24});
+    rules[64] = new Rule(-56, new int[]{31,30,32,30,33});
     rules[65] = new Rule(-57, new int[]{-15});
     rules[66] = new Rule(-48, new int[]{7});
     rules[67] = new Rule(-48, new int[]{8});
@@ -334,9 +334,9 @@ public static AST.Class root;
     rules[76] = new Rule(-42, new int[]{-59});
     rules[77] = new Rule(-42, new int[]{-59,-58});
     rules[78] = new Rule(-59, new int[]{-60});
-    rules[79] = new Rule(-60, new int[]{23,-61});
-    rules[80] = new Rule(-61, new int[]{-62,31,4});
-    rules[81] = new Rule(-62, new int[]{-62,31,4});
+    rules[79] = new Rule(-60, new int[]{22,-61});
+    rules[80] = new Rule(-61, new int[]{-62,30,4});
+    rules[81] = new Rule(-62, new int[]{-62,30,4});
     rules[82] = new Rule(-62, new int[]{4});
     rules[83] = new Rule(-58, new int[]{-43});
     rules[84] = new Rule(-45, new int[]{-63,-45});
@@ -360,7 +360,7 @@ public static AST.Class root;
     rules[102] = new Rule(-49, new int[]{-66});
     rules[103] = new Rule(-66, new int[]{-67,-68});
     rules[104] = new Rule(-67, new int[]{4});
-    rules[105] = new Rule(-68, new int[]{26,27});
+    rules[105] = new Rule(-68, new int[]{25,26});
   }
 
   protected override void Initialize() {
@@ -376,224 +376,224 @@ public static AST.Class root;
     switch (action)
     {
       case 2: // ClassDeclaration -> NormalClassDeclaration
-#line 89 "javaCompilerParser.y"
+#line 88 "javaCompilerParser.y"
                                                              {root=ValueStack[ValueStack.Depth-1].classRoot;}
 #line default
         break;
       case 3: // NormalClassDeclaration -> ClassModifiers, CLASS, IDENTIFIER, OP_LT_BRACE, 
               //                           ClassMemberDeclaration, OP_RT_BRACE
-#line 91 "javaCompilerParser.y"
+#line 90 "javaCompilerParser.y"
                                                                                                            {CurrentSemanticValue.classRoot =new AST.Class(ValueStack[ValueStack.Depth-4].String,ValueStack[ValueStack.Depth-2].member);}
 #line default
         break;
       case 4: // ClassMemberDeclaration -> MethodDeclaration
-#line 93 "javaCompilerParser.y"
+#line 92 "javaCompilerParser.y"
                                                              {CurrentSemanticValue.member= new AST.ClassMemberDeclaration(ValueStack[ValueStack.Depth-1].method);}
 #line default
         break;
       case 6: // MethodDeclaration -> MethodModifiers, Result, IDENTIFIER, OP_LEFT_PAR, 
               //                      FormalParameterList, OP_RIGHT_PAR, MethodBody
-#line 96 "javaCompilerParser.y"
+#line 95 "javaCompilerParser.y"
                                                                                                                     {CurrentSemanticValue.method =new AST.Method(ValueStack[ValueStack.Depth-6].type,ValueStack[ValueStack.Depth-5].String,ValueStack[ValueStack.Depth-3].param,ValueStack[ValueStack.Depth-1].compoundStmt);}
 #line default
         break;
       case 9: // Result -> VOID
-#line 102 "javaCompilerParser.y"
+#line 101 "javaCompilerParser.y"
                                        {CurrentSemanticValue.type= new AST.VoidType();}
 #line default
         break;
       case 10: // FormalParameterList -> LastFormalParameter
-#line 104 "javaCompilerParser.y"
+#line 103 "javaCompilerParser.y"
                                                             {CurrentSemanticValue.param=ValueStack[ValueStack.Depth-1].param;}
 #line default
         break;
       case 12: // LastFormalParameter -> FormalParameter
-#line 107 "javaCompilerParser.y"
+#line 106 "javaCompilerParser.y"
                                                          {CurrentSemanticValue.param=ValueStack[ValueStack.Depth-1].param;}
 #line default
         break;
       case 13: // FormalParameter -> UnannType, VariableDeclaratorId
-#line 109 "javaCompilerParser.y"
+#line 108 "javaCompilerParser.y"
                                                                   {CurrentSemanticValue.param=new AST.Parameter(ValueStack[ValueStack.Depth-2].type,ValueStack[ValueStack.Depth-1].varDeclaratorId);}
 #line default
         break;
       case 15: // UnannType -> UnannPrimitiveType
-#line 112 "javaCompilerParser.y"
+#line 111 "javaCompilerParser.y"
                                               {CurrentSemanticValue.type=ValueStack[ValueStack.Depth-1].type;}
 #line default
         break;
       case 16: // UnannPrimitiveType -> NumericType
-#line 114 "javaCompilerParser.y"
+#line 113 "javaCompilerParser.y"
                                                        {CurrentSemanticValue.type=ValueStack[ValueStack.Depth-1].type;}
 #line default
         break;
       case 17: // NumericType -> IntegralType
-#line 116 "javaCompilerParser.y"
+#line 115 "javaCompilerParser.y"
                                                   {CurrentSemanticValue.type=ValueStack[ValueStack.Depth-1].type;}
 #line default
         break;
       case 18: // IntegralType -> INT
-#line 118 "javaCompilerParser.y"
+#line 117 "javaCompilerParser.y"
                                               {CurrentSemanticValue.type=new AST.IntType();}
 #line default
         break;
       case 19: // MethodBody -> Block
-#line 120 "javaCompilerParser.y"
+#line 119 "javaCompilerParser.y"
                                              {CurrentSemanticValue.compoundStmt=ValueStack[ValueStack.Depth-1].compoundStmt;}
 #line default
         break;
       case 20: // Block -> OP_LT_BRACE, BlockStatements, OP_RT_BRACE
-#line 122 "javaCompilerParser.y"
+#line 121 "javaCompilerParser.y"
                                                                   {CurrentSemanticValue.compoundStmt = new AST.CompoundStatement(ValueStack[ValueStack.Depth-2].stmts); }
 #line default
         break;
       case 21: // BlockStatements -> BlockStatements, BlockStatement
-#line 124 "javaCompilerParser.y"
+#line 123 "javaCompilerParser.y"
                                                                    {CurrentSemanticValue.stmts = ValueStack[ValueStack.Depth-2].stmts; CurrentSemanticValue.stmts.Add(ValueStack[ValueStack.Depth-1].stmt); }
 #line default
         break;
       case 22: // BlockStatements -> /* empty */
-#line 125 "javaCompilerParser.y"
+#line 124 "javaCompilerParser.y"
                                { CurrentSemanticValue.stmts = new System.Collections.Generic.List<AST.Statement>(); }
 #line default
         break;
       case 23: // BlockStatement -> LocalVariableDeclaration, SEMICOLON
-#line 127 "javaCompilerParser.y"
+#line 126 "javaCompilerParser.y"
                                                                       {CurrentSemanticValue.stmt = new AST.ExpressionStatement(ValueStack[ValueStack.Depth-2].varDeclaratorExpr);}
 #line default
         break;
       case 25: // VariableDeclaratorId -> IDENTIFIER
-#line 130 "javaCompilerParser.y"
+#line 129 "javaCompilerParser.y"
                                                        {CurrentSemanticValue.varDeclaratorId=new AST.VariableDeclaratorId(ValueStack[ValueStack.Depth-1].String);}
 #line default
         break;
       case 26: // LocalVariableDeclaration -> UnannType, VariableDeclaratorList
-#line 132 "javaCompilerParser.y"
+#line 131 "javaCompilerParser.y"
                                                                            {CurrentSemanticValue.varDeclaratorExpr=new AST.VariableDeclarationExpr(ValueStack[ValueStack.Depth-2].type,ValueStack[ValueStack.Depth-1].varList);}
 #line default
         break;
       case 27: // VariableDeclaratorList -> VariableDeclaratorList, VariableDeclarator
-#line 134 "javaCompilerParser.y"
+#line 133 "javaCompilerParser.y"
                                                                                {CurrentSemanticValue.varList = ValueStack[ValueStack.Depth-2].varList; CurrentSemanticValue.varList.Add(ValueStack[ValueStack.Depth-1].varDeclarator); }
 #line default
         break;
       case 28: // VariableDeclaratorList -> /* empty */
-#line 135 "javaCompilerParser.y"
+#line 134 "javaCompilerParser.y"
                                { CurrentSemanticValue.varList = new System.Collections.Generic.List<AST.VariableDeclarator>(); }
 #line default
         break;
       case 29: // VariableDeclarator -> VariableDeclaratorId
-#line 137 "javaCompilerParser.y"
+#line 136 "javaCompilerParser.y"
                                                             {CurrentSemanticValue.varDeclarator=new AST.VariableDeclarator(ValueStack[ValueStack.Depth-1].varDeclaratorId);}
 #line default
         break;
       case 30: // VariableDeclarator -> VariableDeclaratorId, OP_EQU, VariableInitializer
-#line 138 "javaCompilerParser.y"
+#line 137 "javaCompilerParser.y"
                                                                    {CurrentSemanticValue.varDeclarator=new AST.VariableDeclarator(ValueStack[ValueStack.Depth-3].varDeclaratorId,ValueStack[ValueStack.Depth-1].expr);}
 #line default
         break;
       case 31: // VariableInitializer -> Expression
-#line 140 "javaCompilerParser.y"
+#line 139 "javaCompilerParser.y"
                                                        {CurrentSemanticValue.expr=ValueStack[ValueStack.Depth-1].expr;}
 #line default
         break;
       case 32: // Expression -> AssignmentExpression
-#line 142 "javaCompilerParser.y"
+#line 141 "javaCompilerParser.y"
                                                          {CurrentSemanticValue.expr=ValueStack[ValueStack.Depth-1].expr;}
 #line default
         break;
       case 33: // AssignmentExpression -> ConditionalExpression
-#line 144 "javaCompilerParser.y"
+#line 143 "javaCompilerParser.y"
                                                                 {CurrentSemanticValue.expr=ValueStack[ValueStack.Depth-1].expr;}
 #line default
         break;
       case 35: // ConditionalExpression -> ConditionalOrExpression
-#line 148 "javaCompilerParser.y"
+#line 147 "javaCompilerParser.y"
                                                                     {CurrentSemanticValue.expr=ValueStack[ValueStack.Depth-1].expr;}
 #line default
         break;
       case 36: // ConditionalOrExpression -> ConditionalAndExpression
-#line 150 "javaCompilerParser.y"
+#line 149 "javaCompilerParser.y"
                                                                        {CurrentSemanticValue.expr=ValueStack[ValueStack.Depth-1].expr;}
 #line default
         break;
       case 37: // ConditionalAndExpression -> InclusiveOrExpression
-#line 152 "javaCompilerParser.y"
+#line 151 "javaCompilerParser.y"
                                                                       {CurrentSemanticValue.expr=ValueStack[ValueStack.Depth-1].expr;}
 #line default
         break;
       case 38: // InclusiveOrExpression -> ExclusiveOrExpression
-#line 154 "javaCompilerParser.y"
+#line 153 "javaCompilerParser.y"
                                                                     {CurrentSemanticValue.expr=ValueStack[ValueStack.Depth-1].expr;}
 #line default
         break;
       case 39: // ExclusiveOrExpression -> AndExpression
-#line 156 "javaCompilerParser.y"
+#line 155 "javaCompilerParser.y"
                                                                {CurrentSemanticValue.expr=ValueStack[ValueStack.Depth-1].expr;}
 #line default
         break;
       case 40: // AndExpression -> EqualityExpression
-#line 158 "javaCompilerParser.y"
+#line 157 "javaCompilerParser.y"
                                                            {CurrentSemanticValue.expr=ValueStack[ValueStack.Depth-1].expr;}
 #line default
         break;
       case 41: // EqualityExpression -> RelationalExpression
-#line 160 "javaCompilerParser.y"
+#line 159 "javaCompilerParser.y"
                                                                 {CurrentSemanticValue.expr=ValueStack[ValueStack.Depth-1].expr;}
 #line default
         break;
       case 42: // RelationalExpression -> ShiftExpression
-#line 162 "javaCompilerParser.y"
+#line 161 "javaCompilerParser.y"
                                                              {CurrentSemanticValue.expr=ValueStack[ValueStack.Depth-1].expr;}
 #line default
         break;
       case 43: // ShiftExpression -> AdditiveExpression
-#line 164 "javaCompilerParser.y"
+#line 163 "javaCompilerParser.y"
                                                             {CurrentSemanticValue.expr=ValueStack[ValueStack.Depth-1].expr;}
 #line default
         break;
       case 44: // AdditiveExpression -> MultiplicativeExpression
-#line 166 "javaCompilerParser.y"
+#line 165 "javaCompilerParser.y"
                                                                   {CurrentSemanticValue.expr=ValueStack[ValueStack.Depth-1].expr;}
 #line default
         break;
       case 45: // MultiplicativeExpression -> UnaryExpression
-#line 168 "javaCompilerParser.y"
+#line 167 "javaCompilerParser.y"
                                                                 {CurrentSemanticValue.expr=ValueStack[ValueStack.Depth-1].expr;}
 #line default
         break;
       case 46: // UnaryExpression -> UnaryExpressionNotPlusMinus
-#line 170 "javaCompilerParser.y"
+#line 169 "javaCompilerParser.y"
                                                                    {CurrentSemanticValue.expr=ValueStack[ValueStack.Depth-1].expr;}
 #line default
         break;
       case 47: // UnaryExpressionNotPlusMinus -> PostfixExpression
-#line 172 "javaCompilerParser.y"
+#line 171 "javaCompilerParser.y"
                                                                         {CurrentSemanticValue.expr=ValueStack[ValueStack.Depth-1].expr;}
 #line default
         break;
       case 48: // PostfixExpression -> Primary
-#line 174 "javaCompilerParser.y"
+#line 173 "javaCompilerParser.y"
                                                      {CurrentSemanticValue.expr=ValueStack[ValueStack.Depth-1].expr;}
 #line default
         break;
       case 49: // Primary -> PrimaryNoNewArray
-#line 176 "javaCompilerParser.y"
+#line 175 "javaCompilerParser.y"
                                                       {CurrentSemanticValue.expr=ValueStack[ValueStack.Depth-1].expr;}
 #line default
         break;
       case 50: // PrimaryNoNewArray -> Literal
-#line 178 "javaCompilerParser.y"
+#line 177 "javaCompilerParser.y"
                                                       {CurrentSemanticValue.expr=ValueStack[ValueStack.Depth-1].expr;}
 #line default
         break;
       case 51: // Literal -> NUMBER
-#line 180 "javaCompilerParser.y"
+#line 179 "javaCompilerParser.y"
                                          {CurrentSemanticValue.expr = new AST.NumberExpression(ValueStack[ValueStack.Depth-1].num);}
 #line default
         break;
       case 62: // ExpressionName -> IDENTIFIER
-#line 198 "javaCompilerParser.y"
+#line 197 "javaCompilerParser.y"
                                                {CurrentSemanticValue.varDeclaratorId=new AST.VariableDeclaratorId(ValueStack[ValueStack.Depth-1].String);}
 #line default
         break;
@@ -611,7 +611,7 @@ public static AST.Class root;
         return CharToString((char)terminal);
   }
 
-#line 267 "javaCompilerParser.y"
+#line 266 "javaCompilerParser.y"
 
 public Parser(Scanner scanner) : base(scanner)
 {

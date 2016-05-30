@@ -20,9 +20,10 @@ namespace group2JavaCompiler.AST
 
         public override void dump(int indent)
         {
-            label(indent, "Class Modifier :{0}\n", modifier);
+            label(indent, "Class Declaration :{0}\n");
+            //label(indent, "Class Modifier :{0}\n", modifier);
             label(indent, "Class name Identifier :{0}\n", name);
-            method.dump(indent + 1);
+            
         }
     }
     public class ClassMemberDeclaration : Node
@@ -36,7 +37,9 @@ namespace group2JavaCompiler.AST
         }
         public override void dump(int indent)
         {
-            throw new NotImplementedException();
+            label(indent, "Class Member Declaration :{0}\n");
+            //label(indent, "Class Modifier :{0}\n", modifier);
+            method.dump(indent + 1);
         }
     };
 }

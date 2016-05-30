@@ -33,7 +33,7 @@ public static AST.Class root;
 %type <type> UnannType Result IntegralType NumericType UnannPrimitiveType
 %type <member> ClassMemberDeclaration
 %type <expr> Expression VariableInitializer AssignmentExpression ConditionalExpression ConditionalAndExpression ConditionalOrExpression InclusiveOrExpression ExclusiveOrExpression AndExpression
-%type <expr> Expression EqualityExpression RelationalExpression ShiftExpression AdditiveExpression MultiplicativeExpression UnaryExpression UnaryExpressionNotPlusMinus PostfixExpression
+%type <expr> EqualityExpression RelationalExpression ShiftExpression AdditiveExpression MultiplicativeExpression UnaryExpression UnaryExpressionNotPlusMinus PostfixExpression
 %type <expr> Primary PrimaryNoNewArray Literal 
 %type <stmt> Statement BlockStatement  
 %type <compoundStmt> MethodBody Block 
@@ -47,7 +47,6 @@ public static AST.Class root;
 %token PUBLIC PROTECTED PRIVATE ABSTRACT STATIC FINAL SYNCHRONIZED NATIVE STRICTFP
 %token VOID
 %token EXPRESSION_STATEMENT 
-%token MAIN
 %token CLASS
 %token BOOL
 %token INT
@@ -142,7 +141,7 @@ VariableInitializer						:Expression 																	 {$$=$1;}
 Expression								:AssignmentExpression   														 {$$=$1;}
 										;
 AssignmentExpression					:ConditionalExpression 															 {$$=$1;}
-										|ExpressionName OP_ASSIGN Expression   											 
+										|ExpressionName OP_EQU Expression   											 
 										;
 							
 ConditionalExpression					: ConditionalOrExpression   													 {$$=$1;}
@@ -192,7 +191,7 @@ EmptyStatement							:SEMICOLON
 										;
 ExpressionStatement						:StatementExpression SEMICOLON
 										;
-StatementExpression						:ExpressionName OP_ASSIGN Expression
+StatementExpression						:ExpressionName OP_EQU Expression
 										|MethodInvocation
 										;
 ExpressionName							:IDENTIFIER    											{$$=new AST.VariableDeclaratorId($1);}

@@ -7,7 +7,7 @@ NotWh           [^ \t\r\n]
 Space           [ \t]
 Digit			[0-9]+
 Letter 			[a-zA-Z]
-Identifier		\$([a-zA-Z]([a-zA-Z0-9_])*)
+Identifier		[a-zA-Z][a-zA-Z0-9_]*
 BooleanLiteral	(true|false)
 System			system
 Out				out
@@ -23,7 +23,6 @@ Protected       protected
 Synchronized	synchronized
 Native			native
 Void        	void
-Main			main
 Class			class
 Bool			bool
 Int				int
@@ -57,7 +56,7 @@ Else			else
 OpArrow			"->"
 
 %%
-{Identifier}					{ yylval.String = yytext.Substring(1); return (int) Tokens.IDENTIFIER; }
+
 {Digit}				{ yylval.num = int.Parse(yytext); return (int)Tokens.NUMBER; }
 {Bool}							{ bool.TryParse(yytext, out yylval.Bool); return (int) Tokens.BOOL; }
 {Public}						{ return (int)Tokens.PUBLIC; }
@@ -71,7 +70,6 @@ OpArrow			"->"
 {Static}						{ return (int)Tokens.STATIC; }
 {Strictfp}						{ return (int)Tokens.STRICTFP; }
 {Void}							{ return (int)Tokens.VOID; }
-{Main}							{ return (int)Tokens.MAIN; }
 {Class}							{ return (int)Tokens.CLASS; }
 {Int}							{ return (int) Tokens.INT; }
 {String}						{ return (int) Tokens.STRING; }
@@ -105,6 +103,7 @@ OpArrow			"->"
 {If}							{ return (int) Tokens.IF; }
 {Else}							{ return (int) Tokens.ELSE; }
 {OpArrow}						{ return (int) Tokens.OP_ARROW; }
+{Identifier}					{ yylval.String = yytext.Substring(1); return (int) Tokens.IDENTIFIER; }
 %%
 
 public override void yyerror( string format, params object[] args ) 

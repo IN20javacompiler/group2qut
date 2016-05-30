@@ -21,6 +21,5 @@ C:\Users\Pretty\Downloads\group2-7cfab8ab09ae3b1d83fee35128d1b3abcba782d3\group2
 E:\plt\git\group2\group2JavaCompiler\group2JavaCompiler\bin\Debug\group2JavaCompiler.exe.config
 E:\plt\git\group2\group2JavaCompiler\group2JavaCompiler\obj\Debug\group2JavaCompiler.exe
 E:\plt\git\group2\group2JavaCompiler\group2JavaCompiler\obj\Debug\group2JavaCompiler.pdb
-E:\plt\git\group2\group2JavaCompiler\group2JavaCompiler\obj\Debug\group2JavaCompiler.csprojResolveAssemblyReference.cache
 E:\plt\git\group2\group2JavaCompiler\group2JavaCompiler\bin\Debug\group2JavaCompiler.exe
 E:\plt\git\group2\group2JavaCompiler\group2JavaCompiler\bin\Debug\group2JavaCompiler.pdb
