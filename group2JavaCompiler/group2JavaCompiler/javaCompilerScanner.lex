@@ -1,15 +1,13 @@
-%using javaCompiler.Parser;
-%namespace javaCompiler.Lexer
+%namespace group2JavaCompiler
 
 %visibility public
 
 Eol             (\r\n?|\n)
 NotWh           [^ \t\r\n]
 Space           [ \t]
-Digit			[0-9]
+Digit			[0-9]+
 Letter 			[a-zA-Z]
-Identifier		\$([a-zA-Z]([a-zA-Z0-9_])*)
-IntegerLiteral	{Digit}+
+Identifier		[a-zA-Z][a-zA-Z0-9_]*
 BooleanLiteral	(true|false)
 System			system
 Out				out
@@ -25,12 +23,10 @@ Protected       protected
 Synchronized	synchronized
 Native			native
 Void        	void
-Main			main
 Class			class
 Bool			bool
 Int				int
 String			string
-OpAssign		=
 OpAdd			+
 OpMinus			"-"
 OpMul			"*"
@@ -40,7 +36,7 @@ OpModul			"%"
 OpAnd			and
 OpOr			or
 OpNot			not
-OpEqu			"=="
+OpEqu			=
 OpNotEqu		"!="
 OpLt			"<"
 OpGt			">"
@@ -59,8 +55,8 @@ Else			else
 OpArrow			"->"
 
 %%
-{Identifier}					{ yylval.String = yytext.Substring(1); return (int) Tokens.IDENTIFIER; }
-{IntegerLiteral}				{ yylval.Integer = int.Parse(yytext); return (int)Tokens.INTEGER_LITERAL; }
+
+{Digit}				{ yylval.num = int.Parse(yytext); return (int)Tokens.NUMBER; }
 {Bool}							{ bool.TryParse(yytext, out yylval.Bool); return (int) Tokens.BOOL; }
 {Public}						{ return (int)Tokens.PUBLIC; }
 {Import}						{ return (int)Tokens.IMPORT; }
@@ -73,11 +69,10 @@ OpArrow			"->"
 {Static}						{ return (int)Tokens.STATIC; }
 {Strictfp}						{ return (int)Tokens.STRICTFP; }
 {Void}							{ return (int)Tokens.VOID; }
-{Main}							{ return (int)Tokens.MAIN; }
 {Class}							{ return (int)Tokens.CLASS; }
 {Int}							{ return (int) Tokens.INT; }
 {String}						{ return (int) Tokens.STRING; }
-{OpAssign}						{ return (int) Tokens.OP_ASSIGN; }
+
 {OpAdd}							{ return (int) Tokens.OP_ADD; }
 {OpMinus}						{ return (int) Tokens.OP_MINUS; }
 {OpMul}							{ return (int) Tokens.OP_MUL; }
@@ -107,6 +102,7 @@ OpArrow			"->"
 {If}							{ return (int) Tokens.IF; }
 {Else}							{ return (int) Tokens.ELSE; }
 {OpArrow}						{ return (int) Tokens.OP_ARROW; }
+{Identifier}					{ yylval.String = yytext; return (int) Tokens.IDENTIFIER; }
 %%
 
 public override void yyerror( string format, params object[] args ) 

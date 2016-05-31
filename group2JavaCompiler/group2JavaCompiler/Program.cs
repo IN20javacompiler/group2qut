@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 using group2JavaCompiler.AST;
 
 namespace group2JavaCompiler
@@ -11,12 +7,25 @@ namespace group2JavaCompiler
     {
         static void Main(string[] args)
         {
-             var file = new System.IO.FileStream(args[0], System.IO.FileMode.Open);
-             javaCompiler.Lexer.Scanner scanner = new javaCompiler.Lexer.Scanner(file);
-             javaCompiler.Parser.Parser parser = new javaCompiler.Parser.Parser(scanner);
-             parser.Parse();
-             /*
-            Expression root = new AssignExpression(new IdentifierExpression("x"), new IntegerLiteralExpression(42));*/
+            var filename = args[0];
+            var file = new FileStream(args[0], FileMode.Open);
+            Scanner scanner = new Scanner(file);
+            Parser parser = new Parser(scanner);
+            parser.Parse();
+            Parser.root.dump(0);
+            var writer = new StreamWriter(filename + ".il");
+            writer.WriteLine("﻿.assembly {0} {{}}",filename);
+            Parser.root.gencode(writer);
+            writer.Close();
+                        /*Class root = new Class("public", "Test",
+                             new Method("public static",
+                             new NamedType("void"),
+                             "main",
+                             new Arguments(new ArrayType(new NamedType("String")), "args"),
+                             new VariableDeclarationStatement(new NamedType("double"), new IdentifierExpression("x"), new IntegerLiteralExpression(42))
+                             )
+                          );
+             root.dump(0);*/
         }
     }
 }

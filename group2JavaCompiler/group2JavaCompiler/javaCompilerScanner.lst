@@ -1,0 +1,223 @@
+
+// ==========================================================================
+//  GPLEX error listing for lex source file <javaCompilerScanner.lex>
+// ==========================================================================
+//  Version:  1.2.2
+//  Machine:  PRETTYPC
+//  DateTime: 5/30/2016 12:32:56 PM
+//  UserName: Pretty
+// ==========================================================================
+
+
+%namespace group2JavaCompiler
+
+%visibility public
+
+Eol             (\r\n?|\n)
+NotWh           [^ \t\r\n]
+Space           [ \t]
+Digit			[0-9]+
+Letter 			[a-zA-Z]
+Identifier		[a-zA-Z][a-zA-Z0-9_]*
+BooleanLiteral	(true|false)
+System			system
+Out				out
+Println			println
+Import			import
+Public      	public
+Static      	static
+Final			final
+Abstract		abstract
+Strictfp		strictfp
+Private			private
+Protected       protected
+Synchronized	synchronized
+Native			native
+Void        	void
+Main			main
+Class			class
+Bool			bool
+Int				int
+String			string
+OpAssign		=
+OpAdd			+
+OpMinus			"-"
+OpMul			"*"
+OpDiv			"/"
+OpDot			"."
+OpModul			"%"
+OpAnd			and
+OpOr			or
+OpNot			not
+OpEqu			"=="
+OpNotEqu		"!="
+OpLt			"<"
+OpGt			">"
+OpGtEq			">="
+OpLtEq			"<="
+OpSqLBr			"["
+OpSqRBr			"]"
+LeftPar			"("
+RigthPar		")"
+OpLtBrace		"{"
+OpRtBrace		"}"
+SemiColon		";"
+OpDoubleQuote	"\""
+If				if
+Else			else
+OpArrow			"->"
+
+%%
+{Identifier}					{ yylval.String = yytext.Substring(1); return (int) Tokens.IDENTIFIER; }
+//^^^^^^^^^^
+// Warning: This pattern always overrides "{Else}" 
+// Warning: This pattern always overrides "{Void}" 
+// Warning: This pattern always overrides "{If}" 
+// Warning: This pattern always overrides "{Main}" 
+// Warning: This pattern always overrides "{OpOr}" 
+// Warning: This pattern always overrides "{Native}" 
+// Warning: This pattern always overrides "{Strictfp}" 
+// Warning: This pattern always overrides "{Static}" 
+// Warning: This pattern always overrides "{System}" 
+// Warning: This pattern always overrides "{String}" 
+// Warning: This pattern always overrides "{OpNot}" 
+// Warning: This pattern always overrides "{OpAnd}" 
+// Warning: This pattern always overrides "{Println}" 
+// Warning: This pattern always overrides "{Class}" 
+// Warning: This pattern always overrides "{Out}" 
+// Warning: This pattern always overrides "{Int}" 
+// Warning: This pattern always overrides "{Public}" 
+// Warning: This pattern always overrides "{Abstract}" 
+// Warning: This pattern always overrides "{Import}" 
+// Warning: This pattern always overrides "{Protected}" 
+// Warning: This pattern always overrides "{Final}" 
+// Warning: This pattern always overrides "{Bool}" 
+// Warning: This pattern always overrides "{Synchronized}" 
+// Warning: This pattern always overrides "{Private}" 
+// --------------------------------------------------------
+{Digit}				{ yylval.num = int.Parse(yytext); return (int)Tokens.NUMBER; }
+{Bool}							{ bool.TryParse(yytext, out yylval.Bool); return (int) Tokens.BOOL; }
+//^^^^
+// Warning: This pattern always overridden by "{Identifier}" 
+// ----------------------------------------------------------
+{Public}						{ return (int)Tokens.PUBLIC; }
+//^^^^^^
+// Warning: This pattern always overridden by "{Identifier}" 
+// ----------------------------------------------------------
+{Import}						{ return (int)Tokens.IMPORT; }
+//^^^^^^
+// Warning: This pattern always overridden by "{Identifier}" 
+// ----------------------------------------------------------
+{Protected}						{ return (int)Tokens.PROTECTED; }
+//^^^^^^^^^
+// Warning: This pattern always overridden by "{Identifier}" 
+// ----------------------------------------------------------
+{Private}						{ return (int)Tokens.PRIVATE; }
+//^^^^^^^
+// Warning: This pattern always overridden by "{Identifier}" 
+// ----------------------------------------------------------
+{Abstract}						{ return (int)Tokens.ABSTRACT; }
+//^^^^^^^^
+// Warning: This pattern always overridden by "{Identifier}" 
+// ----------------------------------------------------------
+{Final}							{ return (int)Tokens.FINAL; }
+//^^^^^
+// Warning: This pattern always overridden by "{Identifier}" 
+// ----------------------------------------------------------
+{Synchronized}					{ return (int)Tokens.SYNCHRONIZED; }
+//^^^^^^^^^^^^
+// Warning: This pattern always overridden by "{Identifier}" 
+// ----------------------------------------------------------
+{Native}						{ return (int)Tokens.NATIVE; }
+//^^^^^^
+// Warning: This pattern always overridden by "{Identifier}" 
+// ----------------------------------------------------------
+{Static}						{ return (int)Tokens.STATIC; }
+//^^^^^^
+// Warning: This pattern always overridden by "{Identifier}" 
+// ----------------------------------------------------------
+{Strictfp}						{ return (int)Tokens.STRICTFP; }
+//^^^^^^^^
+// Warning: This pattern always overridden by "{Identifier}" 
+// ----------------------------------------------------------
+{Void}							{ return (int)Tokens.VOID; }
+//^^^^
+// Warning: This pattern always overridden by "{Identifier}" 
+// ----------------------------------------------------------
+{Main}							{ return (int)Tokens.MAIN; }
+//^^^^
+// Warning: This pattern always overridden by "{Identifier}" 
+// ----------------------------------------------------------
+{Class}							{ return (int)Tokens.CLASS; }
+//^^^^^
+// Warning: This pattern always overridden by "{Identifier}" 
+// ----------------------------------------------------------
+{Int}							{ return (int) Tokens.INT; }
+//^^^
+// Warning: This pattern always overridden by "{Identifier}" 
+// ----------------------------------------------------------
+{String}						{ return (int) Tokens.STRING; }
+//^^^^^^
+// Warning: This pattern always overridden by "{Identifier}" 
+// ----------------------------------------------------------
+{OpAssign}						{ return (int) Tokens.OP_ASSIGN; }
+{OpAdd}							{ return (int) Tokens.OP_ADD; }
+{OpMinus}						{ return (int) Tokens.OP_MINUS; }
+{OpMul}							{ return (int) Tokens.OP_MUL; }
+{OpDiv}							{ return (int) Tokens.OP_DIV; }
+{OpDot}							{ return (int) Tokens.OP_DOT; }
+{OpModul}						{ return (int) Tokens.OP_MODUL; }
+{OpAnd}							{ return (int) Tokens.OP_AND; }
+//^^^^^
+// Warning: This pattern always overridden by "{Identifier}" 
+// ----------------------------------------------------------
+{OpOr}							{ return (int) Tokens.OP_OR; }
+//^^^^
+// Warning: This pattern always overridden by "{Identifier}" 
+// ----------------------------------------------------------
+{OpNot}							{ return (int) Tokens.OP_NOT; }
+//^^^^^
+// Warning: This pattern always overridden by "{Identifier}" 
+// ----------------------------------------------------------
+{OpEqu}							{ return (int) Tokens.OP_EQU; }
+{OpNotEqu}						{ return (int) Tokens.OP_NOT_EQU; }
+{OpLt}							{ return (int) Tokens.OP_LT; }
+{OpGt}							{ return (int) Tokens.OP_GT; }
+{OpGtEq}						{ return (int) Tokens.OP_GT_EQ; }
+{OpLtEq}						{ return (int) Tokens.OP_LT_EQ; }
+{LeftPar}						{ return (int) Tokens.OP_LEFT_PAR; }
+{RigthPar}						{ return (int) Tokens.OP_RIGHT_PAR; }
+{OpSqLBr}						{ return (int) Tokens.OP_SQ_L_BR; }
+{OpSqRBr}						{ return (int) Tokens.OP_SQ_R_BR; }
+{OpLtBrace}						{ return (int) Tokens.OP_LT_BRACE; }
+{OpRtBrace}						{ return (int) Tokens.OP_RT_BRACE; }
+{SemiColon}						{ return (int) Tokens.SEMICOLON; }
+{System}						{ return (int) Tokens.SYSTEM; }
+//^^^^^^
+// Warning: This pattern always overridden by "{Identifier}" 
+// ----------------------------------------------------------
+{Out}							{ return (int) Tokens.OUT; }
+//^^^
+// Warning: This pattern always overridden by "{Identifier}" 
+// ----------------------------------------------------------
+{Println}						{ return (int) Tokens.PRINTLN; }
+//^^^^^^^
+// Warning: This pattern always overridden by "{Identifier}" 
+// ----------------------------------------------------------
+{OpDoubleQuote}					{ return (int) Tokens.OP_DOUBLE_QUOTE; }
+{If}							{ return (int) Tokens.IF; }
+//^^
+// Warning: This pattern always overridden by "{Identifier}" 
+// ----------------------------------------------------------
+{Else}							{ return (int) Tokens.ELSE; }
+//^^^^
+// Warning: This pattern always overridden by "{Identifier}" 
+// ----------------------------------------------------------
+{OpArrow}						{ return (int) Tokens.OP_ARROW; }
+%%
+
+public override void yyerror( string format, params object[] args ) 
+{
+Console.Error.WriteLine(format, args); 
+}// ==========================================================================
+
