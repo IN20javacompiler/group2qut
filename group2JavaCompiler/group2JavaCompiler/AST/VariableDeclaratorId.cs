@@ -28,7 +28,7 @@ namespace group2JavaCompiler.AST
         }
         public override void dump(int indent)
         {
-            label(indent, "Variable Declaration id :{0}",name);
+            label(indent, "Variable Declaration id :{0}\n",name);
         }
     }
 }
