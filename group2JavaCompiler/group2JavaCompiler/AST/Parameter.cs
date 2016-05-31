@@ -40,7 +40,7 @@ namespace group2JavaCompiler.AST
 
         public override void dump(int indent)
         {
-            throw new NotImplementedException();
+            label(indent, "Parameter declaration :{0}\n");
         }
     }
 }

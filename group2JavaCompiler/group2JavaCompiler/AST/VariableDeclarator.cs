@@ -23,7 +23,9 @@ namespace group2JavaCompiler.AST
         }
         public override void dump(int indent)
         {
-            throw new NotImplementedException();
+            label(indent, "Variabble Declaration\n");
+            id.dump(indent + 1);
+            init.dump(indent + 1);
         }
     }
 }

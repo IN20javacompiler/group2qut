@@ -36,7 +36,7 @@ public static AST.Class root;
 %type <expr> EqualityExpression RelationalExpression ShiftExpression AdditiveExpression MultiplicativeExpression UnaryExpression UnaryExpressionNotPlusMinus PostfixExpression
 %type <expr> Primary PrimaryNoNewArray Literal 
 %type <stmt> Statement BlockStatement  
-%type <compoundStmt> MethodBody Block 
+%type <compoundStmt> Block MethodBody
 %type <stmts>  BlockStatements
 %type <method> MethodDeclaration
 %type <classRoot> NormalClassDeclaration
@@ -92,7 +92,7 @@ NormalClassDeclaration					:ClassModifiers CLASS IDENTIFIER OP_LT_BRACE ClassMem
 ClassMemberDeclaration					:MethodDeclaration																{$$= new AST.ClassMemberDeclaration($1);}
 										|FieldDeclaration 
 										;
-MethodDeclaration						:MethodModifiers Result IDENTIFIER OP_LEFT_PAR FormalParameterList OP_RIGHT_PAR MethodBody  	{$$ =new AST.Method($2,$3,$5,$7);}
+MethodDeclaration						:MethodModifiers Result IDENTIFIER OP_LEFT_PAR FormalParameterList OP_RIGHT_PAR MethodBody  	{$$ =new AST.Method($2,$3,$7);}
 										;
 MethodModifiers							:MethodModifier MethodModifiers
 										|

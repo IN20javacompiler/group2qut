@@ -4,9 +4,9 @@
 
 // GPPG version 1.5.2
 // Machine:  PRETTYPC
-// DateTime: 5/30/2016 12:39:46 PM
+// DateTime: 5/31/2016 4:30:00 PM
 // UserName: Pretty
-// Input file <javaCompilerParser.y - 5/30/2016 12:38:38 PM>
+// Input file <javaCompilerParser.y - 5/31/2016 4:29:56 PM>
 
 // options: lines gplex
 
@@ -73,11 +73,11 @@ public class ScanObj {
 [GeneratedCodeAttribute( "Gardens Point Parser Generator", "1.5.2")]
 public class Parser: ShiftReduceParser<ValueType, LexLocation>
 {
-  // Verbatim content from javaCompilerParser.y - 5/30/2016 12:38:38 PM
+  // Verbatim content from javaCompilerParser.y - 5/31/2016 4:29:56 PM
 #line 5 "javaCompilerParser.y"
 public static AST.Class root;
 #line default
-  // End verbatim content from javaCompilerParser.y - 5/30/2016 12:38:38 PM
+  // End verbatim content from javaCompilerParser.y - 5/31/2016 4:29:56 PM
 
 #pragma warning disable 649
   private static Dictionary<int, string> aliases;
@@ -94,7 +94,7 @@ public static AST.Class root;
       "AndExpression", "EqualityExpression", "RelationalExpression", "ShiftExpression", 
       "AdditiveExpression", "MultiplicativeExpression", "UnaryExpression", "UnaryExpressionNotPlusMinus", 
       "PostfixExpression", "Primary", "PrimaryNoNewArray", "Literal", "Statement", 
-      "BlockStatement", "MethodBody", "Block", "BlockStatements", "MethodDeclaration", 
+      "BlockStatement", "Block", "MethodBody", "BlockStatements", "MethodDeclaration", 
       "NormalClassDeclaration", "CompilationUnit", "ClassDeclaration", "$accept", 
       "ClassModifiers", "FieldDeclaration", "MethodModifiers", "MethodModifier", 
       "UnannReferenceType", "StatementWithoutTrailingSubstatement", "IfThenElseStatement", 
@@ -122,7 +122,7 @@ public static AST.Class root;
     states[15] = new State(new int[]{23,16});
     states[16] = new State(new int[]{4,105,20,68,24,-11},new int[]{-6,17,-7,101,-8,102,-9,103,-49,58,-66,59,-67,60,-13,65,-12,66,-11,67});
     states[17] = new State(new int[]{24,18});
-    states[18] = new State(new int[]{27,21},new int[]{-37,19,-38,20});
+    states[18] = new State(new int[]{27,21},new int[]{-38,19,-37,20});
     states[19] = new State(-6);
     states[20] = new State(-19);
     states[21] = new State(-22,new int[]{-39,22});
@@ -261,7 +261,7 @@ public static AST.Class root;
     rules[3] = new Rule(-41, new int[]{-45,18,4,27,-14,28});
     rules[4] = new Rule(-14, new int[]{-40});
     rules[5] = new Rule(-14, new int[]{-46});
-    rules[6] = new Rule(-40, new int[]{-47,-10,4,23,-6,24,-37});
+    rules[6] = new Rule(-40, new int[]{-47,-10,4,23,-6,24,-38});
     rules[7] = new Rule(-47, new int[]{-48,-47});
     rules[8] = new Rule(-47, new int[]{});
     rules[9] = new Rule(-10, new int[]{16});
@@ -274,8 +274,8 @@ public static AST.Class root;
     rules[16] = new Rule(-13, new int[]{-12});
     rules[17] = new Rule(-12, new int[]{-11});
     rules[18] = new Rule(-11, new int[]{20});
-    rules[19] = new Rule(-37, new int[]{-38});
-    rules[20] = new Rule(-38, new int[]{27,-39,28});
+    rules[19] = new Rule(-38, new int[]{-37});
+    rules[20] = new Rule(-37, new int[]{27,-39,28});
     rules[21] = new Rule(-39, new int[]{-39,-36});
     rules[22] = new Rule(-39, new int[]{});
     rules[23] = new Rule(-36, new int[]{-5,29});
@@ -394,7 +394,7 @@ public static AST.Class root;
       case 6: // MethodDeclaration -> MethodModifiers, Result, IDENTIFIER, OP_LEFT_PAR, 
               //                      FormalParameterList, OP_RIGHT_PAR, MethodBody
 #line 95 "javaCompilerParser.y"
-                                                                                                                    {CurrentSemanticValue.method =new AST.Method(ValueStack[ValueStack.Depth-6].type,ValueStack[ValueStack.Depth-5].String,ValueStack[ValueStack.Depth-3].param,ValueStack[ValueStack.Depth-1].compoundStmt);}
+                                                                                                                    {CurrentSemanticValue.method =new AST.Method(ValueStack[ValueStack.Depth-6].type,ValueStack[ValueStack.Depth-5].String,ValueStack[ValueStack.Depth-1].compoundStmt);}
 #line default
         break;
       case 9: // Result -> VOID

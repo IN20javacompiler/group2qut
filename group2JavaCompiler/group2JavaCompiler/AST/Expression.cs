@@ -98,7 +98,12 @@ namespace group2JavaCompiler.AST
         }
         public override void dump(int indent)
         {
-            label(indent, "VariableDeclarationExpr {0}\n");
+            label(indent, "VariableDeclarationExpr \n");
+            type.dump(indent + 1);
+            foreach (var child in vars) { 
+                child.dump(indent + 1);
+        }
+           
         }
     };
 }

@@ -27,7 +27,6 @@ Class			class
 Bool			bool
 Int				int
 String			string
-OpAssign		=
 OpAdd			+
 OpMinus			"-"
 OpMul			"*"
@@ -37,7 +36,7 @@ OpModul			"%"
 OpAnd			and
 OpOr			or
 OpNot			not
-OpEqu			"=="
+OpEqu			=
 OpNotEqu		"!="
 OpLt			"<"
 OpGt			">"
@@ -73,7 +72,7 @@ OpArrow			"->"
 {Class}							{ return (int)Tokens.CLASS; }
 {Int}							{ return (int) Tokens.INT; }
 {String}						{ return (int) Tokens.STRING; }
-{OpAssign}						{ return (int) Tokens.OP_ASSIGN; }
+
 {OpAdd}							{ return (int) Tokens.OP_ADD; }
 {OpMinus}						{ return (int) Tokens.OP_MINUS; }
 {OpMul}							{ return (int) Tokens.OP_MUL; }

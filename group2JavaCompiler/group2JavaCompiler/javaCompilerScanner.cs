@@ -6,9 +6,9 @@
 //
 //  GPLEX Version:  1.2.2
 //  Machine:  PRETTYPC
-//  DateTime: 5/30/2016 12:36:36 PM
+//  DateTime: 5/31/2016 4:21:42 PM
 //  UserName: Pretty
-//  GPLEX input file <javaCompilerScanner.lex - 5/30/2016 12:36:18 PM>
+//  GPLEX input file <javaCompilerScanner.lex - 5/31/2016 4:21:27 PM>
 //  GPLEX frame file <embedded resource>
 //
 //  Option settings: parser, minimize
@@ -123,8 +123,8 @@ namespace group2JavaCompiler
         
         enum Result {accept, noMatch, contextFound};
 
-        const int maxAccept = 129;
-        const int initial = 130;
+        const int maxAccept = 128;
+        const int initial = 129;
         const int eofNum = 0;
         const int goStart = -1;
         const int INITIAL = 0;
@@ -161,9 +161,9 @@ namespace group2JavaCompiler
         }
     };
 
-    static int[] startState = new int[] {130, 0};
+    static int[] startState = new int[] {129, 0};
 
-    static Table[] NxS = new Table[132] {
+    static Table[] NxS = new Table[131] {
 /* NxS[   0] */ new Table(0, 0, 0, null),
 /* NxS[   1] */ new Table(0, 0, -1, null),
 /* NxS[   2] */ new Table(0, 0, -1, null),
@@ -171,14 +171,14 @@ namespace group2JavaCompiler
 /* NxS[   4] */ new Table(0, 0, -1, null),
 /* NxS[   5] */ new Table(0, 0, -1, null),
 /* NxS[   6] */ new Table(0, 0, -1, null),
-/* NxS[   7] */ new Table(62, 1, -1, new short[] {128}),
+/* NxS[   7] */ new Table(62, 1, -1, new short[] {127}),
 /* NxS[   8] */ new Table(0, 0, -1, null),
 /* NxS[   9] */ new Table(0, 0, -1, null),
 /* NxS[  10] */ new Table(48, 10, -1, new short[] {10, 10, 10, 10, 10, 10, 
           10, 10, 10, 10}),
 /* NxS[  11] */ new Table(0, 0, -1, null),
-/* NxS[  12] */ new Table(61, 1, -1, new short[] {127}),
-/* NxS[  13] */ new Table(61, 1, -1, new short[] {126}),
+/* NxS[  12] */ new Table(61, 1, -1, new short[] {126}),
+/* NxS[  13] */ new Table(0, 0, -1, null),
 /* NxS[  14] */ new Table(61, 1, -1, new short[] {125}),
 /* NxS[  15] */ new Table(48, 75, -1, new short[] {15, 15, 15, 15, 15, 15, 
           15, 15, 15, 15, -1, -1, -1, -1, -1, -1, -1, 15, 15, 15, 15, 15, 
@@ -824,15 +824,14 @@ namespace group2JavaCompiler
 /* NxS[ 126] */ new Table(0, 0, -1, null),
 /* NxS[ 127] */ new Table(0, 0, -1, null),
 /* NxS[ 128] */ new Table(0, 0, -1, null),
-/* NxS[ 129] */ new Table(0, 0, -1, null),
-/* NxS[ 130] */ new Table(33, 93, -1, new short[] {131, 1, -1, -1, 2, -1, 
+/* NxS[ 129] */ new Table(33, 93, -1, new short[] {130, 1, -1, -1, 2, -1, 
           -1, 3, 4, 5, 6, -1, 7, 8, 9, 10, 10, 10, 10, 10, 10, 10, 
           10, 10, 10, -1, 11, 12, 13, 14, -1, -1, 15, 15, 15, 15, 15, 15, 
           15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 
           15, 15, 15, 15, 16, -1, 17, -1, -1, -1, 18, 19, 20, 15, 21, 22, 
           15, 15, 23, 15, 15, 15, 15, 24, 25, 26, 15, 15, 27, 15, 15, 28, 
           15, 15, 15, 15, 29, -1, 30}),
-/* NxS[ 131] */ new Table(61, 1, -1, new short[] {129}),
+/* NxS[ 130] */ new Table(61, 1, -1, new short[] {128}),
     };
 
 int NextState() {
@@ -1297,7 +1296,7 @@ return (int) Tokens.SEMICOLON;
 return (int) Tokens.OP_LT;
             break;
         case 13:
-return (int) Tokens.OP_ASSIGN;
+return (int) Tokens.OP_EQU;
             break;
         case 14:
 return (int) Tokens.OP_GT;
@@ -1472,15 +1471,12 @@ return (int)Tokens.ABSTRACT;
 return (int) Tokens.OP_GT_EQ;
             break;
         case 126:
-return (int) Tokens.OP_EQU;
-            break;
-        case 127:
 return (int) Tokens.OP_LT_EQ;
             break;
-        case 128:
+        case 127:
 return (int) Tokens.OP_ARROW;
             break;
-        case 129:
+        case 128:
 return (int) Tokens.OP_NOT_EQU;
             break;
         default:

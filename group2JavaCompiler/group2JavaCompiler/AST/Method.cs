@@ -28,12 +28,12 @@ namespace group2JavaCompiler.AST
             this.name = name;
             this.parameters = parameters;
         }
-        public Method( Type type, String name, Parameter parameters, CompoundStatement body)
+        public Method( Type type, String name,  CompoundStatement body)
         {
             //this.modifier = modifiers;
             this.type = type;
             this.name = name;
-            this.parameters = parameters;
+           // this.parameters = parameters;
             this.body = body;
         }
 
@@ -42,7 +42,7 @@ namespace group2JavaCompiler.AST
            
             type.dump(indent);
             label(indent, "Method Declaration :{0}\n", name);
-            parameters.dump(indent);
+           // parameters.dump(indent);
             label(indent + 1, "MethodBody\n");
             body.dump(indent);
         }

@@ -9,20 +9,21 @@ namespace group2JavaCompiler.AST
     public class Class : Node
     {
         string modifier, name;
-        ClassMemberDeclaration method;
+        ClassMemberDeclaration member;
 
         public Class( string name, ClassMemberDeclaration member)
         {
            // this.modifier = modifier;
             this.name = name;
-            this.method = member;
+            this.member = member;
         }
 
         public override void dump(int indent)
         {
-            label(indent, "Class Declaration :{0}\n");
+            label(indent, "Class Declaration \n");
             //label(indent, "Class Modifier :{0}\n", modifier);
             label(indent, "Class name Identifier :{0}\n", name);
+            member.dump(indent + 1);
             
         }
     }
@@ -37,7 +38,7 @@ namespace group2JavaCompiler.AST
         }
         public override void dump(int indent)
         {
-            label(indent, "Class Member Declaration :{0}\n");
+            label(indent, "Class Member Declaration\n");
             //label(indent, "Class Modifier :{0}\n", modifier);
             method.dump(indent + 1);
         }
