@@ -6,9 +6,9 @@
 //
 //  GPLEX Version:  1.2.2
 //  Machine:  PRETTYPC
-//  DateTime: 5/31/2016 4:21:42 PM
+//  DateTime: 5/31/2016 5:08:32 PM
 //  UserName: Pretty
-//  GPLEX input file <javaCompilerScanner.lex - 5/31/2016 4:21:27 PM>
+//  GPLEX input file <javaCompilerScanner.lex - 5/31/2016 5:08:24 PM>
 //  GPLEX frame file <embedded resource>
 //
 //  Option settings: parser, minimize
@@ -1384,7 +1384,7 @@ return (int) Tokens.OP_GT;
         case 121:
         case 122:
         case 123:
-yylval.String = yytext.Substring(1); return (int) Tokens.IDENTIFIER;
+yylval.String = yytext; return (int) Tokens.IDENTIFIER;
             break;
         case 16:
 return (int) Tokens.OP_SQ_L_BR;

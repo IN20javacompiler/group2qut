@@ -102,7 +102,7 @@ OpArrow			"->"
 {If}							{ return (int) Tokens.IF; }
 {Else}							{ return (int) Tokens.ELSE; }
 {OpArrow}						{ return (int) Tokens.OP_ARROW; }
-{Identifier}					{ yylval.String = yytext.Substring(1); return (int) Tokens.IDENTIFIER; }
+{Identifier}					{ yylval.String = yytext; return (int) Tokens.IDENTIFIER; }
 %%
 
 public override void yyerror( string format, params object[] args ) 
