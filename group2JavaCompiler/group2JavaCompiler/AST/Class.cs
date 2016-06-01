@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace group2JavaCompiler.AST
 {
@@ -17,7 +18,13 @@ namespace group2JavaCompiler.AST
             this.name = name;
             this.member = member;
         }
-
+        public void gencode(StreamWriter codewriter)
+        {
+            codewriter.WriteLine(".class private {0} extends[mscorlib]System.Object",name);
+            codewriter.WriteLine("{");
+            //member.gencode(codewriter);
+            codewriter.WriteLine("}");
+        }
         public override void dump(int indent)
         {
             label(indent, "Class Declaration \n");
