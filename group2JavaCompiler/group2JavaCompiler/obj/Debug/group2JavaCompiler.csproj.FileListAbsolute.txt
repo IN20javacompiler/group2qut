@@ -37,3 +37,4 @@ D:\plt4\gitFinal\group2\group2JavaCompiler\group2JavaCompiler\bin\Debug\normnfc.
 D:\plt4\gitFinal\group2\group2JavaCompiler\group2JavaCompiler\bin\Debug\normnfd.nlp
 D:\plt4\gitFinal\group2\group2JavaCompiler\group2JavaCompiler\bin\Debug\normnfkc.nlp
 D:\plt4\gitFinal\group2\group2JavaCompiler\group2JavaCompiler\bin\Debug\normnfkd.nlp
+D:\plt4\gitFinal\group2\group2JavaCompiler\group2JavaCompiler\obj\Debug\group2JavaCompiler.csprojResolveAssemblyReference.cache
