@@ -126,6 +126,20 @@ BlockStatements							:BlockStatements BlockStatement									 				{$$ = $1; $$.
 BlockStatement							:LocalVariableDeclaration SEMICOLON   											{$$ = new AST.ExpressionStatement($1);}
 										|Statement 
 										;
+										+Statement                               :StatementExpression
+                                         ;
+ StatementExpression                     :Assignment
+                                         |PreIncrementExpression
+ 										|PreDecrementExpression
+ 										|PostIncrementExpression
+ 										|PostDecrementExpression
+ 									|MethodInvocation
+ 									|ClassInstanceCreationExpression
+ 									;
+ PostIncrementExpression                 :PostfixExpression
+                                        ;
+                                        
+
 VariableDeclaratorId 					:IDENTIFIER																		{$$=new AST.VariableDeclaratorId($1);}
 										;
 LocalVariableDeclaration				:UnannType VariableDeclaratorList 												 {$$=new AST.VariableDeclarationExpr($1,$2);}
