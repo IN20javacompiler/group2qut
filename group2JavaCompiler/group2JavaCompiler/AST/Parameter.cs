@@ -17,11 +17,11 @@ namespace group2JavaCompiler.AST
         {
         }
 
-        /*public Parameter(Type type, VariableDeclaratorId id)
+        public Parameter(Type type, VariableDeclaratorId id)
         {
             this.id = id;
             this.type = type;
-        }*/
+        }
 
         public Parameter(string modifiers, Type type, VariableDeclaratorId id)
         {
@@ -30,13 +30,13 @@ namespace group2JavaCompiler.AST
             this.type = type;
         }
 
-        public Parameter(string modifiers, Type type, bool isVarArgs, VariableDeclaratorId id)
+       /* public Parameter(string modifiers, Type type, bool isVarArgs, VariableDeclaratorId id)
         {
             this.isVarArgs = isVarArgs;
             this.modifiers = modifiers;
             this.id = id;
             this.type = type;
-        }
+        }*/
 
         public override void dump(int indent)
         {

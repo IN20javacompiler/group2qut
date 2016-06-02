@@ -11,10 +11,10 @@ namespace group2JavaCompiler.AST
         private VariableDeclaratorId id;
 
         private Expression init;
-        public VariableDeclarator(VariableDeclaratorId id)
+        /*public VariableDeclarator(VariableDeclaratorId id)
         {
             this.id=id;
-        }
+        }*/
 
             public VariableDeclarator(VariableDeclaratorId id, Expression init)
         {
