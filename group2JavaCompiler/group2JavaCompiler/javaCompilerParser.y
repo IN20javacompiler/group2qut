@@ -133,7 +133,7 @@ BlockStatement							:LocalVariableDeclaration SEMICOLON   											{$$ = new 
  										|PreDecrementExpression
  										|PostIncrementExpression
  										|PostDecrementExpression
- 									|MethodInvocation
+ 									    |method Invocation
  									|ClassInstanceCreationExpression
  									;
  PostIncrementExpression                 :PostfixExpression
