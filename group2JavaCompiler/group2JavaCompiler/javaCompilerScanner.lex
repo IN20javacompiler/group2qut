@@ -89,6 +89,7 @@ OpArrow			"->"
 {OpGt}							{ return (int) Tokens.OP_GT; }
 {OpGtEq}						{ return (int) Tokens.OP_GT_EQ; }
 {OpLtEq}						{ return (int) Tokens.OP_LT_EQ; }
+{OpInc}                         { return (int) Tokens.OP_INC; }
 {LeftPar}						{ return (int) Tokens.OP_LEFT_PAR; }
 {RigthPar}						{ return (int) Tokens.OP_RIGHT_PAR; }
 {OpSqLBr}						{ return (int) Tokens.OP_SQ_L_BR; }
