@@ -63,7 +63,7 @@ namespace group2JavaCompiler.AST
         }
         public override void dump(int indent)
         {
-            label(indent, "MethodInvocation {0}\n");
+            label(indent, "MethodInvocation \n");
         }
 
-    }
+    };
