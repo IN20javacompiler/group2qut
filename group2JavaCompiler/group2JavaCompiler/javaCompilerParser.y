@@ -118,6 +118,12 @@ NumericType								:IntegralType																	 {$$=$1;}
 										;
 IntegralType							:INT    																		 {$$=new AST.IntType();}
 										;
+UnannReferenceType						:UnannArrayType							{$$=$1;}								
+										;
+UnannArrayType							:UnannTypeVariable Dims				{$$=new AST.ArrayType($1);}
+										;
+UnannTypeVariable						:IDENTIFIER							{$$=new AST.NamedType($1);}
+										;
 MethodBody								:Block 																			 {$$=$1;}
 										;
 Block									:OP_LT_BRACE BlockStatements OP_RT_BRACE 										 {$$ = new AST.CompoundStatement($2); }
@@ -255,13 +261,6 @@ FieldDeclaration						: UnannType VariableDeclaratorList
 
 FieldModifier							:Annotation
 										;
-UnannReferenceType						:UnannArrayType							{$$=$1;}								
-										;
-UnannArrayType							:UnannTypeVariable Dims				{$$=new AST.ArrayType($1);}
-										;
-UnannTypeVariable						:IDENTIFIER							{$$=new AST.NamedType($1);}
-										;
-
 Dims									:OP_SQ_L_BR OP_SQ_R_BR
 										;
 %%

@@ -70,7 +70,7 @@ namespace group2JavaCompiler.AST {
         public override void dump(int indent)
         {
             label(indent, "ExpressionStatement\n");
-            expr.dump(indent + 1);
+            expr.dump(indent);
         }
     };
     public class CompoundStatement : Statement
@@ -86,7 +86,7 @@ namespace group2JavaCompiler.AST {
         {
             label(indent, "CompoundStatement\n");
             foreach (var child in stmts)
-                child.dump(indent + 1);
+                child.dump(indent);
         }
     };
     public class VariableDeclarationStatement : Statement

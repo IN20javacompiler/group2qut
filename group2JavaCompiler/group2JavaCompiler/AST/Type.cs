@@ -23,14 +23,14 @@ namespace group2JavaCompiler.AST
 
         public override void dump(int indent)
         {
-            label(indent, "NamedType {0}\n", name);
+            label(indent, "Type {0}\n", name);
         }
     };
     public class IntType : Type
     {
         public override void dump(int indent)
         {
-            label(indent, "int\n");
+            label(indent, "INT\n");
         }
     };
 
@@ -39,7 +39,7 @@ namespace group2JavaCompiler.AST
     {
         public override void dump(int indent)
         {
-            label(indent, "BoolType\n");
+            label(indent, "BOOLEAN\n");
         }
     };
     public class ArrayType : Type
@@ -53,7 +53,7 @@ namespace group2JavaCompiler.AST
 
         public override void dump(int indent)
         {
-            label(indent, "ArrayType\n");
+            label(indent, "Array\n");
             elementType.dump(indent + 1);
         }
     };
@@ -66,7 +66,7 @@ namespace group2JavaCompiler.AST
 
         public override void dump(int indent)
         {
-            label(indent, "Void\n");
+            label(indent, "VOID\n");
         }
     };
 }
