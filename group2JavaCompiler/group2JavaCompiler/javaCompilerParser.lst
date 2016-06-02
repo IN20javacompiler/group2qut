@@ -1,11 +1,11 @@
 
 // ==========================================================================
-//  GPPG error listing for yacc source file <javaCompilerParser.y - 5/29/2016 4:15:12 PM>
+//  GPPG error listing for yacc source file <javaCompilerParser.y - 03-06-2016 7.32.30 AM>
 // ==========================================================================
 //  Version:  1.5.2
-//  Machine:  PRETTYPC
-//  DateTime: 5/29/2016 4:15:16 PM
-//  UserName: Pretty
+//  Machine:  SUJITHGEETHU
+//  DateTime: 03-06-2016 7.32.33 AM
+//  UserName: Sujith Geethu
 // ==========================================================================
 
 
@@ -44,10 +44,11 @@ public static AST.Class root;
 %type <type> UnannType Result IntegralType NumericType UnannPrimitiveType
 %type <member> ClassMemberDeclaration
 %type <expr> Expression VariableInitializer AssignmentExpression ConditionalExpression ConditionalAndExpression ConditionalOrExpression InclusiveOrExpression ExclusiveOrExpression AndExpression
-%type <expr> Expression EqualityExpression RelationalExpression ShiftExpression AdditiveExpression MultiplicativeExpression UnaryExpression UnaryExpressionNotPlusMinus PostfixExpression
-%type <expr> Primary PrimaryNoNewArray Literal NUMBER
-%type <stmt> Statement BlockStatement  
-%type <compoundStmt> MethodBody Block 
+%type <expr> EqualityExpression RelationalExpression ShiftExpression AdditiveExpression MultiplicativeExpression UnaryExpression UnaryExpressionNotPlusMinus PostfixExpression
+%type <expr> Primary PrimaryNoNewArray Literal 
+%type <stmt> Statement BlockStatement 
+%type <stmt> IfThenElseStatement
+%type <compoundStmt> Block MethodBody
 %type <stmts>  BlockStatements
 %type <method> MethodDeclaration
 %type <classRoot> NormalClassDeclaration
@@ -58,7 +59,6 @@ public static AST.Class root;
 %token PUBLIC PROTECTED PRIVATE ABSTRACT STATIC FINAL SYNCHRONIZED NATIVE STRICTFP
 %token VOID
 %token EXPRESSION_STATEMENT 
-%token MAIN
 %token CLASS
 %token BOOL
 %token INT
@@ -96,13 +96,8 @@ public static AST.Class root;
 %start CompilationUnit
 // YACC Rules
 %%
-// Warning: NonTerminal symbol "NUMBER" is unreachable
-// Error: NonTerminal symbol "NUMBER" has no productions
-// Error: There are 1 non-terminating NonTerminal Symbols
-   //  {NUMBER}
-// Warning: Terminating NUMBER fixes the following size-1 NonTerminal set
-   // {NUMBER}
-// ----------------------------------------------------------------------
+// Warning: NonTerminal symbol "BinaryExpression" is unreachable
+// -------------------------------------------------------------
 
 ClassDeclaration						:NormalClassDeclaration  														{root=$1;}
 										;
@@ -111,7 +106,7 @@ NormalClassDeclaration					:ClassModifiers CLASS IDENTIFIER OP_LT_BRACE ClassMem
 ClassMemberDeclaration					:MethodDeclaration																{$$= new AST.ClassMemberDeclaration($1);}
 										|FieldDeclaration 
 										;
-MethodDeclaration						:MethodModifiers Result IDENTIFIER OP_LEFT_PAR FormalParameterList OP_RIGHT_PAR MethodBody  	{$$ =new AST.Method($2,$3,$5,$7);}
+MethodDeclaration						:MethodModifiers Result IDENTIFIER OP_LEFT_PAR FormalParameterList OP_RIGHT_PAR MethodBody  	{$$ =new AST.Method($2,$3,$7);}
 										;
 MethodModifiers							:MethodModifier MethodModifiers
 										|
@@ -159,8 +154,10 @@ VariableInitializer						:Expression 																	 {$$=$1;}
 										;
 Expression								:AssignmentExpression   														 {$$=$1;}
 										;
+BinaryExpression						:Expression OP_LT Expression													{ $$ = new AST.BinaryExpresion($1,'<',$3);  }
+										;
 AssignmentExpression					:ConditionalExpression 															 {$$=$1;}
-										|ExpressionName OP_ASSIGN Expression   											 
+										|ExpressionName OP_EQU Expression   											 
 										;
 							
 ConditionalExpression					: ConditionalOrExpression   													 {$$=$1;}
@@ -195,12 +192,12 @@ Primary									:PrimaryNoNewArray    															 {$$=$1;}
 										;
 PrimaryNoNewArray						:Literal     																	 {$$=$1;}
 										;
-Literal 								:NUMBER 																 {$$ = new AST.NumberExpression($1);}
+Literal 								:NUMBER 																 		{$$ = new AST.NumberExpression($1);}
 										;
 Statement								:StatementWithoutTrailingSubstatement 
-										|IfThenElseStatement
+										|IfThenElseStatement															{$$=$1;}
 										;
-IfThenElseStatement						:IF OP_LEFT_PAR Expression OP_RIGHT_PAR Statement ELSE Statement  				 
+IfThenElseStatement						:IF OP_LEFT_PAR Expression OP_RIGHT_PAR Statement ELSE Statement  				{$$ = new AST.IfElseStatement($3,$5,$7);}					 
 										;
 StatementWithoutTrailingSubstatement 	:OP_LT_BRACE Statement OP_RT_BRACE  
 										|ExpressionStatement 
@@ -210,7 +207,7 @@ EmptyStatement							:SEMICOLON
 										;
 ExpressionStatement						:StatementExpression SEMICOLON
 										;
-StatementExpression						:ExpressionName OP_ASSIGN Expression
+StatementExpression						:ExpressionName OP_EQU Expression
 										|MethodInvocation
 										;
 ExpressionName							:IDENTIFIER    											{$$=new AST.VariableDeclaratorId($1);}

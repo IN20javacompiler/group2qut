@@ -25,8 +25,7 @@ E:\plt\git\group2\group2JavaCompiler\group2JavaCompiler\bin\Debug\group2JavaComp
 E:\plt\git\group2\group2JavaCompiler\group2JavaCompiler\bin\Debug\group2JavaCompiler.pdb
 E:\plt\git\group2\group2JavaCompiler\group2JavaCompiler\obj\Debug\group2JavaCompiler.csprojResolveAssemblyReference.cache
 G:\QUT\Semester 1 2016\IFN660 - Programming Language Theory\GITHUB\group2\group2JavaCompiler\group2JavaCompiler\bin\Debug\group2JavaCompiler.exe.config
-G:\QUT\Semester 1 2016\IFN660 - Programming Language Theory\GITHUB\group2\group2JavaCompiler\group2JavaCompiler\obj\Debug\group2JavaCompiler.exe
-G:\QUT\Semester 1 2016\IFN660 - Programming Language Theory\GITHUB\group2\group2JavaCompiler\group2JavaCompiler\obj\Debug\group2JavaCompiler.pdb
 G:\QUT\Semester 1 2016\IFN660 - Programming Language Theory\GITHUB\group2\group2JavaCompiler\group2JavaCompiler\bin\Debug\group2JavaCompiler.exe
 G:\QUT\Semester 1 2016\IFN660 - Programming Language Theory\GITHUB\group2\group2JavaCompiler\group2JavaCompiler\bin\Debug\group2JavaCompiler.pdb
-G:\QUT\Semester 1 2016\IFN660 - Programming Language Theory\GITHUB\group2\group2JavaCompiler\group2JavaCompiler\obj\Debug\group2JavaCompiler.csprojResolveAssemblyReference.cache
+G:\QUT\Semester 1 2016\IFN660 - Programming Language Theory\GITHUB\group2\group2JavaCompiler\group2JavaCompiler\obj\Debug\group2JavaCompiler.exe
+G:\QUT\Semester 1 2016\IFN660 - Programming Language Theory\GITHUB\group2\group2JavaCompiler\group2JavaCompiler\obj\Debug\group2JavaCompiler.pdb

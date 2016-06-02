@@ -35,7 +35,8 @@ public static AST.Class root;
 %type <expr> Expression VariableInitializer AssignmentExpression ConditionalExpression ConditionalAndExpression ConditionalOrExpression InclusiveOrExpression ExclusiveOrExpression AndExpression
 %type <expr> EqualityExpression RelationalExpression ShiftExpression AdditiveExpression MultiplicativeExpression UnaryExpression UnaryExpressionNotPlusMinus PostfixExpression
 %type <expr> Primary PrimaryNoNewArray Literal 
-%type <stmt> Statement BlockStatement  
+%type <stmt> Statement BlockStatement 
+%type <stmt> IfThenElseStatement
 %type <compoundStmt> Block MethodBody
 %type <stmts>  BlockStatements
 %type <method> MethodDeclaration
@@ -179,9 +180,9 @@ PrimaryNoNewArray						:Literal     																	 {$$=$1;}
 Literal 								:NUMBER 																 {$$ = new AST.NumberExpression($1);}
 										;
 Statement								:StatementWithoutTrailingSubstatement 
-										|IfThenElseStatement
+										|IfThenElseStatement														{$$=$1;}
 										;
-IfThenElseStatement						:IF OP_LEFT_PAR Expression OP_RIGHT_PAR Statement ELSE Statement  				 
+IfThenElseStatement						:IF OP_LEFT_PAR Expression OP_RIGHT_PAR Statement ELSE Statement  		{$$ = new AST.IfElseStatement($3,$5,$7);}					 
 										;
 StatementWithoutTrailingSubstatement 	:OP_LT_BRACE Statement OP_RT_BRACE  
 										|ExpressionStatement 

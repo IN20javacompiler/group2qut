@@ -1,6 +1,7 @@
-class test{
+class test
+{
 public static void main()
 {
-int x=42;	
+int x=42;
 }
 }

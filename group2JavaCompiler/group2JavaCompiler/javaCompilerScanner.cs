@@ -5,10 +5,10 @@
 //  See accompanying file GPLEXcopyright.rtf.
 //
 //  GPLEX Version:  1.2.2
-//  Machine:  PRETTYPC
-//  DateTime: 5/31/2016 5:08:32 PM
-//  UserName: Pretty
-//  GPLEX input file <javaCompilerScanner.lex - 5/31/2016 5:08:24 PM>
+//  Machine:  SUJITHGEETHU
+//  DateTime: 01-06-2016 7.46.30 AM
+//  UserName: Sujith Geethu
+//  GPLEX input file <javaCompilerScanner.lex - 01-06-2016 7.46.21 AM>
 //  GPLEX frame file <embedded resource>
 //
 //  Option settings: parser, minimize
