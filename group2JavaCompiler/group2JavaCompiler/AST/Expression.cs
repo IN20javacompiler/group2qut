@@ -106,4 +106,19 @@ namespace group2JavaCompiler.AST
            
         }
     };
+        public class CompoundExpression : Expression
+     {
+        List<Expression> expresionList;
+        public CompoundExpression(List<Expression> expresionList)
+        {
+            this.expresionList = expresionList;
+        }
+        public override void dump(int indent)
+        {
+             label(indent, "CompoundExpression\n");
+            foreach (var child in expresionList)
+                child.dump(indent + 1);
+        }
+     };
+
 }

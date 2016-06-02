@@ -37,7 +37,8 @@ public struct ValueType
 	public AST.CompoundStatement compoundStmt;
 	public AST.ClassMemberDeclaration member;
 	public AST.Method method;
-	public AST.Type type;
+    public AST.MethodInvocation methodInvocation;
+    public AST.Type type;
 	public AST.Parameter param;
 	public AST.VariableDeclarator varDeclarator;
 	public AST.VariableDeclaratorId varDeclaratorId;

@@ -38,7 +38,7 @@ public static AST.Class root;
 %type <stmt> Statement BlockStatement  
 %type <compoundStmt> Block MethodBody
 %type <stmts>  BlockStatements
-%type <method> MethodDeclaration MethodInvocation
+%type <method> MethodDeclaration 
 %type <classRoot> NormalClassDeclaration
 %token <String>	 IDENTIFIER 
 %token <num> NUMBER

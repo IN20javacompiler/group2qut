@@ -17,11 +17,11 @@ namespace group2JavaCompiler.AST
         {
         }
 
-        public Parameter(Type type, VariableDeclaratorId id)
+        /*public Parameter(Type type, VariableDeclaratorId id)
         {
             this.id = id;
             this.type = type;
-        }
+        }*/
 
         public Parameter(string modifiers, Type type, VariableDeclaratorId id)
         {
