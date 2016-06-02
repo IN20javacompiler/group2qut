@@ -47,7 +47,13 @@ namespace group2JavaCompiler.AST
             label(indent, "UnannReferenceType\n");
         }
 
-       
+        public class Integerprimitivetype : Type
+        {
+            public override void dump(int indent)
+            {
+                label(indent, "Integer\n");
+            }
+        }
 
     }
 }
