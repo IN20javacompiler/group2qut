@@ -18,6 +18,7 @@ public static AST.Class root;
 	public AST.VariableDeclaratorId varDeclaratorId;
 	public AST.VariableDeclarationExpr varDeclaratorExpr;
 	public AST.Class classRoot;
+	public AST.UnannReferenceType unreftype;
 	public System.Collections.Generic.List<AST.Statement> stmts;
 	public System.Collections.Generic.List<AST.VariableDeclarator> varList;
 	public int num;
@@ -254,7 +255,7 @@ FieldDeclaration						: UnannType VariableDeclaratorList
 
 FieldModifier							:Annotation
 										;
-UnannReferenceType						:UnannArrayType
+UnannReferenceType						:UnannArrayType                                 {$$=new AST.UnannRefrenceType($1);}
 										;
 UnannArrayType							:UnannTypeVariable Dims
 										;

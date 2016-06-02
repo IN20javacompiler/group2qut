@@ -69,6 +69,7 @@
     <Compile Include="AST\Parameter.cs" />
     <Compile Include="AST\Statement.cs" />
     <Compile Include="AST\Type.cs" />
+    <Compile Include="AST\UnannReferenceType.cs" />
     <Compile Include="AST\VariableDeclarator.cs" />
     <Compile Include="AST\VariableDeclaratorId.cs" />
     <Compile Include="javaCompilerParser.cs" />
