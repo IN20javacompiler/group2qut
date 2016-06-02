@@ -13,6 +13,7 @@ public static AST.Class root;
 	public AST.ClassMemberDeclaration member;
 	public AST.Method method;
 	public AST.Type type;
+	public AST.NamedType namedType;
 	public AST.Parameter param;
 	public AST.VariableDeclarator varDeclarator;
 	public AST.VariableDeclaratorId varDeclaratorId;
@@ -26,11 +27,12 @@ public static AST.Class root;
 	
 }
 %type <varDeclarator> VariableDeclarator
-%type <varDeclaratorId> VariableDeclaratorId ExpressionName
+%type <namedType> UnannTypeVariable
+%type <varDeclaratorId> VariableDeclaratorId ExpressionName 
 %type <varList> VariableDeclaratorList
 %type <varDeclaratorExpr> LocalVariableDeclaration
 %type <param> FormalParameterList LastFormalParameter FormalParameter
-%type <type> UnannType Result IntegralType NumericType UnannPrimitiveType
+%type <type> UnannType Result IntegralType NumericType UnannPrimitiveType UnannReferenceType UnannArrayType 
 %type <member> ClassMemberDeclaration
 %type <expr> Expression VariableInitializer AssignmentExpression ConditionalExpression ConditionalAndExpression ConditionalOrExpression InclusiveOrExpression ExclusiveOrExpression AndExpression
 %type <expr> EqualityExpression RelationalExpression ShiftExpression AdditiveExpression MultiplicativeExpression UnaryExpression UnaryExpressionNotPlusMinus PostfixExpression
@@ -92,7 +94,7 @@ NormalClassDeclaration					:ClassModifiers CLASS IDENTIFIER OP_LT_BRACE ClassMem
 ClassMemberDeclaration					:MethodDeclaration																{$$= new AST.ClassMemberDeclaration($1);}
 										|FieldDeclaration 
 										;
-MethodDeclaration						:MethodModifiers Result IDENTIFIER OP_LEFT_PAR FormalParameterList OP_RIGHT_PAR MethodBody  	{$$ =new AST.Method($2,$3,$7);}
+MethodDeclaration						:MethodModifiers Result IDENTIFIER OP_LEFT_PAR FormalParameterList OP_RIGHT_PAR MethodBody  	{$$ =new AST.Method($2,$3,$5,$7);}
 										;
 MethodModifiers							:MethodModifier MethodModifiers
 										|
@@ -107,7 +109,7 @@ LastFormalParameter						:FormalParameter																{$$=$1;}
 										;
 FormalParameter							:UnannType VariableDeclaratorId													{$$=new AST.Parameter($1,$2);}
 										;
-UnannType								:UnannReferenceType
+UnannType								:UnannReferenceType																{$$=$1;}
 										|UnannPrimitiveType 															 {$$=$1;}
 										;
 UnannPrimitiveType						:NumericType 																	 {$$=$1;}
@@ -253,11 +255,11 @@ FieldDeclaration						: UnannType VariableDeclaratorList
 
 FieldModifier							:Annotation
 										;
-UnannReferenceType						:UnannArrayType
+UnannReferenceType						:UnannArrayType							{$$=$1;}								
 										;
-UnannArrayType							:UnannTypeVariable Dims
+UnannArrayType							:UnannTypeVariable Dims				{$$=new AST.ArrayType($1);}
 										;
-UnannTypeVariable						:IDENTIFIER
+UnannTypeVariable						:IDENTIFIER							{$$=new AST.NamedType($1);}
 										;
 
 Dims									:OP_SQ_L_BR OP_SQ_R_BR

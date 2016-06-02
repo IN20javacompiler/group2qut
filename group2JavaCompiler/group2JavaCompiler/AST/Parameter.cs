@@ -40,7 +40,9 @@ namespace group2JavaCompiler.AST
 
         public override void dump(int indent)
         {
-            label(indent, "Parameter declaration :{0}\n");
+            label(indent, "Parameter declaration \n");
+            type.dump(indent + 1);
+            id.dump(indent + 1);
         }
     }
 }

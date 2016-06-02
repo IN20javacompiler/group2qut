@@ -56,7 +56,7 @@ OpArrow			"->"
 
 %%
 
-{Digit}				{ yylval.num = int.Parse(yytext); return (int)Tokens.NUMBER; }
+{Digit}							{ yylval.num = int.Parse(yytext); return (int)Tokens.NUMBER; }
 {Bool}							{ bool.TryParse(yytext, out yylval.Bool); return (int) Tokens.BOOL; }
 {Public}						{ return (int)Tokens.PUBLIC; }
 {Import}						{ return (int)Tokens.IMPORT; }

@@ -13,10 +13,10 @@ namespace group2JavaCompiler
             Parser parser = new Parser(scanner);
             parser.Parse();
             Parser.root.dump(0);
-            var writer = new StreamWriter(filename + ".il");
+          /*  var writer = new StreamWriter(filename + ".il");
             writer.WriteLine("﻿.assembly {0} {{}}",filename);
             Parser.root.gencode(writer);
-            writer.Close();
+            writer.Close();*/
                         /*Class root = new Class("public", "Test",
                              new Method("public static",
                              new NamedType("void"),
