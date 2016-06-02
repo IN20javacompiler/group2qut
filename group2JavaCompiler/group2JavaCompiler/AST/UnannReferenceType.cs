@@ -27,6 +27,21 @@ namespace group2JavaCompiler.AST
             }
         }
 
+        public class Array : Type
+        {
+            NamedType argtype;
+
+            public Array(NamedType argtype)
+            {
+                this.argtype = argtype;
+            }
+
+            public override void dump(int indent)
+            {
+                label(indent, "Array\n");
+            }
+        }
+
             public override void dump(int indent)
         {
             label(indent, "UnannReferenceType\n");
