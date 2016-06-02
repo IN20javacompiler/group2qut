@@ -45,6 +45,25 @@ namespace group2JavaCompiler.AST
            // parameters.dump(indent);
             label(indent + 1, "MethodBody\n");
             body.dump(indent);
+   
         }
+
     }
-}
+    public class MethodInvocation : Method
+    {
+        // private string name;
+
+        /* public MethodInvocation(string name)
+         {
+             this.name = name;
+         }*/
+        public MethodInvocation()
+        {
+
+        }
+        public override void dump(int indent)
+        {
+            label(indent, "MethodInvocation {0}\n");
+        }
+
+    }

@@ -62,7 +62,7 @@ namespace group2JavaCompiler.AST
         {
             label(indent, "IdentifierExpression {0}\n", name);
         }
-    };
+       };
     public class NumberExpression : Expression
     {
         private int value;

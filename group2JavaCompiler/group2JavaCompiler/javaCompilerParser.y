@@ -38,7 +38,7 @@ public static AST.Class root;
 %type <stmt> Statement BlockStatement  
 %type <compoundStmt> Block MethodBody
 %type <stmts>  BlockStatements
-%type <method> MethodDeclaration
+%type <method> MethodDeclaration MethodInvocation
 %type <classRoot> NormalClassDeclaration
 %token <String>	 IDENTIFIER 
 %token <num> NUMBER
@@ -192,11 +192,11 @@ EmptyStatement							:SEMICOLON
 ExpressionStatement						:StatementExpression SEMICOLON
 										;
 StatementExpression						:ExpressionName OP_EQU Expression
-										|MethodInvocation
+										|MethodInvocation										
 										;
 ExpressionName							:IDENTIFIER    											{$$=new AST.VariableDeclaratorId($1);}
 										;
-MethodInvocation						:MethodName OP_LEFT_PAR ArgumentList OP_RIGHT_PAR
+MethodInvocation						:MethodName OP_LEFT_PAR ArgumentList OP_RIGHT_PAR		{$$= new AST.MethodInvocation($1,$3);}
 										;
 MethodName								:SYSTEM OP_DOT OUT OP_DOT PRINTLN
 										;

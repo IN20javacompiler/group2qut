@@ -28,3 +28,4 @@ D:\plt\group2\group2JavaCompiler\group2JavaCompiler\obj\Debug\group2JavaCompiler
 D:\plt\group2\group2JavaCompiler\group2JavaCompiler\obj\Debug\group2JavaCompiler.pdb
 D:\plt\group2\group2JavaCompiler\group2JavaCompiler\bin\Debug\group2JavaCompiler.exe
 D:\plt\group2\group2JavaCompiler\group2JavaCompiler\bin\Debug\group2JavaCompiler.pdb
+D:\plt\group2\group2JavaCompiler\group2JavaCompiler\obj\Debug\group2JavaCompiler.csprojResolveAssemblyReference.cache

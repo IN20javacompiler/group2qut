@@ -3,10 +3,10 @@
 // (see accompanying GPPGcopyright.rtf)
 
 // GPPG version 1.5.2
-// Machine:  PRETTYPC
-// DateTime: 5/31/2016 5:08:36 PM
-// UserName: Pretty
-// Input file <javaCompilerParser.y - 5/31/2016 4:29:56 PM>
+// Machine:  ACER
+// DateTime: 2/06/2016 5:59:29 PM
+// UserName: aa
+// Input file <javaCompilerParser.y - 2/06/2016 5:58:54 PM>
 
 // options: lines gplex
 
@@ -73,11 +73,11 @@ public class ScanObj {
 [GeneratedCodeAttribute( "Gardens Point Parser Generator", "1.5.2")]
 public class Parser: ShiftReduceParser<ValueType, LexLocation>
 {
-  // Verbatim content from javaCompilerParser.y - 5/31/2016 4:29:56 PM
+  // Verbatim content from javaCompilerParser.y - 2/06/2016 5:58:54 PM
 #line 5 "javaCompilerParser.y"
 public static AST.Class root;
 #line default
-  // End verbatim content from javaCompilerParser.y - 5/31/2016 4:29:56 PM
+  // End verbatim content from javaCompilerParser.y - 2/06/2016 5:58:54 PM
 
 #pragma warning disable 649
   private static Dictionary<int, string> aliases;
@@ -95,16 +95,16 @@ public static AST.Class root;
       "AdditiveExpression", "MultiplicativeExpression", "UnaryExpression", "UnaryExpressionNotPlusMinus", 
       "PostfixExpression", "Primary", "PrimaryNoNewArray", "Literal", "Statement", 
       "BlockStatement", "Block", "MethodBody", "BlockStatements", "MethodDeclaration", 
-      "NormalClassDeclaration", "CompilationUnit", "ClassDeclaration", "$accept", 
-      "ClassModifiers", "FieldDeclaration", "MethodModifiers", "MethodModifier", 
+      "MethodInvocation", "NormalClassDeclaration", "CompilationUnit", "ClassDeclaration", 
+      "$accept", "ClassModifiers", "FieldDeclaration", "MethodModifiers", "MethodModifier", 
       "UnannReferenceType", "StatementWithoutTrailingSubstatement", "IfThenElseStatement", 
-      "ExpressionStatement", "EmptyStatement", "StatementExpression", "MethodInvocation", 
-      "MethodName", "ArgumentList", "TypeDeclaration", "ImportDeclaration", "SingleTypeImportDeclaration", 
+      "ExpressionStatement", "EmptyStatement", "StatementExpression", "MethodName", 
+      "ArgumentList", "TypeDeclaration", "ImportDeclaration", "SingleTypeImportDeclaration", 
       "TypeName", "PackageOrTypeName", "ClassModifier", "Annotation", "FieldModifier", 
       "UnannArrayType", "UnannTypeVariable", "Dims", };
 
   static Parser() {
-    states[0] = new State(new int[]{7,133,8,134,9,135,10,136,11,137,12,138,15,139,22,143,18,-85},new int[]{-42,1,-58,3,-43,4,-41,5,-45,6,-63,131,-59,140,-60,142});
+    states[0] = new State(new int[]{7,133,8,134,9,135,10,136,11,137,12,138,15,139,22,143,18,-85},new int[]{-43,1,-58,3,-44,4,-42,5,-46,6,-63,131,-59,140,-60,142});
     states[1] = new State(new int[]{3,2});
     states[2] = new State(-1);
     states[3] = new State(-75);
@@ -113,20 +113,20 @@ public static AST.Class root;
     states[6] = new State(new int[]{18,7});
     states[7] = new State(new int[]{4,8});
     states[8] = new State(new int[]{27,9});
-    states[9] = new State(new int[]{7,118,8,119,9,120,10,121,11,122,12,123,13,115,14,116,15,117,4,105,20,68,16,-8},new int[]{-14,10,-40,12,-47,13,-48,107,-46,124,-9,125,-49,58,-66,59,-67,60,-13,65,-12,66,-11,67,-65,127,-64,130});
+    states[9] = new State(new int[]{7,118,8,119,9,120,10,121,11,122,12,123,13,115,14,116,15,117,4,105,20,68,16,-8},new int[]{-14,10,-40,12,-48,13,-49,107,-47,124,-9,125,-50,58,-66,59,-67,60,-13,65,-12,66,-11,67,-65,127,-64,130});
     states[10] = new State(new int[]{28,11});
     states[11] = new State(-3);
     states[12] = new State(-4);
     states[13] = new State(new int[]{16,106},new int[]{-10,14});
     states[14] = new State(new int[]{4,15});
     states[15] = new State(new int[]{23,16});
-    states[16] = new State(new int[]{4,105,20,68,24,-11},new int[]{-6,17,-7,101,-8,102,-9,103,-49,58,-66,59,-67,60,-13,65,-12,66,-11,67});
+    states[16] = new State(new int[]{4,105,20,68,24,-11},new int[]{-6,17,-7,101,-8,102,-9,103,-50,58,-66,59,-67,60,-13,65,-12,66,-11,67});
     states[17] = new State(new int[]{24,18});
     states[18] = new State(new int[]{27,21},new int[]{-38,19,-37,20});
     states[19] = new State(-6);
     states[20] = new State(-19);
     states[21] = new State(-22,new int[]{-39,22});
-    states[22] = new State(new int[]{28,23,4,64,20,68,27,71,31,86,29,92,34,94},new int[]{-36,24,-5,25,-9,27,-49,58,-66,59,-67,60,-13,65,-12,66,-11,67,-35,69,-50,70,-52,74,-54,75,-3,77,-55,80,-56,81,-53,91,-51,93});
+    states[22] = new State(new int[]{28,23,4,64,20,68,27,71,31,86,29,92,34,94},new int[]{-36,24,-5,25,-9,27,-50,58,-66,59,-67,60,-13,65,-12,66,-11,67,-35,69,-51,70,-53,74,-55,75,-3,77,-41,80,-56,81,-54,91,-52,93});
     states[23] = new State(-20);
     states[24] = new State(-21);
     states[25] = new State(new int[]{29,26});
@@ -175,7 +175,7 @@ public static AST.Class root;
     states[68] = new State(-18);
     states[69] = new State(-24);
     states[70] = new State(-52);
-    states[71] = new State(new int[]{27,71,4,56,31,86,29,92,34,94},new int[]{-35,72,-50,70,-52,74,-54,75,-3,77,-55,80,-56,81,-53,91,-51,93});
+    states[71] = new State(new int[]{27,71,4,56,31,86,29,92,34,94},new int[]{-35,72,-51,70,-53,74,-55,75,-3,77,-41,80,-56,81,-54,91,-52,93});
     states[72] = new State(new int[]{28,73});
     states[73] = new State(-55);
     states[74] = new State(-56);
@@ -201,9 +201,9 @@ public static AST.Class root;
     states[94] = new State(new int[]{23,95});
     states[95] = new State(new int[]{5,52,4,56},new int[]{-15,96,-17,34,-18,35,-20,36,-19,37,-21,38,-22,39,-23,40,-24,41,-25,42,-26,43,-27,44,-28,45,-29,46,-30,47,-31,48,-32,49,-33,50,-34,51,-3,53});
     states[96] = new State(new int[]{24,97});
-    states[97] = new State(new int[]{27,71,4,56,31,86,29,92,34,94},new int[]{-35,98,-50,70,-52,74,-54,75,-3,77,-55,80,-56,81,-53,91,-51,93});
+    states[97] = new State(new int[]{27,71,4,56,31,86,29,92,34,94},new int[]{-35,98,-51,70,-53,74,-55,75,-3,77,-41,80,-56,81,-54,91,-52,93});
     states[98] = new State(new int[]{35,99});
-    states[99] = new State(new int[]{27,71,4,56,31,86,29,92,34,94},new int[]{-35,100,-50,70,-52,74,-54,75,-3,77,-55,80,-56,81,-53,91,-51,93});
+    states[99] = new State(new int[]{27,71,4,56,31,86,29,92,34,94},new int[]{-35,100,-51,70,-53,74,-55,75,-3,77,-41,80,-56,81,-54,91,-52,93});
     states[100] = new State(-54);
     states[101] = new State(-10);
     states[102] = new State(-12);
@@ -211,7 +211,7 @@ public static AST.Class root;
     states[104] = new State(-13);
     states[105] = new State(-104);
     states[106] = new State(-9);
-    states[107] = new State(new int[]{7,109,8,110,9,111,10,112,11,113,12,114,13,115,14,116,15,117,16,-8},new int[]{-47,108,-48,107});
+    states[107] = new State(new int[]{7,109,8,110,9,111,10,112,11,113,12,114,13,115,14,116,15,117,16,-8},new int[]{-48,108,-49,107});
     states[108] = new State(-7);
     states[109] = new State(-66);
     states[110] = new State(-67);
@@ -231,11 +231,11 @@ public static AST.Class root;
     states[124] = new State(-5);
     states[125] = new State(-28,new int[]{-4,126});
     states[126] = new State(new int[]{4,57,28,-99},new int[]{-1,29,-2,30});
-    states[127] = new State(new int[]{4,105,20,68},new int[]{-9,128,-49,58,-66,59,-67,60,-13,65,-12,66,-11,67});
+    states[127] = new State(new int[]{4,105,20,68},new int[]{-9,128,-50,58,-66,59,-67,60,-13,65,-12,66,-11,67});
     states[128] = new State(-28,new int[]{-4,129});
     states[129] = new State(new int[]{4,57,28,-100},new int[]{-1,29,-2,30});
     states[130] = new State(-101);
-    states[131] = new State(new int[]{7,133,8,134,9,135,10,136,11,137,12,138,15,139,18,-85},new int[]{-45,132,-63,131});
+    states[131] = new State(new int[]{7,133,8,134,9,135,10,136,11,137,12,138,15,139,18,-85},new int[]{-46,132,-63,131});
     states[132] = new State(-84);
     states[133] = new State(-86);
     states[134] = new State(-87);
@@ -244,7 +244,7 @@ public static AST.Class root;
     states[137] = new State(-90);
     states[138] = new State(-91);
     states[139] = new State(-92);
-    states[140] = new State(new int[]{7,133,8,134,9,135,10,136,11,137,12,138,15,139,3,-76,18,-85},new int[]{-58,141,-43,4,-41,5,-45,6,-63,131});
+    states[140] = new State(new int[]{7,133,8,134,9,135,10,136,11,137,12,138,15,139,3,-76,18,-85},new int[]{-58,141,-44,4,-42,5,-46,6,-63,131});
     states[141] = new State(-77);
     states[142] = new State(-78);
     states[143] = new State(new int[]{4,148},new int[]{-61,144,-62,145});
@@ -256,20 +256,20 @@ public static AST.Class root;
 
     for (int sNo = 0; sNo < states.Length; sNo++) states[sNo].number = sNo;
 
-    rules[1] = new Rule(-44, new int[]{-42,3});
-    rules[2] = new Rule(-43, new int[]{-41});
-    rules[3] = new Rule(-41, new int[]{-45,18,4,27,-14,28});
+    rules[1] = new Rule(-45, new int[]{-43,3});
+    rules[2] = new Rule(-44, new int[]{-42});
+    rules[3] = new Rule(-42, new int[]{-46,18,4,27,-14,28});
     rules[4] = new Rule(-14, new int[]{-40});
-    rules[5] = new Rule(-14, new int[]{-46});
-    rules[6] = new Rule(-40, new int[]{-47,-10,4,23,-6,24,-38});
-    rules[7] = new Rule(-47, new int[]{-48,-47});
-    rules[8] = new Rule(-47, new int[]{});
+    rules[5] = new Rule(-14, new int[]{-47});
+    rules[6] = new Rule(-40, new int[]{-48,-10,4,23,-6,24,-38});
+    rules[7] = new Rule(-48, new int[]{-49,-48});
+    rules[8] = new Rule(-48, new int[]{});
     rules[9] = new Rule(-10, new int[]{16});
     rules[10] = new Rule(-6, new int[]{-7});
     rules[11] = new Rule(-6, new int[]{});
     rules[12] = new Rule(-7, new int[]{-8});
     rules[13] = new Rule(-8, new int[]{-9,-2});
-    rules[14] = new Rule(-9, new int[]{-49});
+    rules[14] = new Rule(-9, new int[]{-50});
     rules[15] = new Rule(-9, new int[]{-13});
     rules[16] = new Rule(-13, new int[]{-12});
     rules[17] = new Rule(-12, new int[]{-11});
@@ -307,40 +307,40 @@ public static AST.Class root;
     rules[49] = new Rule(-32, new int[]{-33});
     rules[50] = new Rule(-33, new int[]{-34});
     rules[51] = new Rule(-34, new int[]{5});
-    rules[52] = new Rule(-35, new int[]{-50});
-    rules[53] = new Rule(-35, new int[]{-51});
-    rules[54] = new Rule(-51, new int[]{34,23,-15,24,-35,35,-35});
-    rules[55] = new Rule(-50, new int[]{27,-35,28});
-    rules[56] = new Rule(-50, new int[]{-52});
-    rules[57] = new Rule(-50, new int[]{-53});
-    rules[58] = new Rule(-53, new int[]{29});
-    rules[59] = new Rule(-52, new int[]{-54,29});
-    rules[60] = new Rule(-54, new int[]{-3,46,-15});
-    rules[61] = new Rule(-54, new int[]{-55});
+    rules[52] = new Rule(-35, new int[]{-51});
+    rules[53] = new Rule(-35, new int[]{-52});
+    rules[54] = new Rule(-52, new int[]{34,23,-15,24,-35,35,-35});
+    rules[55] = new Rule(-51, new int[]{27,-35,28});
+    rules[56] = new Rule(-51, new int[]{-53});
+    rules[57] = new Rule(-51, new int[]{-54});
+    rules[58] = new Rule(-54, new int[]{29});
+    rules[59] = new Rule(-53, new int[]{-55,29});
+    rules[60] = new Rule(-55, new int[]{-3,46,-15});
+    rules[61] = new Rule(-55, new int[]{-41});
     rules[62] = new Rule(-3, new int[]{4});
-    rules[63] = new Rule(-55, new int[]{-56,23,-57,24});
+    rules[63] = new Rule(-41, new int[]{-56,23,-57,24});
     rules[64] = new Rule(-56, new int[]{31,30,32,30,33});
     rules[65] = new Rule(-57, new int[]{-15});
-    rules[66] = new Rule(-48, new int[]{7});
-    rules[67] = new Rule(-48, new int[]{8});
-    rules[68] = new Rule(-48, new int[]{9});
-    rules[69] = new Rule(-48, new int[]{10});
-    rules[70] = new Rule(-48, new int[]{11});
-    rules[71] = new Rule(-48, new int[]{12});
-    rules[72] = new Rule(-48, new int[]{13});
-    rules[73] = new Rule(-48, new int[]{14});
-    rules[74] = new Rule(-48, new int[]{15});
-    rules[75] = new Rule(-42, new int[]{-58});
-    rules[76] = new Rule(-42, new int[]{-59});
-    rules[77] = new Rule(-42, new int[]{-59,-58});
+    rules[66] = new Rule(-49, new int[]{7});
+    rules[67] = new Rule(-49, new int[]{8});
+    rules[68] = new Rule(-49, new int[]{9});
+    rules[69] = new Rule(-49, new int[]{10});
+    rules[70] = new Rule(-49, new int[]{11});
+    rules[71] = new Rule(-49, new int[]{12});
+    rules[72] = new Rule(-49, new int[]{13});
+    rules[73] = new Rule(-49, new int[]{14});
+    rules[74] = new Rule(-49, new int[]{15});
+    rules[75] = new Rule(-43, new int[]{-58});
+    rules[76] = new Rule(-43, new int[]{-59});
+    rules[77] = new Rule(-43, new int[]{-59,-58});
     rules[78] = new Rule(-59, new int[]{-60});
     rules[79] = new Rule(-60, new int[]{22,-61});
     rules[80] = new Rule(-61, new int[]{-62,30,4});
     rules[81] = new Rule(-62, new int[]{-62,30,4});
     rules[82] = new Rule(-62, new int[]{4});
-    rules[83] = new Rule(-58, new int[]{-43});
-    rules[84] = new Rule(-45, new int[]{-63,-45});
-    rules[85] = new Rule(-45, new int[]{});
+    rules[83] = new Rule(-58, new int[]{-44});
+    rules[84] = new Rule(-46, new int[]{-63,-46});
+    rules[85] = new Rule(-46, new int[]{});
     rules[86] = new Rule(-63, new int[]{7});
     rules[87] = new Rule(-63, new int[]{8});
     rules[88] = new Rule(-63, new int[]{9});
@@ -354,10 +354,10 @@ public static AST.Class root;
     rules[96] = new Rule(-64, new int[]{10});
     rules[97] = new Rule(-64, new int[]{11});
     rules[98] = new Rule(-64, new int[]{12});
-    rules[99] = new Rule(-46, new int[]{-9,-4});
-    rules[100] = new Rule(-46, new int[]{-65,-9,-4});
+    rules[99] = new Rule(-47, new int[]{-9,-4});
+    rules[100] = new Rule(-47, new int[]{-65,-9,-4});
     rules[101] = new Rule(-65, new int[]{-64});
-    rules[102] = new Rule(-49, new int[]{-66});
+    rules[102] = new Rule(-50, new int[]{-66});
     rules[103] = new Rule(-66, new int[]{-67,-68});
     rules[104] = new Rule(-67, new int[]{4});
     rules[105] = new Rule(-68, new int[]{25,26});
@@ -595,6 +595,11 @@ public static AST.Class root;
       case 62: // ExpressionName -> IDENTIFIER
 #line 197 "javaCompilerParser.y"
                                                {CurrentSemanticValue.varDeclaratorId=new AST.VariableDeclaratorId(ValueStack[ValueStack.Depth-1].String);}
+#line default
+        break;
+      case 63: // MethodInvocation -> MethodName, OP_LEFT_PAR, ArgumentList, OP_RIGHT_PAR
+#line 199 "javaCompilerParser.y"
+                                                                         {CurrentSemanticValue.method= new AST.MethodInvocation(ValueStack[ValueStack.Depth-4],ValueStack[ValueStack.Depth-2]);}
 #line default
         break;
     }
