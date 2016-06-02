@@ -12,7 +12,22 @@ namespace group2JavaCompiler.AST
         {
         }
 
-        public override void dump(int indent)
+        public class NamedType : Type
+        {
+            private string name;
+
+            public NamedType(string name)
+            {
+                this.name = name;
+            }
+
+            public override void dump(int indent)
+            {
+                label(indent, "NamedType {0}\n", name);
+            }
+        }
+
+            public override void dump(int indent)
         {
             label(indent, "UnannReferenceType\n");
         }
