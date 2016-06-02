@@ -23,3 +23,9 @@ E:\plt\git\group2\group2JavaCompiler\group2JavaCompiler\obj\Debug\group2JavaComp
 E:\plt\git\group2\group2JavaCompiler\group2JavaCompiler\obj\Debug\group2JavaCompiler.pdb
 E:\plt\git\group2\group2JavaCompiler\group2JavaCompiler\bin\Debug\group2JavaCompiler.exe
 E:\plt\git\group2\group2JavaCompiler\group2JavaCompiler\bin\Debug\group2JavaCompiler.pdb
+D:\plt\group2\group2JavaCompiler\group2JavaCompiler\bin\Debug\group2JavaCompiler.exe.config
+D:\plt\group2\group2JavaCompiler\group2JavaCompiler\obj\Debug\group2JavaCompiler.exe
+D:\plt\group2\group2JavaCompiler\group2JavaCompiler\obj\Debug\group2JavaCompiler.pdb
+D:\plt\group2\group2JavaCompiler\group2JavaCompiler\bin\Debug\group2JavaCompiler.exe
+D:\plt\group2\group2JavaCompiler\group2JavaCompiler\bin\Debug\group2JavaCompiler.pdb
+D:\plt\group2\group2JavaCompiler\group2JavaCompiler\obj\Debug\group2JavaCompiler.csprojResolveAssemblyReference.cache
