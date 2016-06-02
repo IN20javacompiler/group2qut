@@ -26,6 +26,8 @@ public static AST.Class root;
   	public bool Bool;
 	
 }
+
+%type <classmodi> ClassModifier
 %type <varDeclarator> VariableDeclarator
 %type <varDeclaratorId> VariableDeclaratorId ExpressionName
 %type <varList> VariableDeclaratorList
