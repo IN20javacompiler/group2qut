@@ -4,11 +4,11 @@
 
 // GPPG version 1.5.2
 // Machine:  INTEL-PC
-// DateTime: 06/02/2016 12:11:37 PM
+// DateTime: 06/02/2016 7:41:51 PM
 // UserName: Intel
-// Input file <javaCompilerParser.y - 06/02/2016 12:02:53 PM>
+// Input file <javaCompilerParser.y - 06/02/2016 7:41:28 PM>
 
-// options: lines gplex
+// options: lines
 
 using System;
 using System.Collections.Generic;
@@ -43,6 +43,7 @@ public struct ValueType
 	public AST.VariableDeclaratorId varDeclaratorId;
 	public AST.VariableDeclarationExpr varDeclaratorExpr;
 	public AST.Class classRoot;
+	public AST.UnannReferenceType unannref;
 	public System.Collections.Generic.List<AST.Statement> stmts;
 	public System.Collections.Generic.List<AST.VariableDeclarator> varList;
 	public int num;
@@ -51,33 +52,14 @@ public struct ValueType
 	
 }
 #line default
-// Abstract base class for GPLEX scanners
-[GeneratedCodeAttribute( "Gardens Point Parser Generator", "1.5.2")]
-public abstract class ScanBase : AbstractScanner<ValueType,LexLocation> {
-  private LexLocation __yylloc = new LexLocation();
-  public override LexLocation yylloc { get { return __yylloc; } set { __yylloc = value; } }
-  protected virtual bool yywrap() { return true; }
-}
-
-// Utility class for encapsulating token information
-[GeneratedCodeAttribute( "Gardens Point Parser Generator", "1.5.2")]
-public class ScanObj {
-  public int token;
-  public ValueType yylval;
-  public LexLocation yylloc;
-  public ScanObj( int t, ValueType val, LexLocation loc ) {
-    this.token = t; this.yylval = val; this.yylloc = loc;
-  }
-}
-
 [GeneratedCodeAttribute( "Gardens Point Parser Generator", "1.5.2")]
 public class Parser: ShiftReduceParser<ValueType, LexLocation>
 {
-  // Verbatim content from javaCompilerParser.y - 06/02/2016 12:02:53 PM
+  // Verbatim content from javaCompilerParser.y - 06/02/2016 7:41:28 PM
 #line 5 "javaCompilerParser.y"
 public static AST.Class root;
 #line default
-  // End verbatim content from javaCompilerParser.y - 06/02/2016 12:02:53 PM
+  // End verbatim content from javaCompilerParser.y - 06/02/2016 7:41:28 PM
 
 #pragma warning disable 649
   private static Dictionary<int, string> aliases;
@@ -376,225 +358,230 @@ public static AST.Class root;
     switch (action)
     {
       case 2: // ClassDeclaration -> NormalClassDeclaration
-#line 88 "javaCompilerParser.y"
+#line 89 "javaCompilerParser.y"
                                                              {root=ValueStack[ValueStack.Depth-1].classRoot;}
 #line default
         break;
       case 3: // NormalClassDeclaration -> ClassModifiers, CLASS, IDENTIFIER, OP_LT_BRACE, 
               //                           ClassMemberDeclaration, OP_RT_BRACE
-#line 90 "javaCompilerParser.y"
+#line 91 "javaCompilerParser.y"
                                                                                                            {CurrentSemanticValue.classRoot =new AST.Class(ValueStack[ValueStack.Depth-4].String,ValueStack[ValueStack.Depth-2].member);}
 #line default
         break;
       case 4: // ClassMemberDeclaration -> MethodDeclaration
-#line 92 "javaCompilerParser.y"
+#line 93 "javaCompilerParser.y"
                                                              {CurrentSemanticValue.member= new AST.ClassMemberDeclaration(ValueStack[ValueStack.Depth-1].method);}
 #line default
         break;
       case 6: // MethodDeclaration -> MethodModifiers, Result, IDENTIFIER, OP_LEFT_PAR, 
               //                      FormalParameterList, OP_RIGHT_PAR, MethodBody
-#line 95 "javaCompilerParser.y"
+#line 96 "javaCompilerParser.y"
                                                                                                                     {CurrentSemanticValue.method =new AST.Method(ValueStack[ValueStack.Depth-6].type,ValueStack[ValueStack.Depth-5].String,ValueStack[ValueStack.Depth-1].compoundStmt);}
 #line default
         break;
       case 9: // Result -> VOID
-#line 101 "javaCompilerParser.y"
+#line 102 "javaCompilerParser.y"
                                        {CurrentSemanticValue.type= new AST.VoidType();}
 #line default
         break;
       case 10: // FormalParameterList -> LastFormalParameter
-#line 103 "javaCompilerParser.y"
+#line 104 "javaCompilerParser.y"
                                                             {CurrentSemanticValue.param=ValueStack[ValueStack.Depth-1].param;}
 #line default
         break;
       case 12: // LastFormalParameter -> FormalParameter
-#line 106 "javaCompilerParser.y"
+#line 107 "javaCompilerParser.y"
                                                          {CurrentSemanticValue.param=ValueStack[ValueStack.Depth-1].param;}
 #line default
         break;
       case 13: // FormalParameter -> UnannType, VariableDeclaratorId
-#line 108 "javaCompilerParser.y"
+#line 109 "javaCompilerParser.y"
                                                                   {CurrentSemanticValue.param=new AST.Parameter(ValueStack[ValueStack.Depth-2].type,ValueStack[ValueStack.Depth-1].varDeclaratorId);}
 #line default
         break;
       case 15: // UnannType -> UnannPrimitiveType
-#line 111 "javaCompilerParser.y"
+#line 112 "javaCompilerParser.y"
                                               {CurrentSemanticValue.type=ValueStack[ValueStack.Depth-1].type;}
 #line default
         break;
       case 16: // UnannPrimitiveType -> NumericType
-#line 113 "javaCompilerParser.y"
+#line 114 "javaCompilerParser.y"
                                                        {CurrentSemanticValue.type=ValueStack[ValueStack.Depth-1].type;}
 #line default
         break;
       case 17: // NumericType -> IntegralType
-#line 115 "javaCompilerParser.y"
+#line 116 "javaCompilerParser.y"
                                                   {CurrentSemanticValue.type=ValueStack[ValueStack.Depth-1].type;}
 #line default
         break;
       case 18: // IntegralType -> INT
-#line 117 "javaCompilerParser.y"
+#line 118 "javaCompilerParser.y"
                                               {CurrentSemanticValue.type=new AST.IntType();}
 #line default
         break;
       case 19: // MethodBody -> Block
-#line 119 "javaCompilerParser.y"
+#line 120 "javaCompilerParser.y"
                                              {CurrentSemanticValue.compoundStmt=ValueStack[ValueStack.Depth-1].compoundStmt;}
 #line default
         break;
       case 20: // Block -> OP_LT_BRACE, BlockStatements, OP_RT_BRACE
-#line 121 "javaCompilerParser.y"
+#line 122 "javaCompilerParser.y"
                                                                   {CurrentSemanticValue.compoundStmt = new AST.CompoundStatement(ValueStack[ValueStack.Depth-2].stmts); }
 #line default
         break;
       case 21: // BlockStatements -> BlockStatements, BlockStatement
-#line 123 "javaCompilerParser.y"
+#line 124 "javaCompilerParser.y"
                                                                    {CurrentSemanticValue.stmts = ValueStack[ValueStack.Depth-2].stmts; CurrentSemanticValue.stmts.Add(ValueStack[ValueStack.Depth-1].stmt); }
 #line default
         break;
       case 22: // BlockStatements -> /* empty */
-#line 124 "javaCompilerParser.y"
+#line 125 "javaCompilerParser.y"
                                { CurrentSemanticValue.stmts = new System.Collections.Generic.List<AST.Statement>(); }
 #line default
         break;
       case 23: // BlockStatement -> LocalVariableDeclaration, SEMICOLON
-#line 126 "javaCompilerParser.y"
+#line 127 "javaCompilerParser.y"
                                                                       {CurrentSemanticValue.stmt = new AST.ExpressionStatement(ValueStack[ValueStack.Depth-2].varDeclaratorExpr);}
 #line default
         break;
       case 25: // VariableDeclaratorId -> IDENTIFIER
-#line 129 "javaCompilerParser.y"
+#line 130 "javaCompilerParser.y"
                                                        {CurrentSemanticValue.varDeclaratorId=new AST.VariableDeclaratorId(ValueStack[ValueStack.Depth-1].String);}
 #line default
         break;
       case 26: // LocalVariableDeclaration -> UnannType, VariableDeclaratorList
-#line 131 "javaCompilerParser.y"
+#line 132 "javaCompilerParser.y"
                                                                            {CurrentSemanticValue.varDeclaratorExpr=new AST.VariableDeclarationExpr(ValueStack[ValueStack.Depth-2].type,ValueStack[ValueStack.Depth-1].varList);}
 #line default
         break;
       case 27: // VariableDeclaratorList -> VariableDeclaratorList, VariableDeclarator
-#line 133 "javaCompilerParser.y"
+#line 134 "javaCompilerParser.y"
                                                                                {CurrentSemanticValue.varList = ValueStack[ValueStack.Depth-2].varList; CurrentSemanticValue.varList.Add(ValueStack[ValueStack.Depth-1].varDeclarator); }
 #line default
         break;
       case 28: // VariableDeclaratorList -> /* empty */
-#line 134 "javaCompilerParser.y"
+#line 135 "javaCompilerParser.y"
                                { CurrentSemanticValue.varList = new System.Collections.Generic.List<AST.VariableDeclarator>(); }
 #line default
         break;
       case 29: // VariableDeclarator -> VariableDeclaratorId
-#line 136 "javaCompilerParser.y"
+#line 137 "javaCompilerParser.y"
                                                             {CurrentSemanticValue.varDeclarator=new AST.VariableDeclarator(ValueStack[ValueStack.Depth-1].varDeclaratorId);}
 #line default
         break;
       case 30: // VariableDeclarator -> VariableDeclaratorId, OP_EQU, VariableInitializer
-#line 137 "javaCompilerParser.y"
+#line 138 "javaCompilerParser.y"
                                                                    {CurrentSemanticValue.varDeclarator=new AST.VariableDeclarator(ValueStack[ValueStack.Depth-3].varDeclaratorId,ValueStack[ValueStack.Depth-1].expr);}
 #line default
         break;
       case 31: // VariableInitializer -> Expression
-#line 139 "javaCompilerParser.y"
+#line 140 "javaCompilerParser.y"
                                                        {CurrentSemanticValue.expr=ValueStack[ValueStack.Depth-1].expr;}
 #line default
         break;
       case 32: // Expression -> AssignmentExpression
-#line 141 "javaCompilerParser.y"
+#line 142 "javaCompilerParser.y"
                                                          {CurrentSemanticValue.expr=ValueStack[ValueStack.Depth-1].expr;}
 #line default
         break;
       case 33: // AssignmentExpression -> ConditionalExpression
-#line 143 "javaCompilerParser.y"
+#line 144 "javaCompilerParser.y"
                                                                 {CurrentSemanticValue.expr=ValueStack[ValueStack.Depth-1].expr;}
 #line default
         break;
       case 35: // ConditionalExpression -> ConditionalOrExpression
-#line 147 "javaCompilerParser.y"
+#line 148 "javaCompilerParser.y"
                                                                     {CurrentSemanticValue.expr=ValueStack[ValueStack.Depth-1].expr;}
 #line default
         break;
       case 36: // ConditionalOrExpression -> ConditionalAndExpression
-#line 149 "javaCompilerParser.y"
+#line 150 "javaCompilerParser.y"
                                                                        {CurrentSemanticValue.expr=ValueStack[ValueStack.Depth-1].expr;}
 #line default
         break;
       case 37: // ConditionalAndExpression -> InclusiveOrExpression
-#line 151 "javaCompilerParser.y"
+#line 152 "javaCompilerParser.y"
                                                                       {CurrentSemanticValue.expr=ValueStack[ValueStack.Depth-1].expr;}
 #line default
         break;
       case 38: // InclusiveOrExpression -> ExclusiveOrExpression
-#line 153 "javaCompilerParser.y"
+#line 154 "javaCompilerParser.y"
                                                                     {CurrentSemanticValue.expr=ValueStack[ValueStack.Depth-1].expr;}
 #line default
         break;
       case 39: // ExclusiveOrExpression -> AndExpression
-#line 155 "javaCompilerParser.y"
+#line 156 "javaCompilerParser.y"
                                                                {CurrentSemanticValue.expr=ValueStack[ValueStack.Depth-1].expr;}
 #line default
         break;
       case 40: // AndExpression -> EqualityExpression
-#line 157 "javaCompilerParser.y"
+#line 158 "javaCompilerParser.y"
                                                            {CurrentSemanticValue.expr=ValueStack[ValueStack.Depth-1].expr;}
 #line default
         break;
       case 41: // EqualityExpression -> RelationalExpression
-#line 159 "javaCompilerParser.y"
+#line 160 "javaCompilerParser.y"
                                                                 {CurrentSemanticValue.expr=ValueStack[ValueStack.Depth-1].expr;}
 #line default
         break;
       case 42: // RelationalExpression -> ShiftExpression
-#line 161 "javaCompilerParser.y"
+#line 162 "javaCompilerParser.y"
                                                              {CurrentSemanticValue.expr=ValueStack[ValueStack.Depth-1].expr;}
 #line default
         break;
       case 43: // ShiftExpression -> AdditiveExpression
-#line 163 "javaCompilerParser.y"
+#line 164 "javaCompilerParser.y"
                                                             {CurrentSemanticValue.expr=ValueStack[ValueStack.Depth-1].expr;}
 #line default
         break;
       case 44: // AdditiveExpression -> MultiplicativeExpression
-#line 165 "javaCompilerParser.y"
+#line 166 "javaCompilerParser.y"
                                                                   {CurrentSemanticValue.expr=ValueStack[ValueStack.Depth-1].expr;}
 #line default
         break;
       case 45: // MultiplicativeExpression -> UnaryExpression
-#line 167 "javaCompilerParser.y"
+#line 168 "javaCompilerParser.y"
                                                                 {CurrentSemanticValue.expr=ValueStack[ValueStack.Depth-1].expr;}
 #line default
         break;
       case 46: // UnaryExpression -> UnaryExpressionNotPlusMinus
-#line 169 "javaCompilerParser.y"
+#line 170 "javaCompilerParser.y"
                                                                    {CurrentSemanticValue.expr=ValueStack[ValueStack.Depth-1].expr;}
 #line default
         break;
       case 47: // UnaryExpressionNotPlusMinus -> PostfixExpression
-#line 171 "javaCompilerParser.y"
+#line 172 "javaCompilerParser.y"
                                                                         {CurrentSemanticValue.expr=ValueStack[ValueStack.Depth-1].expr;}
 #line default
         break;
       case 48: // PostfixExpression -> Primary
-#line 173 "javaCompilerParser.y"
+#line 174 "javaCompilerParser.y"
                                                      {CurrentSemanticValue.expr=ValueStack[ValueStack.Depth-1].expr;}
 #line default
         break;
       case 49: // Primary -> PrimaryNoNewArray
-#line 175 "javaCompilerParser.y"
+#line 176 "javaCompilerParser.y"
                                                       {CurrentSemanticValue.expr=ValueStack[ValueStack.Depth-1].expr;}
 #line default
         break;
       case 50: // PrimaryNoNewArray -> Literal
-#line 177 "javaCompilerParser.y"
+#line 178 "javaCompilerParser.y"
                                                       {CurrentSemanticValue.expr=ValueStack[ValueStack.Depth-1].expr;}
 #line default
         break;
       case 51: // Literal -> NUMBER
-#line 179 "javaCompilerParser.y"
+#line 180 "javaCompilerParser.y"
                                          {CurrentSemanticValue.expr = new AST.NumberExpression(ValueStack[ValueStack.Depth-1].num);}
 #line default
         break;
       case 62: // ExpressionName -> IDENTIFIER
-#line 197 "javaCompilerParser.y"
+#line 198 "javaCompilerParser.y"
                                                {CurrentSemanticValue.varDeclaratorId=new AST.VariableDeclaratorId(ValueStack[ValueStack.Depth-1].String);}
+#line default
+        break;
+      case 102: // UnannReferenceType -> UnannArrayType
+#line 257 "javaCompilerParser.y"
+                                                                        {CurrentSemanticValue=new AST.UnannRefrenceType(ValueStack[ValueStack.Depth-1]);}
 #line default
         break;
     }
@@ -611,7 +598,7 @@ public static AST.Class root;
         return CharToString((char)terminal);
   }
 
-#line 266 "javaCompilerParser.y"
+#line 267 "javaCompilerParser.y"
 
 public Parser(Scanner scanner) : base(scanner)
 {

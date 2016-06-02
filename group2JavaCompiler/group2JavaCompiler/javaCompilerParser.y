@@ -65,6 +65,8 @@ public static AST.Class root;
 %token PRINTLN
 %token IF
 %token ELSE
+%token OP_INC
+%token OP_DEC
 %token OP_ARROW
 //left associated operands
 %left OP_ASSIGN
@@ -79,7 +81,9 @@ public static AST.Class root;
 %left OP_LT
 %left OP_GT
 %left OP_GT_EQ
-%left OP_LT_EQ 
+%left OP_LT_EQ
+%left OP_INC
+%left OP_DEC 
 %left OP_DOUBLE_QUOTE
 
 %start CompilationUnit
