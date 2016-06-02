@@ -15,7 +15,7 @@ namespace group2JavaCompiler
             Parser.root.dump(0);
             var writer = new StreamWriter(filename + ".il");
             writer.WriteLine("﻿.assembly {0} {{}}",filename);
-            Parser.root.gencode(writer);
+            //Parser.root.gencode(writer);
             writer.Close();
                         /*Class root = new Class("public", "Test",
                              new Method("public static",

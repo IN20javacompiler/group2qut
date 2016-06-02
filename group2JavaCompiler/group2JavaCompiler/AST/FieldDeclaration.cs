@@ -12,8 +12,8 @@ namespace group2JavaCompiler.AST
         string modifier, name;
         List<VariableDeclarationStatement> variableList;
         Type type;
-        VariableDeclaratorId varDeclaratorId;
-        
+        List<VariableDeclarator> varList;
+
         public FieldDeclaration(string modifier, Type type, VariableDeclarationStatement variable)
         {
             this.modifier = modifier;
@@ -26,10 +26,10 @@ namespace group2JavaCompiler.AST
             this.type = type;
             this.variableList = variable;
         }
-        public FieldDeclaration(Type type, VariableDeclaratorId varDeclaratorId)
+        public FieldDeclaration(Type type, List<VariableDeclarator> varList)
         {
             this.type = type;
-            this.varDeclaratorId = varDeclaratorId;
+            this.varList = varList;
         }
         public override void dump(int indent)
         {
