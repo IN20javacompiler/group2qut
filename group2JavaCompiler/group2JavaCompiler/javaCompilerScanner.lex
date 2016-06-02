@@ -52,6 +52,7 @@ SemiColon		";"
 OpDoubleQuote	"\""
 If				if
 Else			else
+opInc           "++"
 OpArrow			"->"
 
 %%
