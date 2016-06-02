@@ -232,7 +232,7 @@ PackageOrTypeName						:PackageOrTypeName OP_DOT IDENTIFIER
 TypeDeclaration							:ClassDeclaration
 										;	
 																							
-ClassModifiers							: ClassModifier ClassModifiers							{$$=new AST.ClassModifier($1);}
+ClassModifiers							: ClassModifier ClassModifiers							
 										|
 										;
 ClassModifier							:PUBLIC 
@@ -241,7 +241,7 @@ ClassModifier							:PUBLIC
 										|ABSTRACT
 										|STATIC
 										|FINAL 
-										|STRICTFP
+										|STRICTFP															{$$=new AST.ClassModifier($1);}
 										;
 Annotation								:PUBLIC 
 										|PROTECTED
