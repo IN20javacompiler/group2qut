@@ -18,6 +18,7 @@ public static AST.Class root;
 	public AST.VariableDeclaratorId varDeclaratorId;
 	public AST.VariableDeclarationExpr varDeclaratorExpr;
 	public AST.Class classRoot;
+	public AST.FieldDeclaration fieldDeclaration;
 	public System.Collections.Generic.List<AST.Statement> stmts;
 	public System.Collections.Generic.List<AST.VariableDeclarator> varList;
 	public int num;
@@ -40,6 +41,8 @@ public static AST.Class root;
 %type <stmts>  BlockStatements
 %type <method> MethodDeclaration
 %type <classRoot> NormalClassDeclaration
+%type <fieldDeclaration> 
+
 %token <String>	 IDENTIFIER 
 %token <num> NUMBER
 %token <Bool>	 BOOL_LITERAL
@@ -87,7 +90,7 @@ public static AST.Class root;
 
 ClassDeclaration						:NormalClassDeclaration  														{root=$1;}
 										;
-NormalClassDeclaration					:ClassModifiers CLASS IDENTIFIER OP_LT_BRACE ClassMemberDeclaration OP_RT_BRACE	{$$ =new AST.Class($3,$5);}
+NormalClassDeclaration					:ClassModifiers CLASS IDENTIFIER OP_LT_BRACE ClassMemberDeclaration OP_RT_BRACE	 {$$ =new AST.Class($3,$5);}
 										;
 ClassMemberDeclaration					:MethodDeclaration																{$$= new AST.ClassMemberDeclaration($1);}
 										|FieldDeclaration 
@@ -229,10 +232,10 @@ PackageOrTypeName						:PackageOrTypeName OP_DOT IDENTIFIER
 TypeDeclaration							:ClassDeclaration
 										;	
 																							
-ClassModifiers							: ClassModifier ClassModifiers
-										|
+ClassModifiers							: ClassModifier  ClassModifiers		
+										| 	
 										;
-ClassModifier							:PUBLIC 
+ClassModifier							:PUBLIC						
 										|PROTECTED
 										|PRIVATE
 										|ABSTRACT
@@ -247,7 +250,7 @@ Annotation								:PUBLIC
 										|STATIC
 										|FINAL 
 										;
-FieldDeclaration						: UnannType VariableDeclaratorList 
+FieldDeclaration						: UnannType VariableDeclaratorList								{$$= new AST.FieldDeclaration($1,$2);}
 										|FieldModifier UnannType VariableDeclaratorList 
 										;
 
