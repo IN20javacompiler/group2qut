@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AST\Class.cs" />
+    <Compile Include="AST\ClassModifier.cs" />
     <Compile Include="AST\Expression.cs" />
     <Compile Include="AST\FieldDeclaration.cs" />
     <Compile Include="AST\Method.cs" />

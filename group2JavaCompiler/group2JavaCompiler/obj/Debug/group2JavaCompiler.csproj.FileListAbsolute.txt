@@ -24,3 +24,16 @@ E:\plt\git\group2\group2JavaCompiler\group2JavaCompiler\obj\Debug\group2JavaComp
 E:\plt\git\group2\group2JavaCompiler\group2JavaCompiler\bin\Debug\group2JavaCompiler.exe
 E:\plt\git\group2\group2JavaCompiler\group2JavaCompiler\bin\Debug\group2JavaCompiler.pdb
 E:\plt\git\group2\group2JavaCompiler\group2JavaCompiler\obj\Debug\group2JavaCompiler.csprojResolveAssemblyReference.cache
+D:\plt4\gitFinal\group2\group2JavaCompiler\group2JavaCompiler\bin\Debug\group2JavaCompiler.exe.config
+D:\plt4\gitFinal\group2\group2JavaCompiler\group2JavaCompiler\obj\Debug\group2JavaCompiler.exe
+D:\plt4\gitFinal\group2\group2JavaCompiler\group2JavaCompiler\obj\Debug\group2JavaCompiler.pdb
+D:\plt4\gitFinal\group2\group2JavaCompiler\group2JavaCompiler\bin\Debug\group2JavaCompiler.exe
+D:\plt4\gitFinal\group2\group2JavaCompiler\group2JavaCompiler\bin\Debug\group2JavaCompiler.pdb
+D:\plt4\gitFinal\group2\group2JavaCompiler\group2JavaCompiler\bin\Debug\mscorlib.dll
+D:\plt4\gitFinal\group2\group2JavaCompiler\group2JavaCompiler\bin\Debug\System.Net.Http.dll
+D:\plt4\gitFinal\group2\group2JavaCompiler\group2JavaCompiler\bin\Debug\System.Net.Http.xml
+D:\plt4\gitFinal\group2\group2JavaCompiler\group2JavaCompiler\bin\Debug\normidna.nlp
+D:\plt4\gitFinal\group2\group2JavaCompiler\group2JavaCompiler\bin\Debug\normnfc.nlp
+D:\plt4\gitFinal\group2\group2JavaCompiler\group2JavaCompiler\bin\Debug\normnfd.nlp
+D:\plt4\gitFinal\group2\group2JavaCompiler\group2JavaCompiler\bin\Debug\normnfkc.nlp
+D:\plt4\gitFinal\group2\group2JavaCompiler\group2JavaCompiler\bin\Debug\normnfkd.nlp

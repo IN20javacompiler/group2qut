@@ -18,6 +18,7 @@ public static AST.Class root;
 	public AST.VariableDeclaratorId varDeclaratorId;
 	public AST.VariableDeclarationExpr varDeclaratorExpr;
 	public AST.Class classRoot;
+	public AST.ClassModifier classmodi;
 	public System.Collections.Generic.List<AST.Statement> stmts;
 	public System.Collections.Generic.List<AST.VariableDeclarator> varList;
 	public int num;
@@ -229,7 +230,7 @@ PackageOrTypeName						:PackageOrTypeName OP_DOT IDENTIFIER
 TypeDeclaration							:ClassDeclaration
 										;	
 																							
-ClassModifiers							: ClassModifier ClassModifiers
+ClassModifiers							: ClassModifier ClassModifiers							{$$=new AST.ClassModifier($1);}
 										|
 										;
 ClassModifier							:PUBLIC 

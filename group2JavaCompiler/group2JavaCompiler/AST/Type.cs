@@ -15,6 +15,9 @@ namespace group2JavaCompiler.AST
     public class NamedType : Type
     {
         private string name;
+        public NamedType()
+        { 
+        }
 
         public NamedType(string name)
         {
