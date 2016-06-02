@@ -40,6 +40,7 @@ public static AST.Class root;
 %type <stmts>  BlockStatements
 %type <method> MethodDeclaration
 %type <classRoot> NormalClassDeclaration
+
 %token <String>	 IDENTIFIER 
 %token <num> NUMBER
 %token <Bool>	 BOOL_LITERAL
