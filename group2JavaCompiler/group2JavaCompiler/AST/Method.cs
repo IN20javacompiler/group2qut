@@ -27,7 +27,8 @@ namespace group2JavaCompiler.AST
             //this.modifier = modifiers;
             this.type = type;
             this.name = name;
-            this.parameters = parameters;
+              this.parameters = parameters;
+            this.body = body;
         }
         public Method(Type type, String name, CompoundStatement body)
        
