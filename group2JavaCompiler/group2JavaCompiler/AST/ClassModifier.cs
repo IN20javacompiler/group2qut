@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace group2JavaCompiler.AST
 {
-    class ClassModifier
+    class ClassModifier : Node
     {
+        public ClassModifier()
+        {
+        }
+
+        public override void dump(int indent)
+        {
+            label(indent, "Class Modifier\n");
+        }
     }
 }
