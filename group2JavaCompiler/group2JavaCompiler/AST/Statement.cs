@@ -9,12 +9,12 @@ namespace group2JavaCompiler.AST {
         private Expression cond;
         private Statement thenStmt, elseStmt;
 
-        public IfStatement(Expression cond, Statement thenStmt, Statement elseStmt)
+        /*public IfStatement(Expression cond, Statement thenStmt, Statement elseStmt)
         {
             this.cond = cond;
             this.thenStmt = thenStmt;
             this.elseStmt = elseStmt;
-        }
+        }*/
 
         public override void dump(int indent)
         {
