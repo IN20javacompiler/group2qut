@@ -16,10 +16,10 @@ namespace group2JavaCompiler.AST
     {
         private string name;
 
-        public NamedType(string name)
+       /* public NamedType(string name)
         {
             this.name = name;
-        }
+        }*/
 
         public override void dump(int indent)
         {
