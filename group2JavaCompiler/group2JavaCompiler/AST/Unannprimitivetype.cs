@@ -4,17 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace group2JavaCompiler.AST
+namespace group2JavaCompileU.AST
 {
-    class Unannprimitivetype : Node
-    {
-    }
 
-    public class Unannprimitivetype : Type
+    class unapr : Node
     {
-        public override void dump(int indent)
+        public class Integerprimitivetype : Type
         {
-            label(indent, "IntType\n");
+            public override void dump(int indent)
+            {
+                label(indent, "Integer\n");
+            }
         }
     }
 }
