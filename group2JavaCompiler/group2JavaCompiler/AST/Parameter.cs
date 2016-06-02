@@ -13,15 +13,15 @@ namespace group2JavaCompiler.AST
         string modifiers;
         private bool isVarArgs;
 
-       /* public Parameter()
+        public Parameter()
         {
-        }*/
+        }
 
-        public Parameter(Type type, VariableDeclaratorId id)
+        /*public Parameter(Type type, VariableDeclaratorId id)
         {
             this.id = id;
             this.type = type;
-        }
+        }*/
 
         public Parameter(string modifiers, Type type, VariableDeclaratorId id)
         {
