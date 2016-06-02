@@ -27,7 +27,7 @@ Class			class
 Bool			bool
 Int				int
 String			string
-OpAdd			+
+OpAdd			"+"
 OpMinus			"-"
 OpMul			"*"
 OpDiv			"/"
@@ -52,7 +52,8 @@ SemiColon		";"
 OpDoubleQuote	"\""
 If				if
 Else			else
-opInc           "++"
+OpInc           "++"
+OpDec           "--"
 OpArrow			"->"
 
 %%
@@ -90,6 +91,7 @@ OpArrow			"->"
 {OpGtEq}						{ return (int) Tokens.OP_GT_EQ; }
 {OpLtEq}						{ return (int) Tokens.OP_LT_EQ; }
 {OpInc}                         { return (int) Tokens.OP_INC; }
+{OpDec}                         { return (int) Tokens.OP_DEC; }
 {LeftPar}						{ return (int) Tokens.OP_LEFT_PAR; }
 {RigthPar}						{ return (int) Tokens.OP_RIGHT_PAR; }
 {OpSqLBr}						{ return (int) Tokens.OP_SQ_L_BR; }
