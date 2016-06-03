@@ -28,4 +28,18 @@ namespace group2JavaCompiler.AST
             label(indent, "Identifier {0}\n", name);
         }
     };
+    public class keyword : Expression
+    {
+        private string kword;
+
+        public keyword(string kword)
+        {
+            this.kword = kword;
+        }
+
+        public override void dump(int indent)
+        {
+            label(indent, "Keyword {0}\n",kword);
+        }
+    }
 }
