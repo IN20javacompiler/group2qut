@@ -46,17 +46,14 @@ namespace group2JavaCompiler.AST
     {
         private string pofixexp;
 
-        public postfixexpression(string postFixexpression)
+        public postfixexpression(string pofixexp)
         {
-            this.postFixexpression = postFixexpression; 
+            this.pofixexp = pofixexp; 
         }
 
         public override void dump(int indent)
         {
-            label(indent, "PostFixExpression {0}\n", postFixexpression);
+            label(indent, "PostFixExpression {0}\n", pofixexp);
         }
     }
-
-
-
 }
