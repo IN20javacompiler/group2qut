@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace group2JavaCompiler.AST
 {
-    class PostFixExpression
+    class PostFixExpression : Node
     {
+        public override void dump(int indent)
+        {
+            label(indent, "PostFixExpression\n");
+        }
     }
 }
