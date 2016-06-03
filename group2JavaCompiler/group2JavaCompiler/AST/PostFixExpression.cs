@@ -13,4 +13,19 @@ namespace group2JavaCompiler.AST
             label(indent, "PostFixExpression\n");
         }
     }
+
+    public class IdenExp : Expression
+    {
+        private string name;
+
+        public IdenExp(string name)
+        {
+            this.name = name;
+        }
+
+        public override void dump(int indent)
+        {
+            label(indent, "Identifier {0}\n", name);
+        }
+    };
 }
