@@ -1,3 +1,14 @@
+
+// ==========================================================================
+//  GPPG error listing for yacc source file <TestJavaCompilerParser.y - 6/3/2016 4:46:16 PM>
+// ==========================================================================
+//  Version:  1.5.2
+//  Machine:  HARSH
+//  DateTime: 6/3/2016 4:46:28 PM
+//  UserName: Iamharsh
+// ==========================================================================
+
+
 %namespace TestJavaCompiler
 
 
@@ -43,6 +54,9 @@
 %start CompilationUnit
 
 ClassDeclaration						:NormalClassDeclaration  	
+//^^^^^^^^^^^^^^
+// Error: Syntax error, unexpected ident
+// -------------------------------------
 										;
 NormalClassDeclaration					:ClassModifiers CLASS IDENTIFIER OP_LT_BRACE ClassMemberDeclaration OP_RT_BRACE
 										;
@@ -195,6 +209,12 @@ PackageOrTypeName						:PackageOrTypeName OP_DOT IDENTIFIER
 %%
 
 public Parser(Scanner scanner) : base(scanner)
+//----------^^--------------^^------^^------^^
+// Error: This character is invalid in this context
+// Error: This character is invalid in this context
+// Error: This character is invalid in this context
+// Error: This character is invalid in this context
+// ------------------------------------------------
 {
 }  
 
@@ -212,4 +232,6 @@ public Parser(Scanner scanner) : base(scanner)
 
 
 
+
+// ==========================================================================
 
