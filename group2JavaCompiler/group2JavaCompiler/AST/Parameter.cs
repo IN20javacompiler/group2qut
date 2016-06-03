@@ -15,7 +15,7 @@ namespace group2JavaCompiler.AST
         public void gencode(StreamWriter codewriter)
         {
             type.gencode(codewriter);
-           // id.gencode(codewriter)
+            id.gencode(codewriter);
         }
         public Parameter()
         {

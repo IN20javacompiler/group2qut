@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.IO;
 namespace group2JavaCompiler.AST
 {
     public class VariableDeclaratorId : Node
@@ -11,7 +11,10 @@ namespace group2JavaCompiler.AST
         private String name;
 
         private int arrayCount;
-
+        public void gencode(StreamWriter codewriter)
+        {
+            codewriter.Write(name);
+        }
         public VariableDeclaratorId()
         {
         }

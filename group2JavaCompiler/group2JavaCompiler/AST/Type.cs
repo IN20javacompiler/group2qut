@@ -30,7 +30,7 @@ namespace group2JavaCompiler.AST
 
         public override void gencode(StreamWriter codewriter)
         {
-            codewriter.WriteLine("{0}",name);
+            codewriter.Write(name);
         }
     };
     public class IntType : Type
@@ -42,7 +42,7 @@ namespace group2JavaCompiler.AST
 
         public override void gencode(StreamWriter codewriter)
         {
-            throw new NotImplementedException();
+            codewriter.Write(".int\t");
         }
     };
 
@@ -76,7 +76,8 @@ namespace group2JavaCompiler.AST
 
         public override void gencode(StreamWriter codewriter)
         {
-            codewriter.WriteLine("Array");
+            elementType.gencode(codewriter);
+            codewriter.Write("[]");
         }
     };
     public class VoidType : Type

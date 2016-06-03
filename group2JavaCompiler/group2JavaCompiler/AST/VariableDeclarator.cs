@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.IO;
 namespace group2JavaCompiler.AST
 {
     public class VariableDeclarator : Node
@@ -25,8 +25,16 @@ namespace group2JavaCompiler.AST
         {
             //label(indent, "Variable Declaration\n");
             id.dump(indent);
+
             init.dump(indent);
 
+        }
+        public void gencode(StreamWriter codewriter)
+        {
+            id.gencode(codewriter);
+            codewriter.Write("=");
+            init.gencode(codewriter);
+            codewriter.WriteLine(";");
         }
     }
 }

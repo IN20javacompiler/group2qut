@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 namespace group2JavaCompiler.AST { 
     public abstract class Statement : Node
     {
-
+        public abstract void gencode(StreamWriter codewriter);
     }
     public class IfStatement : Statement
     {
@@ -23,6 +25,11 @@ namespace group2JavaCompiler.AST {
             thenStmt.dump(indent + 1, "then");
             elseStmt.dump(indent + 1, "else");
         }
+
+        public override void gencode(StreamWriter codewriter)
+        {
+            throw new NotImplementedException();
+        }
     };
 
    
@@ -41,6 +48,11 @@ namespace group2JavaCompiler.AST {
             label(indent, "VariableDeclaration {0}\n", name);
             type.dump(indent + 1);
         }
+
+        public override void gencode(StreamWriter codewriter)
+        {
+            throw new NotImplementedException();
+        }
     };
     public class VariableDeclarationList : Statement
     {
@@ -57,7 +69,12 @@ namespace group2JavaCompiler.AST {
             foreach (var child in name)
                 child.dump(indent + 1);
         }
-       };
+
+        public override void gencode(StreamWriter codewriter)
+        {
+            throw new NotImplementedException();
+        }
+    };
     public class ExpressionStatement : Statement
     {
         private Expression expr;
@@ -71,6 +88,11 @@ namespace group2JavaCompiler.AST {
         {
             label(indent, "ExpressionStatement\n");
             expr.dump(indent);
+        }
+
+        public override void gencode(StreamWriter codewriter)
+        {
+            expr.gencode(codewriter);
         }
     };
     public class CompoundStatement : Statement
@@ -87,6 +109,12 @@ namespace group2JavaCompiler.AST {
             label(indent, "CompoundStatement\n");
             foreach (var child in stmts)
                 child.dump(indent);
+        }
+
+        public override void gencode(StreamWriter codewriter)
+        {
+            foreach (var child in stmts)
+                child.gencode(codewriter);
         }
     };
     public class VariableDeclarationStatement : Statement
@@ -109,6 +137,11 @@ namespace group2JavaCompiler.AST {
             name.dump(indent + 2);
             value.dump(indent + 2);
         }
+
+        public override void gencode(StreamWriter codewriter)
+        {
+            throw new NotImplementedException();
+        }
     };
     public class IfThenElseStatement : Statement
     {
@@ -128,6 +161,11 @@ namespace group2JavaCompiler.AST {
             cond.dump(indent + 1, "cond");
             thenStmt.dump(indent + 1, "then");
             elseStmt.dump(indent + 1, "else");
+        }
+
+        public override void gencode(StreamWriter codewriter)
+        {
+            throw new NotImplementedException();
         }
     };
  }

@@ -43,9 +43,8 @@ namespace group2JavaCompiler.AST
             codewriter.Write("(");
             parameters.gencode(codewriter);
             codewriter.Write(")");
-            // { 0} {1}({2})", type,name,parameters);
             codewriter.WriteLine("{");
-            //member.gencode(codewriter);
+            body.gencode(codewriter);
             codewriter.WriteLine("}");
         }
 

@@ -3,15 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.IO;
 namespace group2JavaCompiler.AST
 {
     public abstract class Expression : Node
     {
-       /* void Dump()
-        {
-            // using Reflection
-        } */
+        public abstract void gencode(StreamWriter codewriter);
     }
     public class AssignExpression : Expression
     {
@@ -28,6 +25,11 @@ namespace group2JavaCompiler.AST
             label(indent, "AssignmentExpression\n");
             lhs.dump(indent + 1, "lhs");
             rhs.dump(indent + 1, "rhs");
+        }
+
+        public override void gencode(StreamWriter codewriter)
+        {
+            throw new NotImplementedException();
         }
     };
     public class BinaryExpression : Expression
@@ -48,6 +50,11 @@ namespace group2JavaCompiler.AST
             lhs.dump(indent + 1, "lhs");
             rhs.dump(indent + 1, "rhs");
         }
+
+        public override void gencode(StreamWriter codewriter)
+        {
+            throw new NotImplementedException();
+        }
     };
     public class IdentifierExpression : Expression
     {
@@ -62,6 +69,11 @@ namespace group2JavaCompiler.AST
         {
             label(indent, "IdentifierExpression {0}\n", name);
         }
+
+        public override void gencode(StreamWriter codewriter)
+        {
+            throw new NotImplementedException();
+        }
     };
     public class NumberExpression : Expression
     {
@@ -73,6 +85,11 @@ namespace group2JavaCompiler.AST
         public override void dump(int indent)
         {
             label(indent, "NumberExpression {0}\n", value);
+        }
+
+        public override void gencode(StreamWriter codewriter)
+        {
+            codewriter.Write(value);
         }
     };
     public class VariableDeclarationExpr : Expression
@@ -105,6 +122,13 @@ namespace group2JavaCompiler.AST
                 child.dump(indent + 1);
         }
            
+        }
+
+        public override void gencode(StreamWriter codewriter)
+        {
+            type.gencode(codewriter);
+            foreach (var child in vars)
+                child.gencode(codewriter);
         }
     };
 }
