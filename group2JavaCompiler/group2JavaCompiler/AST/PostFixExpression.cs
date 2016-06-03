@@ -41,5 +41,22 @@ namespace group2JavaCompiler.AST
         {
             label(indent, "Keyword {0}\n",kword);
         }
+    };
+    public class postfixexpression : Expression
+    {
+        private string pofixexp;
+
+        public postfixexpression(string postFixexpression)
+        {
+            this.postFixexpression = postFixexpression; 
+        }
+
+        public override void dump(int indent)
+        {
+            label(indent, "PostFixExpression {0}\n", postFixexpression);
+        }
     }
+
+
+
 }
