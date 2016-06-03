@@ -1,4 +1,4 @@
-%namespace group2JavaCompiler
+%namespace TestJavaCompiler
 
 %output=javaCompilerParser.cs
 %{
@@ -66,9 +66,6 @@ public static AST.Class root;
 %token OUT
 %token PRINTLN
 %token WHILE
-%token ELSE
-%token OP_ARROW
-//left associated operands
 %left OP_ASSIGN
 %left OP_ADD OP_MINUS
 %left OP_MUL OP_DIV 
@@ -85,7 +82,7 @@ public static AST.Class root;
 %left OP_DOUBLE_QUOTE
 
 %start CompilationUnit
-// YACC Rules
+
 %%
 
 ClassDeclaration						:NormalClassDeclaration  														{root=$1;}

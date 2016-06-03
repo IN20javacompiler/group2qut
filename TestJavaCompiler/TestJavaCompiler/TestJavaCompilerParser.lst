@@ -1,13 +1,20 @@
 
 // ==========================================================================
-//  GPPG error listing for yacc source file <TestJavaCompilerParser.y - 6/3/2016 6:15:35 PM>
+//  GPPG error listing for yacc source file <TestJavaCompilerParser.y - 6/3/2016 6:27:33 PM>
 // ==========================================================================
 //  Version:  1.5.2
 //  Machine:  HARSH
-//  DateTime: 6/3/2016 6:15:37 PM
+//  DateTime: 6/3/2016 6:28:11 PM
 //  UserName: Iamharsh
 // ==========================================================================
 
+
+%namespace TestJavaCompiler
+
+%output=TestjavaCompilerParser.cs
+%{
+
+%}
 
 %namespace TestJavaCompiler
 

@@ -4,9 +4,9 @@
 
 // GPPG version 1.5.2
 // Machine:  HARSH
-// DateTime: 6/3/2016 6:20:08 PM
+// DateTime: 6/3/2016 6:26:16 PM
 // UserName: Iamharsh
-// Input file <TestJavaCompilerParser.y - 6/3/2016 6:20:04 PM>
+// Input file <TestJavaCompilerParser.y - 6/3/2016 6:24:55 PM>
 
 // options: lines
 
@@ -17,7 +17,7 @@ using System.Globalization;
 using System.Text;
 using QUT.Gppg;
 
-namespace group2JavaCompiler
+namespace TestJavaCompiler
 {
 public enum Tokens {error=2,EOF=3,IDENTIFIER=4,NUMBER=5,BOOL_LITERAL=6,
     PUBLIC=7,PROTECTED=8,PRIVATE=9,ABSTRACT=10,STATIC=11,FINAL=12,
@@ -55,11 +55,11 @@ public struct ValueType
 [GeneratedCodeAttribute( "Gardens Point Parser Generator", "1.5.2")]
 public class Parser: ShiftReduceParser<ValueType, LexLocation>
 {
-  // Verbatim content from TestJavaCompilerParser.y - 6/3/2016 6:20:04 PM
+  // Verbatim content from TestJavaCompilerParser.y - 6/3/2016 6:24:55 PM
 #line 5 "TestJavaCompilerParser.y"
 public static AST.Class root;
 #line default
-  // End verbatim content from TestJavaCompilerParser.y - 6/3/2016 6:20:04 PM
+  // End verbatim content from TestJavaCompilerParser.y - 6/3/2016 6:24:55 PM
 
 #pragma warning disable 649
   private static Dictionary<int, string> aliases;
