@@ -1,3 +1,14 @@
+
+// ==========================================================================
+//  GPLEX error listing for lex source file <TestJavaCompilerScanner.y>
+// ==========================================================================
+//  Version:  1.2.2
+//  Machine:  HARSH
+//  DateTime: 6/3/2016 10:33:26 AM
+//  UserName: Iamharsh
+// ==========================================================================
+
+
 %namespace TestJavaCompiler
 
 %visibility public
@@ -14,9 +25,6 @@ Public      		public
 Static      		static
 Void        		void
 Class			class
-Bool			bool
-Int				int
-String			string
 While			while
 OpAdd			+
 OpMinus			"-"
@@ -45,12 +53,21 @@ OpDoubleQuote		"\""
 %%
 {Digit}							{ yylval.num = int.Parse(yytext); return (int)Tokens.NUMBER; }
 {Bool}							{ bool.TryParse(yytext, out yylval.Bool); return (int) Tokens.BOOL; }
+//^^^
+// Error: Unknown lexical category <Bool> 
+// ---------------------------------------
 {Public}						{ return (int)Tokens.PUBLIC; }
 {Import}						{ return (int)Tokens.IMPORT; }
 {Void}							{ return (int)Tokens.VOID; }
 {Class}							{ return (int)Tokens.CLASS; }
 {Int}							{ return (int) Tokens.INT; }
+//^^
+// Error: Unknown lexical category <Int> 
+// --------------------------------------
 {String}						{ return (int) Tokens.STRING; }
+//^^^^^
+// Error: Unknown lexical category <String> 
+// -----------------------------------------
 {OpAdd}							{ return (int) Tokens.OP_ADD; }
 {OpMinus}						{ return (int) Tokens.OP_MINUS; }
 {OpMul}							{ return (int) Tokens.OP_MUL; }
@@ -83,3 +100,5 @@ public override void yyerror( string format, params object[] args )
 {
 Console.Error.WriteLine(format, args); 
 }
+// ==========================================================================
+
