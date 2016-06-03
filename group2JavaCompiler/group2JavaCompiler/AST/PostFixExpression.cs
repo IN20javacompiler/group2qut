@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace group2JavaCompiler.AST
 {
@@ -12,6 +13,8 @@ namespace group2JavaCompiler.AST
         {
             label(indent, "PostFixExpression\n");
         }
+
+        public override void codegeneration(StreamWriter codewriter);
     }
 
     public class IdenExp : Expression
