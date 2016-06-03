@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.IO;
 namespace group2JavaCompiler.AST
 {
 
     public abstract class Type : Node
     {
+        public abstract void gencode(StreamWriter codewriter);
+       
 
     }
 
@@ -25,12 +27,22 @@ namespace group2JavaCompiler.AST
         {
             label(indent, "Type {0}\n", name);
         }
+
+        public override void gencode(StreamWriter codewriter)
+        {
+            codewriter.WriteLine(name);
+        }
     };
     public class IntType : Type
     {
         public override void dump(int indent)
         {
             label(indent, "INT\n");
+        }
+
+        public override void gencode(StreamWriter codewriter)
+        {
+            throw new NotImplementedException();
         }
     };
 
@@ -40,6 +52,11 @@ namespace group2JavaCompiler.AST
         public override void dump(int indent)
         {
             label(indent, "BOOLEAN\n");
+        }
+
+        public override void gencode(StreamWriter codewriter)
+        {
+            throw new NotImplementedException();
         }
     };
     public class ArrayType : Type
@@ -56,6 +73,11 @@ namespace group2JavaCompiler.AST
             label(indent, "Array\n");
             elementType.dump(indent + 1);
         }
+
+        public override void gencode(StreamWriter codewriter)
+        {
+            throw new NotImplementedException();
+        }
     };
     public class VoidType : Type
     {
@@ -63,7 +85,11 @@ namespace group2JavaCompiler.AST
         {
             
         }
+        public override void gencode(StreamWriter codewriter)
+        {
+            codewriter.Write("void ");
 
+        }
         public override void dump(int indent)
         {
             label(indent, "VOID\n");

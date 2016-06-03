@@ -18,13 +18,13 @@ namespace group2JavaCompiler.AST
             this.name = name;
             this.member = member;
         }
-       /* public void gencode(StreamWriter codewriter)
+       public void gencode(StreamWriter codewriter)
         {
             codewriter.WriteLine(".class private {0} extends[mscorlib]System.Object",name);
             codewriter.WriteLine("{");
-            //member.gencode(codewriter);
+            member.gencode(codewriter);
             codewriter.WriteLine("}");
-        }*/
+        }
         public override void dump(int indent)
         {
             label(indent, "Class Declaration \n");
@@ -42,6 +42,11 @@ namespace group2JavaCompiler.AST
         public ClassMemberDeclaration(Method method)
         {
             this.method = method;
+        }
+        public void gencode(StreamWriter codewriter)
+        {
+             method.gencode(codewriter);
+            
         }
         public override void dump(int indent)
         {

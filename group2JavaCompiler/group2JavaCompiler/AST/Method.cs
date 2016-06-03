@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.IO;
 namespace group2JavaCompiler.AST
 {
     public class Method : Node
@@ -13,8 +13,7 @@ namespace group2JavaCompiler.AST
         public VariableDeclarationStatement stmt;
         public Parameter parameters;
         public CompoundStatement body;
-              
-        public Method(Type type, String name)
+                public Method(Type type, String name)
         {
            // this.modifier = modifiers;
             this.type = type;
@@ -35,6 +34,19 @@ namespace group2JavaCompiler.AST
             this.name = name;
             this.parameters = parameters;
             this.body = body;
+        }
+        public void gencode(StreamWriter codewriter)
+        {
+            codewriter.Write(".method public static ");
+            type.gencode(codewriter);
+            codewriter.Write(name);
+            codewriter.Write("(");
+            parameters.gencode(codewriter);
+            codewriter.Write(")");
+            // { 0} {1}({2})", type,name,parameters);
+            codewriter.WriteLine("{");
+            //member.gencode(codewriter);
+            codewriter.WriteLine("}");
         }
 
         public override void dump(int indent)

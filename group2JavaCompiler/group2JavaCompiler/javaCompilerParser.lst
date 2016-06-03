@@ -1,10 +1,10 @@
 
 // ==========================================================================
-//  GPPG error listing for yacc source file <javaCompilerParser.y - 6/2/2016 2:43:21 PM>
+//  GPPG error listing for yacc source file <javaCompilerParser.y - 6/2/2016 7:08:44 PM>
 // ==========================================================================
 //  Version:  1.5.2
 //  Machine:  PRETTYPC
-//  DateTime: 6/2/2016 2:43:25 PM
+//  DateTime: 6/2/2016 7:10:05 PM
 //  UserName: Pretty
 // ==========================================================================
 
@@ -32,16 +32,14 @@ public static AST.Class root;
 	public AST.Class classRoot;
 	public System.Collections.Generic.List<AST.Statement> stmts;
 	public System.Collections.Generic.List<AST.VariableDeclarator> varList;
+	public System.Collections.Generic.List<String> stringList;
 	public int num;
     public string String;
   	public bool Bool;
 	
 }
 %type <varDeclarator> VariableDeclarator
-%type namedType UnannTypeVariable
-//---^^^^^^^^^^
-// Error: Syntax error, unexpected ident, expecting '<'
-// ----------------------------------------------------
+%type <namedType> UnannTypeVariable
 %type <varDeclaratorId> VariableDeclaratorId ExpressionName 
 %type <varList> VariableDeclaratorList
 %type <varDeclaratorExpr> LocalVariableDeclaration
@@ -56,11 +54,10 @@ public static AST.Class root;
 %type <stmts>  BlockStatements
 %type <method> MethodDeclaration
 %type <classRoot> NormalClassDeclaration
-%token <String>	 IDENTIFIER 
+%token <String>	 IDENTIFIER PUBLIC PROTECTED PRIVATE ABSTRACT STATIC FINAL SYNCHRONIZED NATIVE STRICTFP 
 %token <num> NUMBER
 %token <Bool>	 BOOL_LITERAL
-
-%token PUBLIC PROTECTED PRIVATE ABSTRACT STATIC FINAL SYNCHRONIZED NATIVE STRICTFP
+%token <stringList> ClassModifiers
 %token VOID
 %token EXPRESSION_STATEMENT 
 %token CLASS
@@ -103,7 +100,7 @@ public static AST.Class root;
 
 ClassDeclaration						:NormalClassDeclaration  														{root=$1;}
 										;
-NormalClassDeclaration					:ClassModifiers CLASS IDENTIFIER OP_LT_BRACE ClassMemberDeclaration OP_RT_BRACE	{$$ =new AST.Class($3,$5);}
+NormalClassDeclaration					:ClassModifiers CLASS IDENTIFIER OP_LT_BRACE ClassMemberDeclaration OP_RT_BRACE	{$$ =new AST.Class($1,$3,$5);}
 										;
 ClassMemberDeclaration					:MethodDeclaration																{$$= new AST.ClassMemberDeclaration($1);}
 										|FieldDeclaration 
@@ -131,6 +128,12 @@ UnannPrimitiveType						:NumericType 																	 {$$=$1;}
 NumericType								:IntegralType																	 {$$=$1;}
 										;
 IntegralType							:INT    																		 {$$=new AST.IntType();}
+										;
+UnannReferenceType						:UnannArrayType							{$$=$1;}								
+										;
+UnannArrayType							:UnannTypeVariable Dims				{$$=new AST.ArrayType($1);}
+										;
+UnannTypeVariable						:IDENTIFIER							{$$=new AST.NamedType($1);}
 										;
 MethodBody								:Block 																			 {$$=$1;}
 										;
@@ -245,14 +248,17 @@ PackageOrTypeName						:PackageOrTypeName OP_DOT IDENTIFIER
 TypeDeclaration							:ClassDeclaration
 										;	
 																							
-ClassModifiers							: ClassModifier ClassModifiers
-										|
+ClassModifiers							: ClassModifier ClassModifiers				{$$ = $1; $$.Add($2);}
+//^^^^^^^^^^^^
+// Error: This name already defined as a terminal symbol
+// -----------------------------------------------------
+										|											{ $$ = new System.Collections.Generic.List<String>(); }
 										;
-ClassModifier							:PUBLIC 
+ClassModifier							:PUBLIC								{$$=new AST.NamedType($1);}
 										|PROTECTED
 										|PRIVATE
 										|ABSTRACT
-										|STATIC
+										|STATIC								{$$=new AST.NamedType($1);}
 										|FINAL 
 										|STRICTFP
 										;
@@ -269,13 +275,6 @@ FieldDeclaration						: UnannType VariableDeclaratorList
 
 FieldModifier							:Annotation
 										;
-UnannReferenceType						:UnannArrayType							{$$=$1;}								
-										;
-UnannArrayType							:UnannTypeVariable Dims				{$$=new AST.ArrayType($1);}
-										;
-UnannTypeVariable						:IDENTIFIER							{$$=new AST.NamedType($1);}
-										;
-
 Dims									:OP_SQ_L_BR OP_SQ_R_BR
 										;
 %%

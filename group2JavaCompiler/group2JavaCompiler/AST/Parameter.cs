@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.IO;
 namespace group2JavaCompiler.AST
 {
     public class Parameter : Node
@@ -12,7 +12,11 @@ namespace group2JavaCompiler.AST
         VariableDeclaratorId id;
         string modifiers;
         private bool isVarArgs;
-
+        public void gencode(StreamWriter codewriter)
+        {
+            type.gencode(codewriter);
+           // id.gencode(codewriter)
+        }
         public Parameter()
         {
         }
