@@ -80,6 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="javacompiler.il" />
     <None Include="javaCompilerParser.y" />
     <None Include="javaCompilerScanner.lex" />
   </ItemGroup>
