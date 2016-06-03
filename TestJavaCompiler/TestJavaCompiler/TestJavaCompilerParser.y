@@ -34,3 +34,83 @@
 
 
 
+%start CompilationUnit
+
+ClassDeclaration						:NormalClassDeclaration  	
+										;
+NormalClassDeclaration					:ClassModifiers CLASS IDENTIFIER OP_LT_BRACE ClassMemberDeclaration OP_RT_BRACE
+										;
+ClassModifier							:PUBLIC 
+										|STATIC	
+ClassMemberDeclaration					:MethodDeclaration																
+										|FieldDeclaration 
+MethodDeclaration						:MethodModifiers Result IDENTIFIER OP_LEFT_PAR FormalParameterList OP_RIGHT_PAR MethodBody
+										;
+FieldDeclaration						: UnannType VariableDeclaratorList 
+										|FieldModifier UnannType VariableDeclaratorList 
+										;
+MethodModifiers							:MethodModifier MethodModifiers
+										|
+										;
+Result									:VOID																			
+										;
+FormalParameterList						:LastFormalParameter															
+										|FormalParameter
+										;
+UnannType								:UnannReferenceType
+										|UnannPrimitiveType 															 
+										;
+VariableDeclaratorList					:VariableDeclaratorList VariableDeclarator										
+										;
+FieldModifier							:Annotation
+										;
+LastFormalParameter						:FormalParameter																
+										;
+FormalParameter							:UnannType VariableDeclaratorId													
+										;
+UnannReferenceType						:UnannArrayType
+										;
+UnannPrimitiveType						:NumericType 																	 
+										;
+VariableDeclarator						:VariableDeclaratorId															
+										|VariableDeclaratorId OP_EQU VariableInitializer 								
+										;
+Annotation								:PUBLIC 
+										|STATIC
+										;
+VariableDeclaratorId 					:IDENTIFIER																		
+										;
+UnannArrayType							:UnannTypeVariable Dims
+										;
+NumericType								:IntegralType																	 
+										;
+VariableInitializer						:Expression 																	 
+										;
+UnannTypeVariable						:IDENTIFIER
+										;
+Dims									:OP_SQ_L_BR OP_SQ_R_BR
+										;
+IntegralType							:INT    																		 
+										;
+
+%%
+
+public Parser(Scanner scanner) : base(scanner)
+{
+} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
