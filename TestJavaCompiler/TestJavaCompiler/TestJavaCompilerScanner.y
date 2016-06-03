@@ -12,6 +12,13 @@ BooleanLiteral		(true|false)
 Import				import
 Public      		public
 Static      		static
+Final				final
+Abstract			abstract
+Strictfp			strictfp
+Private				private
+Protected			protected
+Synchronized		synchronized
+Native				native
 Void        		void
 Class				class
 Bool				bool
@@ -45,8 +52,16 @@ OpDoubleQuote		"\""
 %%
 {Digit}							{ yylval.num = int.Parse(yytext); return (int)Tokens.NUMBER; }
 {Bool}							{ bool.TryParse(yytext, out yylval.Bool); return (int) Tokens.BOOL; }
-{Public}						{ return (int)Tokens.PUBLIC; }
 {Import}						{ return (int)Tokens.IMPORT; }
+{Public}						{ return (int)Tokens.PUBLIC; }
+{Static}						{ return (int)Tokens.STATIC; }
+{Final}							{ return (int)Tokens.FINAL; }
+{Abstract}						{ return (int)Tokens.ABSTRACT; }
+{Strictfp}						{ return (int)Tokens.STRICTFP; }
+{Private}						{ return (int)Tokens.PRIVATE; }
+{Protected}						{ return (int)Tokens.PROTECTED; }
+{Synchronized}					{ return (int)Tokens.SYNCHRONIZED; }
+{Native}						{ return (int)Tokens.NATIVE; }
 {Void}							{ return (int)Tokens.VOID; }
 {Class}							{ return (int)Tokens.CLASS; }
 {Int}							{ return (int) Tokens.INT; }
@@ -75,7 +90,7 @@ OpDoubleQuote		"\""
 {SemiColon}						{ return (int) Tokens.SEMICOLON; }
 {OpDoubleQuote}					{ return (int) Tokens.OP_DOUBLE_QUOTE; }
 {While}							{ return (int) Tokens.While; }
-{Identifier}					{ yylval.String = yytext; return (int) Tokens.IDENTIFIER; }
+{Identifier}					 { yylval.String = yytext; return (int) Tokens.IDENTIFIER; }
 
 %%
 
