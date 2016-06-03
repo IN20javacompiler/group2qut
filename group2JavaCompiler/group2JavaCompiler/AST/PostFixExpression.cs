@@ -14,7 +14,11 @@ namespace group2JavaCompiler.AST
             label(indent, "PostFixExpression\n");
         }
 
-        public override void codegeneration(StreamWriter codewriter);
+        public void codegeneration(StreamWriter codewriter)
+        {
+
+        }
+        
     }
 
     public class IdenExp : Expression
@@ -30,6 +34,12 @@ namespace group2JavaCompiler.AST
         {
             label(indent, "Identifier {0}\n", name);
         }
+
+        public void codegeneration(StreamWriter codewriter)
+        {
+
+            codewriter.Write("Identifire");
+        }
     };
     public class keyword : Expression
     {
@@ -44,6 +54,11 @@ namespace group2JavaCompiler.AST
         {
             label(indent, "Keyword {0}\n",kword);
         }
+        public void codegeneration(StreamWriter codewriter)
+        {
+
+            codewriter.Write("keyword");
+        }
     };
     public class postfixexpression : Expression
     {
@@ -57,6 +72,10 @@ namespace group2JavaCompiler.AST
         public override void dump(int indent)
         {
             label(indent, "PostFixExpression {0}\n", pofixexp);
+        }
+        public void codegeneration(StreamWriter codewriter)
+        {
+            codewriter.Write("++");
         }
     }
 }
