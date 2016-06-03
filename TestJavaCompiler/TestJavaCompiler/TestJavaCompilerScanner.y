@@ -5,41 +5,41 @@
 Eol             	(\r\n?|\n)
 NotWh           	[^ \t\r\n]
 Space           	[ \t]
-Digit			[0-9]+
-Letter 			[a-zA-Z]
-Identifier		[a-zA-Z][a-zA-Z0-9_]*
+Digit				[0-9]+
+Letter 				[a-zA-Z]
+Identifier			[a-zA-Z][a-zA-Z0-9_]*
 BooleanLiteral		(true|false)
-Import			import
+Import				import
 Public      		public
 Static      		static
 Void        		void
-Class			class
-Bool			bool
-Int				int
-String			string
-While			while
-OpAdd			+
-OpMinus			"-"
-OpMul			"*"
-OpDiv			"/"
-OpDot			"."
-OpModul			"%"
-OpAnd			and
-OpOr			or
-OpNot			not
-OpEqu			=
-OpNotEqu		"!="
-OpLt			"<"
-OpGt			">"
-OpGtEq			">="
-OpLtEq			"<="
-OpSqLBr			"["
-OpSqRBr			"]"
-LeftPar			"("
-RigthPar		")"
-OpLtBrace		"{"
-OpRtBrace		"}"
-SemiColon		";"
+Class				class
+Bool				bool
+Int					int
+String				string
+While				while
+OpAdd				+
+OpMinus				"-"
+OpMul				"*"
+OpDiv				"/"
+OpDot				"."
+OpModul				"%"
+OpAnd				and
+OpOr				or
+OpNot				not
+OpEqu				=
+OpNotEqu			"!="
+OpLt				"<"
+OpGt				">"
+OpGtEq				">="
+OpLtEq				"<="
+OpSqLBr				"["
+OpSqRBr				"]"
+LeftPar				"("
+RigthPar			")"
+OpLtBrace			"{"
+OpRtBrace			"}"
+SemiColon			";"
 OpDoubleQuote		"\""
 
 %%
@@ -73,9 +73,9 @@ OpDoubleQuote		"\""
 {OpLtBrace}						{ return (int) Tokens.OP_LT_BRACE; }
 {OpRtBrace}						{ return (int) Tokens.OP_RT_BRACE; }
 {SemiColon}						{ return (int) Tokens.SEMICOLON; }
-{OpDoubleQuote}						{ return (int) Tokens.OP_DOUBLE_QUOTE; }
+{OpDoubleQuote}					{ return (int) Tokens.OP_DOUBLE_QUOTE; }
 {While}							{ return (int) Tokens.While; }
-{Identifier}						{ yylval.String = yytext; return (int) Tokens.IDENTIFIER; }
+{Identifier}					{ yylval.String = yytext; return (int) Tokens.IDENTIFIER; }
 
 %%
 
