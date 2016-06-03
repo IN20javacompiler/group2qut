@@ -1,10 +1,10 @@
 
 // ==========================================================================
-//  GPPG error listing for yacc source file <TestJavaCompilerParser.y - 6/3/2016 4:58:35 PM>
+//  GPPG error listing for yacc source file <TestJavaCompilerParser.y - 6/3/2016 5:17:22 PM>
 // ==========================================================================
 //  Version:  1.5.2
 //  Machine:  HARSH
-//  DateTime: 6/3/2016 4:58:40 PM
+//  DateTime: 6/3/2016 5:17:43 PM
 //  UserName: Iamharsh
 // ==========================================================================
 
@@ -60,6 +60,9 @@ ClassDeclaration						:NormalClassDeclaration
 										;
 NormalClassDeclaration					:ClassModifiers CLASS IDENTIFIER OP_LT_BRACE ClassMemberDeclaration OP_RT_BRACE
 										;
+ClassModifiers							: ClassModifier ClassModifiers							
+										|
+										;
 ClassModifier							:PUBLIC 
 										|PROTECTED
 										|PRIVATE
@@ -75,11 +78,11 @@ ClassMemberDeclaration					:MethodDeclaration
 										;
 MethodDeclaration						:MethodModifiers Result IDENTIFIER OP_LEFT_PAR FormalParameterList OP_RIGHT_PAR MethodBody
 										;
-FieldDeclaration						: UnannType VariableDeclaratorList 
+FieldDeclaration						:UnannType VariableDeclaratorList 
 										|FieldModifier UnannType VariableDeclaratorList 
 										;
 MethodModifiers							:MethodModifier MethodModifiers
-										|MethodModifier
+										|
 										;
 MethodModifier							:PUBLIC 
 										|PROTECTED
@@ -94,12 +97,13 @@ MethodModifier							:PUBLIC
 Result									:VOID																			
 										;
 FormalParameterList						:LastFormalParameter															
-										|FormalParameter
+										|
 										;
 UnannType								:UnannReferenceType
 										|UnannPrimitiveType 															 
 										;
-VariableDeclaratorList					:VariableDeclaratorList VariableDeclarator										
+VariableDeclaratorList					:VariableDeclaratorList VariableDeclarator
+										|									
 										;
 FieldModifier							:Annotation
 										;
@@ -184,10 +188,12 @@ MethodBody								:Block
 Block									:OP_LT_BRACE BlockStatements OP_RT_BRACE 										 
 										;
 BlockStatements							:BlockStatements BlockStatement									 				
-										|BlockStatement																					
+										|																					
 										;
 BlockStatement							:LocalVariableDeclaration SEMICOLON   											
 										|Statement 
+										;
+LocalVariableDeclaration				:UnannType VariableDeclaratorList 												 
 										;
 Statement								:StatementWithoutTrailingSubstatement 	
 										|WhileStatement

@@ -46,6 +46,9 @@ ClassDeclaration						:NormalClassDeclaration
 										;
 NormalClassDeclaration					:ClassModifiers CLASS IDENTIFIER OP_LT_BRACE ClassMemberDeclaration OP_RT_BRACE
 										;
+ClassModifiers							: ClassModifier ClassModifiers							
+										|
+										;
 ClassModifier							:PUBLIC 
 										|PROTECTED
 										|PRIVATE
@@ -61,11 +64,11 @@ ClassMemberDeclaration					:MethodDeclaration
 										;
 MethodDeclaration						:MethodModifiers Result IDENTIFIER OP_LEFT_PAR FormalParameterList OP_RIGHT_PAR MethodBody
 										;
-FieldDeclaration						: UnannType VariableDeclaratorList 
+FieldDeclaration						:UnannType VariableDeclaratorList 
 										|FieldModifier UnannType VariableDeclaratorList 
 										;
 MethodModifiers							:MethodModifier MethodModifiers
-										|MethodModifier
+										|
 										;
 MethodModifier							:PUBLIC 
 										|PROTECTED
@@ -80,12 +83,13 @@ MethodModifier							:PUBLIC
 Result									:VOID																			
 										;
 FormalParameterList						:LastFormalParameter															
-										|FormalParameter
+										|
 										;
 UnannType								:UnannReferenceType
 										|UnannPrimitiveType 															 
 										;
-VariableDeclaratorList					:VariableDeclaratorList VariableDeclarator										
+VariableDeclaratorList					:VariableDeclaratorList VariableDeclarator
+										|									
 										;
 FieldModifier							:Annotation
 										;
@@ -170,10 +174,12 @@ MethodBody								:Block
 Block									:OP_LT_BRACE BlockStatements OP_RT_BRACE 										 
 										;
 BlockStatements							:BlockStatements BlockStatement									 				
-										|BlockStatement																					
+										|																					
 										;
 BlockStatement							:LocalVariableDeclaration SEMICOLON   											
 										|Statement 
+										;
+LocalVariableDeclaration				:UnannType VariableDeclaratorList 												 
 										;
 Statement								:StatementWithoutTrailingSubstatement 	
 										|WhileStatement
