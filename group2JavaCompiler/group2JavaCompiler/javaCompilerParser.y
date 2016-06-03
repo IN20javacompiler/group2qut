@@ -141,7 +141,7 @@ StatementExpression                     :Assignment
 										|MethodInvocation
 										|ClassInstanceCreationExpression
 										;
-PostIncrementExpression                 :POSTFIXEXPRESSION
+PostIncrementExpression                 :POSTFIXEXPRESSION                                                              { $$=new AST.PostFixExpression($1);}
                                         ;
                                         
 VariableDeclaratorId 					:IDENTIFIER																		{$$=new AST.VariableDeclaratorId($1);}

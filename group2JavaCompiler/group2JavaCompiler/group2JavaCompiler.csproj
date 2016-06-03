@@ -67,6 +67,7 @@
     <Compile Include="AST\Method.cs" />
     <Compile Include="AST\Node.cs" />
     <Compile Include="AST\Parameter.cs" />
+    <Compile Include="AST\PostFixExpression.cs" />
     <Compile Include="AST\Statement.cs" />
     <Compile Include="AST\Type.cs" />
     <Compile Include="AST\UnannReferenceType.cs" />
