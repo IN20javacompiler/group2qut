@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace group2JavaCompiler.AST
 {
@@ -13,6 +9,7 @@ namespace group2JavaCompiler.AST
             // using Reflection
         } */
     }
+
     public class AssignExpression : Expression
     {
         private Expression lhs, rhs;
@@ -30,25 +27,7 @@ namespace group2JavaCompiler.AST
             rhs.dump(indent + 1, "rhs");
         }
     };
-    public class BinaryExpression : Expression
-    {
-        private char op;
-        private Expression lhs, rhs;
-
-        public BinaryExpression(Expression lhs, char op, Expression rhs)
-        {
-            this.op = op;
-            this.lhs = lhs;
-            this.rhs = rhs;
-        }
-
-        public override void dump(int indent)
-        {
-            label(indent, "BinaryExpression {0}\n", op);
-            lhs.dump(indent + 1, "lhs");
-            rhs.dump(indent + 1, "rhs");
-        }
-    };
+   
     public class IdentifierExpression : Expression
     {
         private string name;
@@ -63,23 +42,28 @@ namespace group2JavaCompiler.AST
             label(indent, "IdentifierExpression {0}\n", name);
         }
     };
+
     public class NumberExpression : Expression
     {
         private int value;
+
         public NumberExpression(int value)
         {
             this.value = value;
         }
+
         public override void dump(int indent)
         {
             label(indent, "NumberExpression {0}\n", value);
         }
     };
+
     public class VariableDeclarationExpr : Expression
     {
         private Type type;
         private string modifiers;
         private List<VariableDeclarator> vars;
+
         public VariableDeclarationExpr()
         {
         }
@@ -96,14 +80,35 @@ namespace group2JavaCompiler.AST
             this.type = type;
             this.vars = vars;
         }
+
         public override void dump(int indent)
         {
             label(indent, "VariableDeclarationExpr \n");
             type.dump(indent + 1);
             foreach (var child in vars) { 
                 child.dump(indent + 1);
-        }
+            }
            
+        }
+    };
+
+    public class BinaryExpresion : Expression
+    {
+        private char op;
+        private Expression lhs, rhs;
+
+        public BinaryExpresion(Expression lhs, char op, Expression rhs)
+        {
+            this.op = op;
+            this.lhs = lhs;
+            this.rhs = rhs;
+        }
+
+        public override void dump(int indent)
+        {
+            label(indent, "BinaryExpression {0}\n", op);
+            lhs.dump(indent + 1, "lhs");
+            rhs.dump(indent + 1, "rhs");
         }
     };
 }

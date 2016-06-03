@@ -1,31 +1,11 @@
 ﻿using System.Collections.Generic;
-namespace group2JavaCompiler.AST { 
+
+namespace group2JavaCompiler.AST
+{
     public abstract class Statement : Node
     {
 
     }
-    public class IfStatement : Statement
-    {
-        private Expression cond;
-        private Statement thenStmt, elseStmt;
-
-        public IfStatement(Expression cond, Statement thenStmt, Statement elseStmt)
-        {
-            this.cond = cond;
-            this.thenStmt = thenStmt;
-            this.elseStmt = elseStmt;
-        }
-
-        public override void dump(int indent)
-        {
-            label(indent, "IfStatement\n");
-            cond.dump(indent + 1, "cond");
-            thenStmt.dump(indent + 1, "then");
-            elseStmt.dump(indent + 1, "else");
-        }
-    };
-
-   
 
     public class VariableDeclaration : Statement
     {
@@ -42,6 +22,7 @@ namespace group2JavaCompiler.AST {
             type.dump(indent + 1);
         }
     };
+
     public class VariableDeclarationList : Statement
     {
         private Type type;
@@ -57,7 +38,8 @@ namespace group2JavaCompiler.AST {
             foreach (var child in name)
                 child.dump(indent + 1);
         }
-       };
+    };
+
     public class ExpressionStatement : Statement
     {
         private Expression expr;
@@ -73,6 +55,7 @@ namespace group2JavaCompiler.AST {
             expr.dump(indent + 1);
         }
     };
+
     public class CompoundStatement : Statement
     {
         private List<Statement> stmts;
@@ -89,6 +72,7 @@ namespace group2JavaCompiler.AST {
                 child.dump(indent + 1);
         }
     };
+
     public class VariableDeclarationStatement : Statement
     {
         private Type type;
@@ -110,12 +94,13 @@ namespace group2JavaCompiler.AST {
             value.dump(indent + 2);
         }
     };
-    public class IfThenElseStatement : Statement
+
+    public class IfElseStatement : Statement
     {
         private Expression cond;
         private Statement thenStmt, elseStmt;
 
-        public IfThenElseStatement(Expression cond, Statement thenStmt, Statement elseStmt)
+        public IfElseStatement(Expression cond, Statement thenStmt, Statement elseStmt)
         {
             this.cond = cond;
             this.thenStmt = thenStmt;
@@ -129,5 +114,5 @@ namespace group2JavaCompiler.AST {
             thenStmt.dump(indent + 1, "then");
             elseStmt.dump(indent + 1, "else");
         }
-    };
- }
+    }
+}

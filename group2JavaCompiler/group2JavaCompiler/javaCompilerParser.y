@@ -18,7 +18,6 @@ public static AST.Class root;
 	public AST.VariableDeclaratorId varDeclaratorId;
 	public AST.VariableDeclarationExpr varDeclaratorExpr;
 	public AST.Class classRoot;
-	public AST.FieldDeclaration fieldDeclaration;
 	public System.Collections.Generic.List<AST.Statement> stmts;
 	public System.Collections.Generic.List<AST.VariableDeclarator> varList;
 	public int num;
@@ -36,13 +35,13 @@ public static AST.Class root;
 %type <expr> Expression VariableInitializer AssignmentExpression ConditionalExpression ConditionalAndExpression ConditionalOrExpression InclusiveOrExpression ExclusiveOrExpression AndExpression
 %type <expr> EqualityExpression RelationalExpression ShiftExpression AdditiveExpression MultiplicativeExpression UnaryExpression UnaryExpressionNotPlusMinus PostfixExpression
 %type <expr> Primary PrimaryNoNewArray Literal 
-%type <stmt> Statement BlockStatement  
+%type <stmt> Statement BlockStatement 
+%type <stmt> IfThenElseStatement
 %type <compoundStmt> Block MethodBody
 %type <stmts>  BlockStatements
 %type <method> MethodDeclaration
+%type <method> MethodInvocation
 %type <classRoot> NormalClassDeclaration
-%type <fieldDeclaration> 
-
 %token <String>	 IDENTIFIER 
 %token <num> NUMBER
 %token <Bool>	 BOOL_LITERAL
@@ -90,7 +89,7 @@ public static AST.Class root;
 
 ClassDeclaration						:NormalClassDeclaration  														{root=$1;}
 										;
-NormalClassDeclaration					:ClassModifiers CLASS IDENTIFIER OP_LT_BRACE ClassMemberDeclaration OP_RT_BRACE	 {$$ =new AST.Class($3,$5);}
+NormalClassDeclaration					:ClassModifiers CLASS IDENTIFIER OP_LT_BRACE ClassMemberDeclaration OP_RT_BRACE	{$$ =new AST.Class($3,$5);}
 										;
 ClassMemberDeclaration					:MethodDeclaration																{$$= new AST.ClassMemberDeclaration($1);}
 										|FieldDeclaration 
@@ -182,9 +181,9 @@ PrimaryNoNewArray						:Literal     																	 {$$=$1;}
 Literal 								:NUMBER 																 {$$ = new AST.NumberExpression($1);}
 										;
 Statement								:StatementWithoutTrailingSubstatement 
-										|IfThenElseStatement
+										|IfThenElseStatement														{$$=$1;}
 										;
-IfThenElseStatement						:IF OP_LEFT_PAR Expression OP_RIGHT_PAR Statement ELSE Statement  				 
+IfThenElseStatement						:IF OP_LEFT_PAR Expression OP_RIGHT_PAR Statement ELSE Statement  		{$$ = new AST.IfElseStatement($3,$5,$7);}					 
 										;
 StatementWithoutTrailingSubstatement 	:OP_LT_BRACE Statement OP_RT_BRACE  
 										|ExpressionStatement 
@@ -199,7 +198,7 @@ StatementExpression						:ExpressionName OP_EQU Expression
 										;
 ExpressionName							:IDENTIFIER    											{$$=new AST.VariableDeclaratorId($1);}
 										;
-MethodInvocation						:MethodName OP_LEFT_PAR ArgumentList OP_RIGHT_PAR
+MethodInvocation						:MethodName OP_LEFT_PAR ArgumentList OP_RIGHT_PAR		{$$ = new AST.MethodInvocation($1,$2);}
 										;
 MethodName								:SYSTEM OP_DOT OUT OP_DOT PRINTLN
 										;
@@ -232,10 +231,10 @@ PackageOrTypeName						:PackageOrTypeName OP_DOT IDENTIFIER
 TypeDeclaration							:ClassDeclaration
 										;	
 																							
-ClassModifiers							: ClassModifier  ClassModifiers		
-										| 	
+ClassModifiers							: ClassModifier ClassModifiers
+										|
 										;
-ClassModifier							:PUBLIC						
+ClassModifier							:PUBLIC 
 										|PROTECTED
 										|PRIVATE
 										|ABSTRACT
@@ -250,7 +249,7 @@ Annotation								:PUBLIC
 										|STATIC
 										|FINAL 
 										;
-FieldDeclaration						: UnannType VariableDeclaratorList								{$$= new AST.FieldDeclaration($1,$2);}
+FieldDeclaration						: UnannType VariableDeclaratorList 
 										|FieldModifier UnannType VariableDeclaratorList 
 										;
 

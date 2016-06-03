@@ -13,14 +13,20 @@ namespace group2JavaCompiler.AST
         public VariableDeclarationStatement stmt;
         public Parameter parameters;
         public CompoundStatement body;
-              
+        //private MethodName mdName;
+        //private ArgumentList argList;
+
         public Method(Type type, String name)
         {
            // this.modifier = modifiers;
             this.type = type;
             this.name = name;
         }
-
+        /*public Method(MethodName mdName, ArgumentList argList)
+        {
+            this.mdName = mdName;
+            this.argList = argList;
+        }*/
         public Method( Type type, String name, Parameter parameters)
         {
             //this.modifier = modifiers;
@@ -47,4 +53,33 @@ namespace group2JavaCompiler.AST
             body.dump(indent);
         }
     }
+    public abstract class MethodName : Node
+    {
+        
+    }
+    public abstract class ArgumentList : Node
+    {
+      
+    }
+    public class MethodInvocation : Node
+    {
+       public MethodName mdName;
+        public ArgumentList argList;
+
+        public MethodInvocation(MethodName mdName, ArgumentList argList)
+        {
+            this.mdName = mdName;
+            this.argList = argList;
+           
+        }
+
+        public override void dump(int indent)
+        {
+            label(indent, "Method Invocation\n");
+            
+            mdName.dump(indent + 1, "System.out.println");
+            argList.dump(indent + 1, "Expression");
+        }
+    }
+
 }

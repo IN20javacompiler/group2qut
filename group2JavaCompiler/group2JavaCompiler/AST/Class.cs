@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace group2JavaCompiler.AST
 {
@@ -10,26 +11,24 @@ namespace group2JavaCompiler.AST
     {
         string modifier, name;
         ClassMemberDeclaration member;
-       
 
         public Class( string name, ClassMemberDeclaration member)
         {
-           
+           // this.modifier = modifier;
             this.name = name;
             this.member = member;
-            //this.modifier = modifier;
         }
-
-        public Class(string modifier)
+        public void gencode(StreamWriter codewriter)
         {
-
-            
-            this.modifier = modifier;
+            codewriter.WriteLine(".class private {0} extends[mscorlib]System.Object",name);
+            codewriter.WriteLine("{");
+            //member.gencode(codewriter);
+            codewriter.WriteLine("}");
         }
         public override void dump(int indent)
         {
-            label(indent, "Class Modifier :{0}\n", modifier);
             label(indent, "Class Declaration \n");
+            //label(indent, "Class Modifier :{0}\n", modifier);
             label(indent, "Class name Identifier :{0}\n", name);
             member.dump(indent + 1);
             

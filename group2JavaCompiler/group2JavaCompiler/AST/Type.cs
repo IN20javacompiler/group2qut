@@ -28,7 +28,6 @@ namespace group2JavaCompiler.AST
     };
     public class IntType : Type
     {
-        
         public override void dump(int indent)
         {
             label(indent, "IntType\n");
