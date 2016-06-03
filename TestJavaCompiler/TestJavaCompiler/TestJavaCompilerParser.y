@@ -4,7 +4,7 @@
 %token <String>	 IDENTIFIER 
 %token <num> NUMBER
 %token <Bool>	 BOOL_LITERAL
-%token PUBLIC STATIC
+%token PUBLIC PROTECTED PRIVATE ABSTRACT STATIC FINAL SYNCHRONIZED NATIVE STRICTFP
 %token VOID
 %token EXPRESSION_STATEMENT 
 %token CLASS
@@ -47,7 +47,14 @@ ClassDeclaration						:NormalClassDeclaration
 NormalClassDeclaration					:ClassModifiers CLASS IDENTIFIER OP_LT_BRACE ClassMemberDeclaration OP_RT_BRACE
 										;
 ClassModifier							:PUBLIC 
-										|STATIC	
+										|PROTECTED
+										|PRIVATE
+										|ABSTRACT
+										|STATIC
+										|FINAL 
+										|SYNCHRONIZED
+										|NATIVE
+										|STRICTFP
 										;
 ClassMemberDeclaration					:MethodDeclaration																
 										|FieldDeclaration 
@@ -61,7 +68,14 @@ MethodModifiers							:MethodModifier MethodModifiers
 										|MethodModifier
 										;
 MethodModifier							:PUBLIC 
+										|PROTECTED
+										|PRIVATE
+										|ABSTRACT
 										|STATIC
+										|FINAL
+										|SYNCHRONIZED
+										|NATIVE
+										|STRICTFP
 										;
 Result									:VOID																			
 										;
@@ -86,8 +100,15 @@ UnannPrimitiveType						:NumericType
 VariableDeclarator						:VariableDeclaratorId															
 										|VariableDeclaratorId OP_EQU VariableInitializer 								
 										;
-Annotation								:PUBLIC 
+Annotation								:PUBLIC
+										|PROTECTED
+										|PRIVATE
+										|ABSTRACT
 										|STATIC
+										|FINAL
+										|SYNCHRONIZED
+										|NATIVE
+										|STRICTFP
 										;
 VariableDeclaratorId 					:IDENTIFIER																		
 										;

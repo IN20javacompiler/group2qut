@@ -1,10 +1,10 @@
 
 // ==========================================================================
-//  GPPG error listing for yacc source file <TestJavaCompilerParser.y - 6/3/2016 4:46:16 PM>
+//  GPPG error listing for yacc source file <TestJavaCompilerParser.y - 6/3/2016 4:58:35 PM>
 // ==========================================================================
 //  Version:  1.5.2
 //  Machine:  HARSH
-//  DateTime: 6/3/2016 4:46:28 PM
+//  DateTime: 6/3/2016 4:58:40 PM
 //  UserName: Iamharsh
 // ==========================================================================
 
@@ -15,7 +15,7 @@
 %token <String>	 IDENTIFIER 
 %token <num> NUMBER
 %token <Bool>	 BOOL_LITERAL
-%token PUBLIC STATIC
+%token PUBLIC PROTECTED PRIVATE ABSTRACT STATIC FINAL SYNCHRONIZED NATIVE STRICTFP
 %token VOID
 %token EXPRESSION_STATEMENT 
 %token CLASS
@@ -61,7 +61,14 @@ ClassDeclaration						:NormalClassDeclaration
 NormalClassDeclaration					:ClassModifiers CLASS IDENTIFIER OP_LT_BRACE ClassMemberDeclaration OP_RT_BRACE
 										;
 ClassModifier							:PUBLIC 
-										|STATIC	
+										|PROTECTED
+										|PRIVATE
+										|ABSTRACT
+										|STATIC
+										|FINAL 
+										|SYNCHRONIZED
+										|NATIVE
+										|STRICTFP
 										;
 ClassMemberDeclaration					:MethodDeclaration																
 										|FieldDeclaration 
@@ -75,7 +82,14 @@ MethodModifiers							:MethodModifier MethodModifiers
 										|MethodModifier
 										;
 MethodModifier							:PUBLIC 
+										|PROTECTED
+										|PRIVATE
+										|ABSTRACT
 										|STATIC
+										|FINAL
+										|SYNCHRONIZED
+										|NATIVE
+										|STRICTFP
 										;
 Result									:VOID																			
 										;
@@ -100,8 +114,15 @@ UnannPrimitiveType						:NumericType
 VariableDeclarator						:VariableDeclaratorId															
 										|VariableDeclaratorId OP_EQU VariableInitializer 								
 										;
-Annotation								:PUBLIC 
+Annotation								:PUBLIC
+										|PROTECTED
+										|PRIVATE
+										|ABSTRACT
 										|STATIC
+										|FINAL
+										|SYNCHRONIZED
+										|NATIVE
+										|STRICTFP
 										;
 VariableDeclaratorId 					:IDENTIFIER																		
 										;
